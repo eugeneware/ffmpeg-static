@@ -1,0 +1,23 @@
+{
+  "name": "ffmpeg-static",
+  "version": "1.0.0",
+  "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugeneware/ffmpeg-static"
+  },
+  "keywords": ["ffmpeg","static","library","binary","binaries","mac","linux","windows"],
+  "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/eugeneware/ffmpeg-static/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tape": "~2.3.2"
+  }
+}
