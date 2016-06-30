@@ -25,7 +25,7 @@ console.log(ffmpeg.path);
 Currently supports Mac OS X (64-bit), Linux (32 and 64-bit) and Windows
 (32 and 64-bit).
 
-Currently version `2.5.3` is installed for Mac and Linux, and `2.5.2` for
+Currently version `3.1` is installed for Mac and Linux, and `3.0.1` for
 Windows.
 
 I pulled the versions from the ffmpeg static build pages linked from the
