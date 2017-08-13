@@ -7,28 +7,28 @@ download () {
 }
 
 echo 'windows x64'
-echo \t'downloading from ffmpeg.zeranoe.com'
+echo '  downloading from ffmpeg.zeranoe.com'
 download 'https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-latest-win64-static.zip' win32-x64.zip
-echo \t'extracting'
-unzip -d bin/win32/x64 -j win32-x64.zip '**/ffmpeg.exe'
+echo '  extracting'
+unzip -d ../bin/win32/x64 -j win32-x64.zip '**/ffmpeg.exe'
 
 echo 'windows ia32'
-echo \t'downloading from ffmpeg.zeranoe.com'
+echo '  downloading from ffmpeg.zeranoe.com'
 download 'https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.zip' win32-ia32.zip
-echo \t'extracting'
-unzip -d bin/win32/ia32 -j win32-ia32.zip '**/ffmpeg.exe'
+echo '  extracting'
+unzip -d ../bin/win32/ia32 -j win32-ia32.zip '**/ffmpeg.exe'
 
 echo 'linux x64'
-echo \t'downloading from johnvansickle.com'
+echo '  downloading from johnvansickle.com'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz' linux-x64.tar.xz
-echo \t'extracting'
-tar -x -C bin/linux/x64 --strip-components 1 -f linux-x64.tar.xz --wildcards '*/ffmpeg'
+echo '  extracting'
+tar -x -C ../bin/linux/x64 --strip-components 1 -f linux-x64.tar.xz --wildcards '*/ffmpeg'
 
 echo 'linux ia32'
-echo \t'downloading from johnvansickle.com'
+echo '  downloading from johnvansickle.com'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.tar.xz' linux-ia32.tar.xz
-echo \t'extracting'
-tar -x -C bin/linux/ia32 --strip-components 1 -f linux-ia32.tar.xz --wildcards '*/ffmpeg'
+echo '  extracting'
+tar -x -C ../bin/linux/ia32 --strip-components 1 -f linux-ia32.tar.xz --wildcards '*/ffmpeg'
 
 # todo: find latest version
 echo 'darwin x64 – downloading from evermeet.cx'
