@@ -25,6 +25,9 @@
   "bugs": {
     "url": "https://github.com/eugeneware/ffmpeg-static/issues"
   },
+  "engines": {
+    "node": ">=4"
+  },
   "dependencies": {},
   "devDependencies": {
     "tape": "~2.3.2"
