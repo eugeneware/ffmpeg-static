@@ -4,7 +4,9 @@
   "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/tape test/*.js"
+    "build": "./build/index.sh",
+    "test": "node_modules/.bin/tape test/*.js",
+    "prepublishOnly": "npm run build && npm test"
   },
   "repository": {
     "type": "git",
