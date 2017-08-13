@@ -1,3 +1,11 @@
 language: node_js
 node_js:
   - "0.10"
+addons:
+  apt:
+    packages:
+      - unzip
+      - p7zip
+script:
+  - npm run build
+  - npm test
