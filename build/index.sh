@@ -10,13 +10,13 @@ echo 'windows x64'
 echo '  downloading from ffmpeg.zeranoe.com'
 download 'https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-latest-win64-static.zip' win32-x64.zip
 echo '  extracting'
-unzip -d ../bin/win32/x64 -j win32-x64.zip '**/ffmpeg.exe'
+unzip -o -d ../bin/win32/x64 -j win32-x64.zip '**/ffmpeg.exe'
 
 echo 'windows ia32'
 echo '  downloading from ffmpeg.zeranoe.com'
 download 'https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.zip' win32-ia32.zip
 echo '  extracting'
-unzip -d ../bin/win32/ia32 -j win32-ia32.zip '**/ffmpeg.exe'
+unzip -o -d ../bin/win32/ia32 -j win32-ia32.zip '**/ffmpeg.exe'
 
 echo 'linux x64'
 echo '  downloading from johnvansickle.com'
