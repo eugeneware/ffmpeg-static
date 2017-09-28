@@ -23,3 +23,7 @@ var ffmpeg = require('ffmpeg-static');
 console.log(ffmpeg.path);
 // /Users/eugeneware/Dropbox/work/ffmpeg-static/bin/darwin/x64/ffmpeg
 ```
+
+## Building the project
+
+The `unzip`, `tar` and `7zr` CLI executables need to be installed. On macOS, use `brew install p7zip gnu-tar`.
