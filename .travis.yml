@@ -6,6 +6,7 @@ addons:
     packages:
       - unzip
       - p7zip
+      - tar
 script:
   - npm run build
   - npm test
