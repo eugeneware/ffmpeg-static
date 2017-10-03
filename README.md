@@ -24,6 +24,14 @@ console.log(ffmpeg.path);
 // /Users/eugeneware/Dropbox/work/ffmpeg-static/bin/darwin/x64/ffmpeg
 ```
 
+## Sources of the binaries
+
+[The build script](build/index.sh) downloads binaries from these locations:
+
+- [Windows builds](https://ffmpeg.zeranoe.com/builds/win64/static/)
+- [Linux builds](https://johnvansickle.com/ffmpeg/releases/)
+- [macOS builds](https://evermeet.cx/pub/ffmpeg/)
+
 ## Building the project
 
 The `unzip`, `tar` and `7zr` CLI executables need to be installed. On macOS, use `brew install p7zip gnu-tar`.
