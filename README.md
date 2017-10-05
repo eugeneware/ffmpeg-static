@@ -4,6 +4,8 @@
 
 Supports macOS (64-bit), Linux (32 and 64-bit) and Windows (32 and 64-bit). The current ffmpeg version is `3.4`.
 
+*Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, we do *not* consider breaking changes in `ffmpeg` itself, but only the JS interface (see below).
+
 [![build status](https://secure.travis-ci.org/eugeneware/ffmpeg-static.png)](http://travis-ci.org/eugeneware/ffmpeg-static)
 
 ## Installation
