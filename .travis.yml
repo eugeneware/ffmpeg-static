@@ -3,3 +3,12 @@ node_js:
   - 'stable'
   - '6'
   - '4'
+addons:
+  apt:
+    packages:
+      - unzip
+      - p7zip
+      - tar
+script:
+  - npm run build
+  - npm test
