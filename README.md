@@ -2,7 +2,7 @@
 
 **[ffmpeg](https://ffmpeg.org) static binaries for Mac OSX and Linux and Windows.**
 
-Supports macOS (64-bit), Linux (32 and 64-bit) and Windows (32 and 64-bit). The current ffmpeg version is `3.3.3`.
+Supports macOS (64-bit), Linux (32 and 64-bit) and Windows (32 and 64-bit). The current ffmpeg version is `3.4`.
 
 [![build status](https://secure.travis-ci.org/eugeneware/ffmpeg-static.png)](http://travis-ci.org/eugeneware/ffmpeg-static)
 
