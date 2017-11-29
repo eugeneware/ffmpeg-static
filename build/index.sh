@@ -34,7 +34,10 @@ download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.
 echo '  extracting'
 $tar_exec -x -C ../bin/linux/ia32 --strip-components 1 -f linux-ia32.tar.xz --wildcards '*/ffmpeg'
 
-# todo: find latest version
-echo 'darwin x64 – downloading from evermeet.cx'
-download 'https://evermeet.cx/pub/ffmpeg/ffmpeg-3.3.3.7z' darwin-x64-ffmpeg.7z
+# find latest version
+LATEST_OSX=$(curl -s https://evermeet.cx/pub/ffmpeg/ | grep ffmpeg | grep .7z | head -1 | cut -d'"' -f 2)
+
+echo 'darwin x64'
+echo '  downloading from evermeet.cx'
+download "https://evermeet.cx/pub/ffmpeg/${LATEST_OSX}" darwin-x64-ffmpeg.7z
 7zr e -y -bd -o../bin/darwin/x64 darwin-x64-ffmpeg.7z >/dev/null
