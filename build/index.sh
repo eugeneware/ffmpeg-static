@@ -1,4 +1,5 @@
 #!/bin/sh
+set +e
 cd $(dirname $0)
 
 tar_exec=$(command -v gtar)

@@ -6,7 +6,7 @@ Supports macOS (64-bit), Linux (32 and 64-bit) and Windows (32 and 64-bit). The 
 
 *Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, we do *not* consider breaking changes in `ffmpeg` itself, but only the JS interface (see below).
 
-[![build status](https://secure.travis-ci.org/eugeneware/ffmpeg-static.png)](http://travis-ci.org/eugeneware/ffmpeg-static)
+[![build status](https://travis-ci.org/eugeneware/ffmpeg-static.svg?branch=master)](http://travis-ci.org/eugeneware/ffmpeg-static)
 
 ## Installation
 
@@ -31,7 +31,7 @@ console.log(ffmpeg.path);
 [The build script](build/index.sh) downloads binaries from these locations:
 
 - [Windows builds](https://ffmpeg.zeranoe.com/builds/win64/static/)
-- [Linux builds](https://johnvansickle.com/ffmpeg/releases/)
+- [Linux builds](https://johnvansickle.com/ffmpeg/)
 - [macOS builds](https://evermeet.cx/pub/ffmpeg/)
 
 ## Building the project

@@ -27,6 +27,9 @@
     "windows"
   ],
   "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "contributors": [
+    "Jannis R <mail@jannisr.de>"
+  ],
   "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/eugeneware/ffmpeg-static/issues"
