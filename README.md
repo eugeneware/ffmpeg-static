@@ -36,4 +36,4 @@ console.log(ffmpeg.path);
 
 ## Building the project
 
-The `unzip`, `tar` and `7zr` CLI executables need to be installed. On macOS, use `brew install p7zip gnu-tar`.
+The `unzip`, `tar` and `7zr` CLI executables need to be installed. On macOS, use `brew install p7zip gnu-tar xz`.
