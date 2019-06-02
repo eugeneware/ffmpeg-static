@@ -25,13 +25,13 @@ unzip -o -d ../bin/win32/ia32 -j win32-ia32.zip '**/ffmpeg.exe'
 
 echo 'linux x64'
 echo '  downloading from johnvansickle.com'
-download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz' linux-x64.tar.xz
+download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz' linux-x64.tar.xz
 echo '  extracting'
 $tar_exec -x -C ../bin/linux/x64 --strip-components 1 -f linux-x64.tar.xz --wildcards '*/ffmpeg'
 
 echo 'linux ia32'
 echo '  downloading from johnvansickle.com'
-download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.tar.xz' linux-ia32.tar.xz
+download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz' linux-ia32.tar.xz
 echo '  extracting'
 $tar_exec -x -C ../bin/linux/ia32 --strip-components 1 -f linux-ia32.tar.xz --wildcards '*/ffmpeg'
 
