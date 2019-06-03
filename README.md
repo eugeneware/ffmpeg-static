@@ -34,6 +34,8 @@ console.log(ffmpeg.path);
 - [Linux builds](https://johnvansickle.com/ffmpeg/)
 - [macOS builds](https://evermeet.cx/pub/ffmpeg/)
 
+If you use this package, please consider donating to [John Van Sickle](https://johnvansickle.com/), who builds & serves the `ffmpeg` static binaries!
+
 ## Building the project
 
 The `unzip`, `tar` and `7zr` CLI executables need to be installed. On macOS, use `brew install p7zip gnu-tar xz`.
