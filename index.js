@@ -1,24 +1,19 @@
-var os = require('os')
 var path = require('path')
+var fs = require('fs')
 
-var platform = os.platform()
-if (platform !== 'linux' && platform !== 'darwin' && platform !== 'win32') {
-  console.error('Unsupported platform.')
-  process.exit(1)
-}
+var paths = {}
+fs.readdirSync('bin').forEach(function(platform) {
+  var platformPath = path.join('bin', platform)
+  fs.readdirSync(platformPath).forEach(function(arch) {
+    paths[platform] = paths[platform] || {}
+    paths[platform][arch] = path.join(
+      __dirname,
+      'bin',
+      platform,
+      arch,
+      platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
+    )
+  })
+})
 
-var arch = os.arch()
-if (platform === 'darwin' && arch !== 'x64') {
-  console.error('Unsupported architecture.')
-  process.exit(1)
-}
-
-var ffmpegPath = path.join(
-  __dirname,
-  'bin',
-  platform,
-  arch,
-  platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
-)
-
-exports.path = ffmpegPath;
+exports.paths = paths
