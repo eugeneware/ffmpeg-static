@@ -1,19 +1,24 @@
+var os = require('os')
 var path = require('path')
-var fs = require('fs')
 
-var paths = {}
-fs.readdirSync('bin').forEach(function(platform) {
-  var platformPath = path.join('bin', platform)
-  fs.readdirSync(platformPath).forEach(function(arch) {
-    paths[platform] = paths[platform] || {}
-    paths[platform][arch] = path.join(
-      __dirname,
-      'bin',
-      platform,
-      arch,
-      platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
-    )
-  })
-})
+var binaries = {
+  darwin: ['x64'],
+  linux: ['x64', 'ia32', 'arm64', 'arm'],
+  win32: ['x64', 'ia32']
+}
 
-exports.paths = paths
+var platform = os.platform()
+var arch = os.arch()
+var ffmpegPath = path.join(
+  __dirname,
+  'bin',
+  platform,
+  arch,
+  platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
+)
+
+if (!binaries[platform] || binaries[platform].indexOf(arch) === -1) {
+  ffmpegPath = null
+}
+
+exports.path = ffmpegPath
