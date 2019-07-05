@@ -35,6 +35,18 @@ download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.t
 echo '  extracting'
 $tar_exec -x -C ../bin/linux/ia32 --strip-components 1 -f linux-ia32.tar.xz --wildcards '*/ffmpeg'
 
+echo 'linux arm'
+echo '  downloading from johnvansickle.com'
+download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-static.tar.xz' linux-arm.tar.xz
+echo '  extracting'
+$tar_exec -x -C ../bin/linux/arm --strip-components 1 -f linux-arm.tar.xz --wildcards '*/ffmpeg'
+
+echo 'linux arm64'
+echo '  downloading from johnvansickle.com'
+download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-static.tar.xz' linux-arm64.tar.xz
+echo '  extracting'
+$tar_exec -x -C ../bin/linux/arm64 --strip-components 1 -f linux-arm64.tar.xz --wildcards '*/ffmpeg'
+
 echo 'darwin x64'
 echo '  downloading from evermeet.cx'
 download "https://evermeet.cx/ffmpeg/getrelease" darwin-x64-ffmpeg.7z
