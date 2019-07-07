@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-static",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
   "main": "index.js",
   "files": [
@@ -26,7 +26,10 @@
     "linux",
     "windows"
   ],
-  "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "authors": [
+    "Eugene Ware <eugene@noblesamurai.com>",
+    "contributors"
+  ],
   "contributors": [
     "Jannis R <mail@jannisr.de>"
   ],
