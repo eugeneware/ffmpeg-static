@@ -1,11 +1,11 @@
 var os = require('os')
 var path = require('path')
 
-var binaries = {
+var binaries = Object.assign(Object.create(null), {
   darwin: ['x64'],
   linux: ['x64', 'ia32', 'arm64', 'arm'],
   win32: ['x64', 'ia32']
-}
+})
 
 var platform = os.platform()
 var arch = os.arch()
