@@ -1,14 +1,20 @@
 language: node_js
 node_js:
-  - 'stable'
+  - 'node'
   - 'lts/*'
-  - "0.10"
+  - 8
 addons:
   apt:
     packages:
       - unzip
       - p7zip
       - tar
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install p7zip ; fi
 script:
   - npm run build
   - npm test
+os:
+  - linux
+  - windows
+  - osx

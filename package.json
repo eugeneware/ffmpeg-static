@@ -8,7 +8,7 @@
     "bin"
   ],
   "scripts": {
-    "build": "./build/index.sh",
+    "build": "node ./build/download.js",
     "test": "node_modules/.bin/tape test/*.js",
     "prepublishOnly": "npm run build && npm test"
   },
