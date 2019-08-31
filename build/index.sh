@@ -1,16 +1,18 @@
-#!/bin/sh
-set +e
+#!/bin/bash
+set -o pipefail
 cd $(dirname $0)
 
+set +e
 tar_exec=$(command -v gtar)
 if [ $? -ne 0 ]; then
 	tar_exec=$(command -v tar)
 fi
+set -e
+echo using tar executable at $tar_exec
 
 download () {
 	curl -L -# -A 'https://github.com/eugeneware/ffmpeg-static' -o $2 $1
 }
-set -x
 
 echo 'windows x64'
 echo '  downloading from ffmpeg.zeranoe.com'
@@ -28,25 +30,25 @@ echo 'linux x64'
 echo '  downloading from johnvansickle.com'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz' linux-x64.tar.xz
 echo '  extracting'
-$tar_exec -xz -C ../bin/linux/x64 --strip-components 1 -f linux-x64.tar.xz --wildcards '*/ffmpeg'
+$tar_exec -x -C ../bin/linux/x64 --strip-components 1 -f linux-x64.tar.xz --wildcards '*/ffmpeg'
 
 echo 'linux ia32'
 echo '  downloading from johnvansickle.com'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz' linux-ia32.tar.xz
 echo '  extracting'
-$tar_exec -xz -C ../bin/linux/ia32 --strip-components 1 -f linux-ia32.tar.xz --wildcards '*/ffmpeg'
+$tar_exec -x -C ../bin/linux/ia32 --strip-components 1 -f linux-ia32.tar.xz --wildcards '*/ffmpeg'
 
 echo 'linux arm'
 echo '  downloading from johnvansickle.com'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-static.tar.xz' linux-arm.tar.xz
 echo '  extracting'
-$tar_exec -xz -C ../bin/linux/arm --strip-components 1 -f linux-arm.tar.xz --wildcards '*/ffmpeg'
+$tar_exec -x -C ../bin/linux/arm --strip-components 1 -f linux-arm.tar.xz --wildcards '*/ffmpeg'
 
 echo 'linux arm64'
 echo '  downloading from johnvansickle.com'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-static.tar.xz' linux-arm64.tar.xz
 echo '  extracting'
-$tar_exec -xz -C ../bin/linux/arm64 --strip-components 1 -f linux-arm64.tar.xz --wildcards '*/ffmpeg'
+$tar_exec -x -C ../bin/linux/arm64 --strip-components 1 -f linux-arm64.tar.xz --wildcards '*/ffmpeg'
 
 echo 'darwin x64'
 echo '  downloading from evermeet.cx'
