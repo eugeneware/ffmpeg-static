@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-static",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
   "main": "index.js",
   "files": [
@@ -39,6 +39,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "tape": "^4.9.1"
+    "tape": "^4.11.0"
   }
 }
