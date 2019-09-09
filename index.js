@@ -2,6 +2,7 @@ var os = require('os')
 var path = require('path')
 
 var platform = os.platform()
+platform = platform == 'android' ? 'linux' : platform
 if (platform !== 'linux' && platform !== 'darwin' && platform !== 'win32') {
   console.error('Unsupported platform.')
   process.exit(1)
