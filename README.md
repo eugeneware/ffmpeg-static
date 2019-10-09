@@ -34,7 +34,13 @@ console.log(ffmpeg.path);
 - [Linux builds](https://johnvansickle.com/ffmpeg/)
 - [macOS builds](https://evermeet.cx/pub/ffmpeg/)
 
-If you use this package, please consider donating to [John Van Sickle](https://johnvansickle.com/), who builds & serves the `ffmpeg` static binaries!
+## Show your support
+
+This npm package includes statically linked binaries that are produced by the following individuals. Please consider supporting and donating to them who have been providing quality binary builds for many years:
+
+- **Windows builds**: [Kyle Schwarz](https://ffmpeg.zeranoe.com/builds/)
+- **Linux builds**: [John Van Sickle](https://www.johnvansickle.com/ffmpeg/)
+- **macOS builds**: [K. C.](https://evermeet.cx/ffmpeg/#donations)
 
 ## Building the project
 
