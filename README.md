@@ -40,7 +40,7 @@ This npm package includes statically linked binaries that are produced by the fo
 
 - **Windows builds**: [Kyle Schwarz](https://ffmpeg.zeranoe.com/builds/)
 - **Linux builds**: [John Van Sickle](https://www.johnvansickle.com/ffmpeg/)
-- **macOS builds**: [K. C.](https://evermeet.cx/ffmpeg/#donations)
+- **macOS builds**: [Helmut K. C. Tessarek](https://evermeet.cx/ffmpeg/#donations)
 
 ## Building the project
 
