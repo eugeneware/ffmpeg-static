@@ -21,9 +21,9 @@ $ npm install ffmpeg-static
 Returns the path of a statically linked ffmpeg binary on the local filesystem.
 
 ``` js
-var ffmpeg = require('ffmpeg-static');
-console.log(ffmpeg.path);
-// /Users/eugeneware/Dropbox/work/ffmpeg-static/bin/darwin/x64/ffmpeg
+var pathToFfmpeg = require('ffmpeg-static');
+console.log(pathToFfmpeg);
+// /Users/j/projects/sample-project/node_modules/ffmpeg-static/bin/darwin/x64/ffmpeg
 ```
 
 ## Sources of the binaries

@@ -21,4 +21,4 @@ if (!binaries[platform] || binaries[platform].indexOf(arch) === -1) {
   ffmpegPath = null
 }
 
-exports.path = ffmpegPath
+module.exports = ffmpegPath
