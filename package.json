@@ -5,6 +5,7 @@
   "main": "index.js",
   "files": [
     "index.js",
+    "example.js",
     "bin"
   ],
   "scripts": {
@@ -42,6 +43,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "any-shell-escape": "^0.1.1",
     "tape": "^4.11.0"
   }
 }

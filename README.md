@@ -28,6 +28,8 @@ console.log(pathToFfmpeg);
 // /Users/j/projects/sample-project/node_modules/ffmpeg-static/bin/darwin/x64/ffmpeg
 ```
 
+Check the [example script](example.js) for a more thorough example.
+
 ## Sources of the binaries
 
 [The build script](build/index.sh) downloads binaries from these locations:
