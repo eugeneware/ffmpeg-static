@@ -1,5 +1,5 @@
 #!/bin/bash
-set -o pipefail
+set -e
 cd $(dirname $0)
 
 set +e
