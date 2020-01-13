@@ -17,6 +17,11 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           tag: v0.0.0-1
           files: >
+            darwin-x64-ffmpeg:bin/darwin/x64/ffmpeg
+            linux-arm-ffmpeg:bin/linux/arm/ffmpeg
+            linux-arm64-ffmpeg:bin/linux/arm64/ffmpeg
+            linux-ia32-ffmpeg:bin/linux/ia32/ffmpeg
             linux-x64-ffmpeg:bin/linux/x64/ffmpeg
+            win32-ia32-ffmpeg.exe:bin/win32/ia32/ffmpeg.exe
             win32-x64-ffmpeg.exe:bin/win32/x64/ffmpeg.exe
           gzip: false
