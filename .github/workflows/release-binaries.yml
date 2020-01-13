@@ -13,7 +13,10 @@ jobs:
         run: sh ./build/index.sh
       - uses: meeDamian/github-release@1.0
         with:
+          allow_override: true
           token: ${{secrets.GITHUB_TOKEN}}
           tag: v0.0.0-1
           files: >
-            bin/
+            linux-x64-ffmpeg:bin/linux/x64/ffmpeg
+            win32-x64-ffmpeg.exe:bin/win32/x64/ffmpeg.exe
+          gzip: false
