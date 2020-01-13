@@ -1,0 +1,19 @@
+on:
+  pull_request:
+    branches: "*"
+
+name: Release Binaries
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Binaries
+        run: sh ./build/index.sh
+      - uses: meeDamian/github-release@1.0
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          tag: v0.0.0-1
+          files: >
+            bin/
