@@ -1,6 +1,7 @@
 var fs = require("fs");
 var os = require("os");
 var URL = require("url");
+var pkg = require("./package");
 
 var ffmpegPath = require(".");
 
@@ -83,6 +84,6 @@ var arch = os.arch();
 
 var name = platform === "win32" ? "ffmpeg.exe" : "ffmpeg";
 
-var url = `https://github.com/qawolf/ffmpeg-static/releases/download/v3.0.0/${platform}-${arch}-${name}`;
+var url = `https://github.com/qawolf/ffmpeg-static/releases/download/v${pkg.version}/${platform}-${arch}-${name}`;
 
 downloadFile(url, ffmpegPath, onProgress);
