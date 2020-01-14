@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "./build/index.sh",
+    "install": "node install.js",
     "test": "node_modules/.bin/tape test/*.js",
     "prepublishOnly": "npm run build && npm test"
   },
