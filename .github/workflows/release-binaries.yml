@@ -1,6 +1,7 @@
 on:
-  pull_request:
-    branches: "*"
+  push:
+    tags:
+      - "v*"
 
 name: Release Binaries
 
@@ -13,9 +14,7 @@ jobs:
         run: sh ./build/index.sh
       - uses: meeDamian/github-release@1.0
         with:
-          allow_override: true
           token: ${{secrets.GITHUB_TOKEN}}
-          tag: v0.0.0-1
           files: >
             darwin-x64-ffmpeg:bin/darwin/x64/ffmpeg
             linux-arm-ffmpeg:bin/linux/arm/ffmpeg
