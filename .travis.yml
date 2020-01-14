@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - 'stable'
-  - 'lts/*'
-  - 'lts/dubnium'
+  - "stable"
+  - "lts/*"
+  - "lts/dubnium"
 addons:
   apt:
     packages:
@@ -10,5 +10,4 @@ addons:
       - p7zip
       - tar
 script:
-  - npm run build
   - npm test
