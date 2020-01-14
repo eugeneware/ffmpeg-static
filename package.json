@@ -13,6 +13,9 @@
     "test": "node_modules/.bin/tape test/*.js",
     "prepublishOnly": "npm test"
   },
+  "ffmpeg-static": {
+    "binary_release": "b3.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/eugeneware/ffmpeg-static"
