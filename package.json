@@ -42,7 +42,9 @@
   "engines": {
     "node": ">=10"
   },
-  "dependencies": {},
+  "dependencies": {
+    "progress": "^2.0.3"
+  },
   "devDependencies": {
     "any-shell-escape": "^0.1.1",
     "tape": "^4.11.0"
