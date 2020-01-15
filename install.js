@@ -57,13 +57,17 @@ function onProgress(downloadedBytes, totalBytes) {
   progressBar.tick(delta);
 }
 
-var platform = os.platform();
-var arch = os.arch();
+function getDownloadUrl() {
+  var platform = os.platform();
+  var arch = os.arch();
+  var name = platform === "win32" ? "ffmpeg.exe" : "ffmpeg";
+  var release = process.env.FFMPEG_BINARY_RELEASE || pkg["ffmpeg-static"]["binary_release"];
+  var url = `https://github.com/qawolf/ffmpeg-static/releases/download/${release}/${platform}-${arch}-${name}`;
+  return url;
+}
 
-var name = platform === "win32" ? "ffmpeg.exe" : "ffmpeg";
-
-var release = process.env.FFMPEG_BINARY_RELEASE || pkg["ffmpeg-static"]["binary_release"];
-
-var url = `https://github.com/qawolf/ffmpeg-static/releases/download/${release}/${platform}-${arch}-${name}`;
-
-downloadFile(url, ffmpegPath, onProgress);
+if (ffmpegPath) {
+  downloadFile(getDownloadUrl(), ffmpegPath, onProgress);
+} else {
+  console.error("ffmpeg-static install failed: No binary found for architecture")
+}
