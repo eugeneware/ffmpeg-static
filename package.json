@@ -6,7 +6,9 @@
   "files": [
     "index.js",
     "example.js",
-    "bin"
+    "bin",
+    "!**/ffmpeg",
+    "!**/ffmpeg.exe"
   ],
   "scripts": {
     "install": "node install.js",
