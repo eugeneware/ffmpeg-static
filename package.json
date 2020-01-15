@@ -5,6 +5,7 @@
   "main": "index.js",
   "files": [
     "index.js",
+    "install.js",
     "example.js",
     "bin",
     "!**/ffmpeg",
