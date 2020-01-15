@@ -1,27 +1,10 @@
 var fs = require("fs");
+var get = require("simple-get");
 var os = require("os");
-var URL = require("url");
-var pkg = require("./package");
+var ProgressBar = require("progress");
 
 var ffmpegPath = require(".");
-
-function httpRequest(url, method, response) {
-  /** @type {Object} */
-  let options = URL.parse(url);
-  options.method = method;
-
-  const requestCallback = res => {
-    if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location)
-      httpRequest(res.headers.location, method, response);
-    else response(res);
-  };
-  const request =
-    options.protocol === "https:"
-      ? require("https").request(options, requestCallback)
-      : require("http").request(options, requestCallback);
-  request.end();
-  return request;
-}
+var pkg = require("./package");
 
 function downloadFile(url, destinationPath, progressCallback) {
   let fulfill, reject;
@@ -33,40 +16,34 @@ function downloadFile(url, destinationPath, progressCallback) {
     reject = y;
   });
 
-  const request = httpRequest(url, "GET", response => {
-    if (response.statusCode !== 200) {
-      const error = new Error(
-        `Download failed: server returned code ${response.statusCode}. URL: ${url}`
-      );
-      // consume response data to free up memory
-      response.resume();
+  get(url, function(err, response) {
+    if (err || response.statusCode !== 200) {
+      const error = new Error(`Download failed. URL: ${url}`);
       reject(error);
       return;
     }
+
     const file = fs.createWriteStream(destinationPath);
     file.on("finish", () => fulfill());
     file.on("error", error => reject(error));
     response.pipe(file);
-    totalBytes = parseInt(
-      /** @type {string} */ (response.headers["content-length"]),
-      10
-    );
-    if (progressCallback) response.on("data", onData);
-  });
-  request.on("error", error => reject(error));
-  return promise;
+    totalBytes = parseInt(response.headers["content-length"], 10);
 
-  function onData(chunk) {
-    downloadedBytes += chunk.length;
-    progressCallback(downloadedBytes, totalBytes);
-  }
+    if (progressCallback) {
+      response.on("data", function(chunk) {
+        downloadedBytes += chunk.length;
+        progressCallback(downloadedBytes, totalBytes);
+      });
+    }
+  });
+
+  return promise;
 }
 
 let progressBar = null;
 let lastDownloadedBytes = 0;
 function onProgress(downloadedBytes, totalBytes) {
   if (!progressBar) {
-    const ProgressBar = require("progress");
     progressBar = new ProgressBar(`Downloading ffmpeg [:bar] :percent :etas `, {
       complete: "|",
       incomplete: " ",
@@ -74,6 +51,7 @@ function onProgress(downloadedBytes, totalBytes) {
       total: totalBytes
     });
   }
+
   const delta = downloadedBytes - lastDownloadedBytes;
   lastDownloadedBytes = downloadedBytes;
   progressBar.tick(delta);

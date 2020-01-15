@@ -45,7 +45,8 @@
     "node": ">=10"
   },
   "dependencies": {
-    "progress": "^2.0.3"
+    "progress": "^2.0.3",
+    "simple-get": "^3.1.0"
   },
   "devDependencies": {
     "any-shell-escape": "^0.1.1",
