@@ -62,7 +62,7 @@ var arch = os.arch();
 
 var name = platform === "win32" ? "ffmpeg.exe" : "ffmpeg";
 
-var release = pkg["ffmpeg-static"]["binary_release"];
+var release = process.env.FFMPEG_BINARY_RELEASE || pkg["ffmpeg-static"]["binary_release"];
 
 var url = `https://github.com/qawolf/ffmpeg-static/releases/download/${release}/${platform}-${arch}-${name}`;
 
