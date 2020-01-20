@@ -13,7 +13,7 @@ jobs:
 
       - name: Download Binaries
         run: sh ./build/index.sh
-  
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -28,35 +28,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/darwin/x64/ffmpeg
-          asset_name: darwin-x64-ffmpeg
-          asset_content_type: application/octet-stream
-    
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux/arm/ffmpeg
-          asset_name: linux-arm-ffmpeg
-          asset_content_type: application/octet-stream
-      
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux/arm64/ffmpeg
-          asset_name: linux-arm64-ffmpeg
-          asset_content_type: application/octet-stream
-      
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux/ia32/ffmpeg
-          asset_name: linux-ia32-ffmpeg
+          asset_path: bin/darwin/x64/ffmpeg.tar.gz
+          asset_name: darwin-x64.tar.gz
           asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
@@ -64,17 +37,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux/x64/ffmpeg
-          asset_name: linux-x64-ffmpeg
-          asset_content_type: application/octet-stream
-      
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/win32/ia32/ffmpeg.exe
-          asset_name: win32-ia32-ffmpeg.exe
+          asset_path: bin/linux/arm/ffmpeg.tar.gz
+          asset_name: linux-arm.tar.gz
           asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
@@ -82,6 +46,42 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/win32/x64/ffmpeg.exe
-          asset_name: win32-x64-ffmpeg.exe
+          asset_path: bin/linux/arm64/ffmpeg.tar.gz
+          asset_name: linux-arm64.tar.gz
+          asset_content_type: application/octet-stream
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux/ia32/ffmpeg.tar.gz
+          asset_name: linux-ia32.tar.gz
+          asset_content_type: application/octet-stream
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux/x64/ffmpeg.tar.gz
+          asset_name: linux-x64.tar.gz
+          asset_content_type: application/octet-stream
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/win32/ia32/ffmpeg.tar.gz
+          asset_name: win32-ia32.tar.gz
+          asset_content_type: application/octet-stream
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/win32/x64/ffmpeg.tar.gz
+          asset_name: win32-x64.tar.gz
           asset_content_type: application/octet-stream
