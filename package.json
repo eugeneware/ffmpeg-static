@@ -8,6 +8,7 @@
     "install.js",
     "example.js",
     "bin",
+    "!**/*.tar.gz",
     "!**/ffmpeg",
     "!**/ffmpeg.exe"
   ],
