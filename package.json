@@ -17,7 +17,7 @@
     "prepublishOnly": "npm test"
   },
   "ffmpeg-static": {
-    "binary_release": "b3.0.0"
+    "binary_release": "b3.0.0-c1"
   },
   "repository": {
     "type": "git",
@@ -49,7 +49,8 @@
   },
   "dependencies": {
     "progress": "^2.0.3",
-    "simple-get": "^3.1.0"
+    "simple-get": "^3.1.0",
+    "tar": "^5.0.5"
   },
   "devDependencies": {
     "any-shell-escape": "^0.1.1",

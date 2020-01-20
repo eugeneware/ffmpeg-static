@@ -1,12 +1,12 @@
-var fs = require("fs");
-var get = require("simple-get");
 var os = require("os");
+var path = require("path");
 var ProgressBar = require("progress");
-
+var get = require("simple-get");
+var tar = require("tar");
 var ffmpegPath = require(".");
 var pkg = require("./package");
 
-function downloadFile(url, destinationPath, progressCallback) {
+function downloadExtractFile(url, destinationPath, progressCallback) {
   let fulfill, reject;
   let downloadedBytes = 0;
   let totalBytes = 0;
@@ -23,11 +23,16 @@ function downloadFile(url, destinationPath, progressCallback) {
       return;
     }
 
-    const file = fs.createWriteStream(destinationPath);
-    file.on("finish", () => fulfill());
-    file.on("error", error => reject(error));
-    response.pipe(file);
     totalBytes = parseInt(response.headers["content-length"], 10);
+
+    response
+      .pipe(
+        tar.x({
+          C: path.dirname(destinationPath)
+        })
+      )
+      .on("finish", () => fulfill())
+      .on("error", error => reject(error));
 
     if (progressCallback) {
       response.on("data", function(chunk) {
@@ -60,18 +65,14 @@ function onProgress(downloadedBytes, totalBytes) {
 function getDownloadUrl() {
   var platform = os.platform();
   var arch = os.arch();
-  var name = platform === "win32" ? "ffmpeg.exe" : "ffmpeg";
   var release =
     process.env.FFMPEG_BINARY_RELEASE || pkg["ffmpeg-static"]["binary_release"];
-  var url = `https://github.com/eugeneware/ffmpeg-static/releases/download/${release}/${platform}-${arch}-${name}`;
+  var url = `https://github.com/qawolf/ffmpeg-static/releases/download/${release}/${platform}-${arch}.tar.gz`;
   return url;
 }
 
 if (ffmpegPath) {
-  downloadFile(getDownloadUrl(), ffmpegPath, onProgress).then(() => {
-    // make executable
-    fs.chmodSync(ffmpegPath, 0o755);
-  });
+  downloadExtractFile(getDownloadUrl(), ffmpegPath, onProgress);
 } else {
   console.error(
     "ffmpeg-static install failed: No binary found for architecture"
