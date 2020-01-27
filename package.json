@@ -14,7 +14,7 @@
     "prepublishOnly": "npm test"
   },
   "ffmpeg-static": {
-    "binary_release": "b3.0.0-c1"
+    "binary_release": "b3.0.0-2"
   },
   "repository": {
     "type": "git",
