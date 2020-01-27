@@ -19,7 +19,7 @@ function downloadExtractFile(url, destinationPath, progressCallback) {
   get(url, function(err, response) {
     if (err || response.statusCode !== 200) {
       const error = new Error(`Download failed. URL: ${url}`);
-      reject(error);
+      reject(err || error);
       return;
     }
 
