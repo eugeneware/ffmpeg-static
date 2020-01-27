@@ -9,11 +9,9 @@ var binaries = Object.assign(Object.create(null), {
 
 var platform = os.platform()
 var arch = os.arch()
+
 var ffmpegPath = path.join(
   __dirname,
-  'bin',
-  platform,
-  arch,
   platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
 )
 

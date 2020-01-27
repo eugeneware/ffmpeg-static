@@ -9,11 +9,9 @@ it('should find ffmpeg', function(t) {
   var stats = fs.statSync(ffmpegPath);
   t.ok(stats.isFile(ffmpegPath));
 
-  try {
+  t.doesNotThrow(()=> {
     fs.accessSync(ffmpegPath, fs.constants.X_OK)
-  } catch {
-    t.error("ffmpeg not executable");
-  }
+  }, "ffmpeg not executable");
 
   t.end();
 });
