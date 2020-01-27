@@ -65,9 +65,13 @@ if (ffmpegPath) {
   downloadFile(getDownloadUrl(), ffmpegPath, onProgress).then(() => {
     // make executable
     fs.chmodSync(ffmpegPath, 0o755);
+  }).catch(error => {
+    console.error(error);
+    process.exit(1);
   });
 } else {
   console.error(
     "ffmpeg-static install failed: No binary found for architecture"
   );
+  process.exit(1);
 }
