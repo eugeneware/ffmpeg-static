@@ -7,7 +7,6 @@ var pkg = require("./package");
 
 function downloadFile(url, destinationPath, progressCallback) {
   let fulfill, reject;
-  let downloadedBytes = 0;
   let totalBytes = 0;
 
   const promise = new Promise((x, y) => {
@@ -31,8 +30,7 @@ function downloadFile(url, destinationPath, progressCallback) {
 
     if (progressCallback) {
       response.on("data", function(chunk) {
-        downloadedBytes += chunk.length;
-        progressCallback(downloadedBytes, totalBytes);
+        progressCallback(chunk.length, totalBytes);
       });
     }
   });
@@ -41,8 +39,7 @@ function downloadFile(url, destinationPath, progressCallback) {
 }
 
 let progressBar = null;
-let lastDownloadedBytes = 0;
-function onProgress(downloadedBytes, totalBytes) {
+function onProgress(deltaBytes, totalBytes) {
   if (!progressBar) {
     progressBar = new ProgressBar(`Downloading ffmpeg [:bar] :percent :etas `, {
       complete: "|",
@@ -52,9 +49,7 @@ function onProgress(downloadedBytes, totalBytes) {
     });
   }
 
-  const delta = downloadedBytes - lastDownloadedBytes;
-  lastDownloadedBytes = downloadedBytes;
-  progressBar.tick(delta);
+  progressBar.tick(deltaBytes);
 }
 
 function getDownloadUrl() {
