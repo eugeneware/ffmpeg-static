@@ -1,12 +1,11 @@
+var fs = require("fs");
 var os = require("os");
-var path = require("path");
 var ProgressBar = require("progress");
 var get = require("simple-get");
-var tar = require("tar");
 var ffmpegPath = require(".");
 var pkg = require("./package");
 
-function downloadExtractFile(url, destinationPath, progressCallback) {
+function downloadFile(url, destinationPath, progressCallback) {
   let fulfill, reject;
   let downloadedBytes = 0;
   let totalBytes = 0;
@@ -23,16 +22,12 @@ function downloadExtractFile(url, destinationPath, progressCallback) {
       return;
     }
 
-    totalBytes = parseInt(response.headers["content-length"], 10);
+    const file = fs.createWriteStream(destinationPath);
+    file.on("finish", () => fulfill());
+    file.on("error", error => reject(error));
+    response.pipe(file);
 
-    response
-      .pipe(
-        tar.x({
-          C: path.dirname(destinationPath)
-        })
-      )
-      .on("finish", () => fulfill())
-      .on("error", error => reject(error));
+    totalBytes = parseInt(response.headers["content-length"], 10);
 
     if (progressCallback) {
       response.on("data", function(chunk) {
@@ -67,12 +62,15 @@ function getDownloadUrl() {
   var arch = os.arch();
   var release =
     process.env.FFMPEG_BINARY_RELEASE || pkg["ffmpeg-static"]["binary_release"];
-  var url = `https://github.com/qawolf/ffmpeg-static/releases/download/${release}/${platform}-${arch}.tar.gz`;
+  var url = `https://github.com/qawolf/ffmpeg-static/releases/download/${release}/${platform}-${arch}`;
   return url;
 }
 
 if (ffmpegPath) {
-  downloadExtractFile(getDownloadUrl(), ffmpegPath, onProgress);
+  downloadFile(getDownloadUrl(), ffmpegPath, onProgress).then(() => {
+    // make executable
+    fs.chmodSync(ffmpegPath, 0o755);
+  });
 } else {
   console.error(
     "ffmpeg-static install failed: No binary found for architecture"

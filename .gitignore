@@ -7,3 +7,6 @@ build/*
 !build/index.sh
 
 bin/*
+
+**/ffmpeg
+**/ffmpeg.exe
