@@ -6,11 +6,7 @@
   "files": [
     "index.js",
     "install.js",
-    "example.js",
-    "bin",
-    "!**/*.tar.gz",
-    "!**/ffmpeg",
-    "!**/ffmpeg.exe"
+    "example.js"
   ],
   "scripts": {
     "install": "node install.js",
@@ -50,8 +46,7 @@
   },
   "dependencies": {
     "progress": "^2.0.3",
-    "simple-get": "^3.1.0",
-    "tar": "^5.0.5"
+    "simple-get": "^3.1.0"
   },
   "devDependencies": {
     "any-shell-escape": "^0.1.1",
