@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - "stable"
-  - "lts/*"
-  - "lts/dubnium"
+  - 'stable'
+  - 'lts/*'
+  - 'lts/dubnium'
 addons:
   apt:
     packages:
