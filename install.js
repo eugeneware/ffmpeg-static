@@ -57,7 +57,7 @@ function getDownloadUrl() {
   var arch = os.arch();
   var release =
     process.env.FFMPEG_BINARY_RELEASE || pkg["ffmpeg-static"]["binary_release"];
-  var url = `https://github.com/qawolf/ffmpeg-static/releases/download/${release}/${platform}-${arch}`;
+  var url = `https://github.com/eugeneware/ffmpeg-static/releases/download/${release}/${platform}-${arch}`;
   return url;
 }
 
