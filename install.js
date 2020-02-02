@@ -17,6 +17,9 @@ function downloadFile(url, destinationPath, progressCallback) {
   get(url, function(err, response) {
     if (err || response.statusCode !== 200) {
       const error = new Error(`Download failed. URL: ${url}`);
+      if (response) {
+        error.statusCode = response.statusCode;
+      }
       reject(err || error);
       return;
     }
@@ -68,7 +71,27 @@ if (ffmpegPath) {
   }).catch(error => {
     console.error(error);
     process.exit(1);
-  });
+  }).then(
+    downloadFile(`${getDownloadUrl()}.README`, `${ffmpegPath}.README`, () => {})
+      .catch(error => {
+        if (error.statusCode === 404) {
+          console.warn(error.message);
+        } else {
+          console.error(error);
+          process.exit(1);
+        }
+      })
+  ).then(
+    downloadFile(`${getDownloadUrl()}.LICENSE`, `${ffmpegPath}.LICENSE`, () => {})
+      .catch(error => {
+        if (error.statusCode === 404) {
+          console.warn(error.message);
+        } else {
+          console.error(error);
+          process.exit(1);
+        }
+      })
+  );
 } else {
   console.error(
     "ffmpeg-static install failed: No binary found for architecture"

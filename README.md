@@ -18,7 +18,7 @@ This module is installed via npm:
 $ npm install ffmpeg-static
 ```
 
-*Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b4.2.2` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.2.2).
+*Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b4.2.2` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.2.2). Use and distribution of the binary releases of FFmpeg are covered by their respective license.
 
 ## Example Usage
 
@@ -42,6 +42,8 @@ Check the [example script](example.js) for a more thorough example.
 - [Windows builds](https://ffmpeg.zeranoe.com/builds/win64/static/)
 - [Linux builds](https://johnvansickle.com/ffmpeg/)
 - [macOS builds](https://evermeet.cx/pub/ffmpeg/)
+
+The build script extracts build information and (when possible) the license file from the downloaded package or the distribution server. Please consult the individual build's project site for exact source versions, which you can locate based on the version information included in the README file.
 
 ## Show your support
 

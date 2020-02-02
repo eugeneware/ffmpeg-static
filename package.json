@@ -37,7 +37,7 @@
   "contributors": [
     "Jannis R <mail@jannisr.de>"
   ],
-  "license": "BSD-3-Clause",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/eugeneware/ffmpeg-static/issues"
   },
