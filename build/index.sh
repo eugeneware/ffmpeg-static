@@ -11,7 +11,7 @@ set -e
 echo using tar executable at $tar_exec
 
 download () {
-	curl -L -# -A 'https://github.com/eugeneware/ffmpeg-static' -o $2 $1
+	curl -L -# --compressed -A 'https://github.com/eugeneware/ffmpeg-static' -o $2 $1
 }
 
 echo 'windows x64'
@@ -74,4 +74,5 @@ download "https://evermeet.cx/ffmpeg/getrelease" darwin-x64-ffmpeg.7z
 echo '  extracting'
 7zr e -y -bd -o../bin darwin-x64-ffmpeg.7z >/dev/null
 mv ../bin/ffmpeg ../bin/darwin-x64
-curl -I "https://evermeet.cx/ffmpeg/getrelease" | grep -i ^location: | sed -e 's;location: ;Retrieved from https://evermeet.cx/ffmpeg/;' > ../bin/darwin-x64.README
+header=$(curl -s -X HEAD -I 'https://evermeet.cx/ffmpeg/getrelease' | grep -i '^location:')
+echo "Retrieved from https://evermeet.cx/ffmpeg${header:10}" > ../bin/darwin-x64.README

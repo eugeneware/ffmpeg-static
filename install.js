@@ -1,3 +1,5 @@
+'use strict'
+
 var fs = require("fs");
 var os = require("os");
 var ProgressBar = require("progress");
@@ -5,7 +7,21 @@ var get = require("simple-get");
 var ffmpegPath = require(".");
 var pkg = require("./package");
 
-function downloadFile(url, destinationPath, progressCallback) {
+const exitOnError = (err) => {
+  console.error(err)
+  process.exit(1)
+}
+const exitOnErrorOrWarnWith = (msg) => (err) => {
+  if (err.statusCode === 404) console.warn(msg)
+  else exitOnError(err)
+}
+
+if (!ffmpegPath) {
+  exitOnError('ffmpeg-static install failed: No binary found for architecture')
+}
+
+const noop = () => {}
+function downloadFile(url, destinationPath, progressCallback = noop) {
   let fulfill, reject;
   let totalBytes = 0;
 
@@ -16,11 +32,12 @@ function downloadFile(url, destinationPath, progressCallback) {
 
   get(url, function(err, response) {
     if (err || response.statusCode !== 200) {
-      const error = new Error(`Download failed. URL: ${url}`);
+      err = err || new Error('Download failed.')
       if (response) {
-        error.statusCode = response.statusCode;
+        err.url = url
+        err.statusCode = response.statusCode
       }
-      reject(err || error);
+      reject(err)
       return;
     }
 
@@ -55,46 +72,22 @@ function onProgress(deltaBytes, totalBytes) {
   progressBar.tick(deltaBytes);
 }
 
-function getDownloadUrl() {
-  var platform = os.platform();
-  var arch = os.arch();
-  var release =
-    process.env.FFMPEG_BINARY_RELEASE || pkg["ffmpeg-static"]["binary_release"];
-  var url = `https://github.com/eugeneware/ffmpeg-static/releases/download/${release}/${platform}-${arch}`;
-  return url;
-}
+const release = (
+  process.env.FFMPEG_BINARY_RELEASE ||
+  pkg['ffmpeg-static'].binary_release
+)
+const downloadUrl = `https://github.com/eugeneware/ffmpeg-static/releases/download/${release}/${os.platform()}-${os.arch()}`
+const readmeUrl = `${downloadUrl}.README`
+const licenseUrl = `${downloadUrl}.LICENSE`
 
-if (ffmpegPath) {
-  downloadFile(getDownloadUrl(), ffmpegPath, onProgress).then(() => {
-    // make executable
-    fs.chmodSync(ffmpegPath, 0o755);
-  }).catch(error => {
-    console.error(error);
-    process.exit(1);
-  }).then(
-    downloadFile(`${getDownloadUrl()}.README`, `${ffmpegPath}.README`, () => {})
-      .catch(error => {
-        if (error.statusCode === 404) {
-          console.warn(error.message);
-        } else {
-          console.error(error);
-          process.exit(1);
-        }
-      })
-  ).then(
-    downloadFile(`${getDownloadUrl()}.LICENSE`, `${ffmpegPath}.LICENSE`, () => {})
-      .catch(error => {
-        if (error.statusCode === 404) {
-          console.warn(error.message);
-        } else {
-          console.error(error);
-          process.exit(1);
-        }
-      })
-  );
-} else {
-  console.error(
-    "ffmpeg-static install failed: No binary found for architecture"
-  );
-  process.exit(1);
-}
+downloadFile(downloadUrl, ffmpegPath, onProgress)
+.then(() => {
+  fs.chmodSync(ffmpegPath, 0o755) // make executable
+})
+.catch(exitOnError)
+
+.then(() => downloadFile(readmeUrl, `${ffmpegPath}.README`))
+.catch(exitOnErrorOrWarnWith('Failed to download the ffmpeg README.'))
+
+.then(() => downloadFile(licenseUrl, `${ffmpegPath}.LICENSE`))
+.catch(exitOnErrorOrWarnWith('Failed to download the ffmpeg LICENSE.'))
