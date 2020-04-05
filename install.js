@@ -24,6 +24,20 @@ if (!ffmpegPath) {
   exitOnError('ffmpeg-static install failed: No binary found for architecture')
 }
 
+let agent = false
+// https://github.com/request/request/blob/a9557c9e7de2c57d92d9bab68a416a87d255cd3d/lib/getProxyFromURI.js#L66-L71
+const proxyUrl = (
+  process.env.HTTPS_PROXY ||
+  process.env.https_proxy ||
+  process.env.HTTP_PROXY ||
+  process.env.http_proxy
+)
+if (proxyUrl) {
+  const HttpsProxyAgent = require('https-proxy-agent')
+  const {hostname, port, protocol} = new URL(proxyUrl)
+  agent = new HttpsProxyAgent({hostname, port, protocol})
+}
+
 // https://advancedweb.hu/how-s3-signed-urls-work/
 const normalizeS3Url = (url) => {
   url = new URL(url)
@@ -59,6 +73,7 @@ function downloadFile(url, destinationPath, progressCallback = noop) {
   });
 
   request('GET', url, {
+    agent,
     followRedirects: true,
     maxRedirects: 3,
     gzip: true,
