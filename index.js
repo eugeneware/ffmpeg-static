@@ -1,22 +1,28 @@
-var os = require('os')
-var path = require('path')
+'use strict'
 
-var binaries = Object.assign(Object.create(null), {
-  darwin: ['x64'],
-  linux: ['x64', 'ia32', 'arm64', 'arm'],
-  win32: ['x64', 'ia32']
-})
+if (process.env.FFMPEG_BIN) {
+  module.exports = ffmpegPath
+} else {
+  var os = require('os')
+  var path = require('path')
 
-var platform = os.platform()
-var arch = os.arch()
+  var binaries = Object.assign(Object.create(null), {
+    darwin: ['x64'],
+    linux: ['x64', 'ia32', 'arm64', 'arm'],
+    win32: ['x64', 'ia32']
+  })
 
-var ffmpegPath = path.join(
-  __dirname,
-  platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
-)
+  var platform = os.platform()
+  var arch = os.arch()
 
-if (!binaries[platform] || binaries[platform].indexOf(arch) === -1) {
-  ffmpegPath = null
+  var ffmpegPath = path.join(
+    __dirname,
+    platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
+  )
+
+  if (!binaries[platform] || binaries[platform].indexOf(arch) === -1) {
+    ffmpegPath = null
+  }
+
+  module.exports = ffmpegPath
 }
-
-module.exports = ffmpegPath
