@@ -3,7 +3,7 @@
 var fs = require("fs");
 var os = require("os");
 var ProgressBar = require("progress");
-var get = require("simple-get");
+var request = require('http-basic')
 var ffmpegPath = require(".");
 var pkg = require("./package");
 
@@ -30,11 +30,17 @@ function downloadFile(url, destinationPath, progressCallback = noop) {
     reject = y;
   });
 
-  get(url, function(err, response) {
+  request('GET', url, {
+    followRedirects: true,
+    maxRedirects: 3,
+    gzip: true,
+    timeout: 30 * 1000, // 30s
+    retry: true,
+  }, (err, response) => {
     if (err || response.statusCode !== 200) {
       err = err || new Error('Download failed.')
       if (response) {
-        err.url = url
+        err.url = response.url
         err.statusCode = response.statusCode
       }
       reject(err)
@@ -44,12 +50,12 @@ function downloadFile(url, destinationPath, progressCallback = noop) {
     const file = fs.createWriteStream(destinationPath);
     file.on("finish", () => fulfill());
     file.on("error", error => reject(error));
-    response.pipe(file);
+    response.body.pipe(file)
 
     totalBytes = parseInt(response.headers["content-length"], 10);
 
     if (progressCallback) {
-      response.on("data", function(chunk) {
+      response.body.on('data', (chunk) => {
         progressCallback(chunk.length, totalBytes);
       });
     }
