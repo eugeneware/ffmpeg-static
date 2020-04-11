@@ -1,7 +1,9 @@
-var it = require('tape'),
-    path = require('path');
-    fs = require('fs'),
-    ffmpegPath = require('..');
+'use strict'
+
+const it = require('tape')
+const path = require('path')
+const fs = require('fs')
+const ffmpegPath = require('..')
 
 it('should find ffmpeg', function(t) {
   t.ok(path.isAbsolute(ffmpegPath));
