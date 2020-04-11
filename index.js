@@ -1,7 +1,7 @@
 'use strict'
 
 if (process.env.FFMPEG_BIN) {
-  module.exports = ffmpegPath
+  module.exports = process.env.FFMPEG_BIN
 } else {
   var os = require('os')
   var path = require('path')

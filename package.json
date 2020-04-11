@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-static",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
   "main": "index.js",
   "files": [
