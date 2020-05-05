@@ -11,3 +11,6 @@ addons:
       - tar
 script:
   - npm test
+  - 'file=$(npm pack -s) && file=$(realpath $file)'
+  - 'cd $(mktemp -d) && npm init -y'
+  - 'touch foo && env FFMPEG_BIN=$(realpath foo) npm i "$file"'
