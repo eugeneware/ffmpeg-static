@@ -24,6 +24,15 @@ if (!ffmpegPath) {
   exitOnError('ffmpeg-static install failed: No binary found for architecture')
 }
 
+try {
+  if (fs.statSync(ffmpegPath).isFile()) {
+    console.info('ffmpeg is installed already.')
+    process.exit(0)
+  }
+} catch (err) {
+  if (err && err.code !== 'ENOENT') exitOnError(err)
+}
+
 let agent = false
 // https://github.com/request/request/blob/a9557c9e7de2c57d92d9bab68a416a87d255cd3d/lib/getProxyFromURI.js#L66-L71
 const proxyUrl = (
