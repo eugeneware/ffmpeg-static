@@ -2,6 +2,7 @@
 
 var fs = require("fs");
 var os = require("os");
+const {URL} = require('url');
 const {encode: encodeQuery} = require('querystring')
 const {strictEqual} = require('assert')
 const envPaths = require('env-paths')
