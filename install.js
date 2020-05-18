@@ -136,7 +136,9 @@ const release = (
   process.env.FFMPEG_BINARY_RELEASE ||
   pkg['ffmpeg-static'].binary_release
 )
-const downloadUrl = `https://github.com/eugeneware/ffmpeg-static/releases/download/${release}/${os.platform()}-${os.arch()}`
+const arch = process.env.npm_config_arch || os.arch()
+const platform = process.env.npm_config_platform || os.platform()
+const downloadUrl = `https://github.com/eugeneware/ffmpeg-static/releases/download/${release}/${platform}-${arch}`
 const readmeUrl = `${downloadUrl}.README`
 const licenseUrl = `${downloadUrl}.LICENSE`
 
