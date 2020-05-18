@@ -12,8 +12,8 @@ if (process.env.FFMPEG_BIN) {
     win32: ['x64', 'ia32']
   })
 
-  var platform = os.platform()
-  var arch = os.arch()
+  var platform = process.env.npm_config_platform || os.platform()
+  var arch = process.env.npm_config_arch || os.arch()
 
   var ffmpegPath = path.join(
     __dirname,
