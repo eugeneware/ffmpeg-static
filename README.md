@@ -20,6 +20,10 @@ $ npm install ffmpeg-static
 
 *Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b4.2.2` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.2.2). Use and distribution of the binary releases of FFmpeg are covered by their respective license.
 
+### Electron & other cross-platform packaging tools
+
+Because `ffmpeg-static` will download a binary specific to the OS/platform, you need to purge `node_modules` before (re-)packaging your app *for a different OS/platform* (read more in #35)(https://github.com/eugeneware/ffmpeg-static/issues/35#issuecomment-630225392).
+
 ## Example Usage
 
 Returns the path of a statically linked ffmpeg binary on the local filesystem.
