@@ -70,9 +70,8 @@ $tar_exec -x -f linux-arm64.tar.xz --ignore-case --wildcards -O '**/readme.txt' 
 
 echo 'darwin x64'
 echo '  downloading from evermeet.cx'
-download "https://evermeet.cx/ffmpeg/getrelease" darwin-x64-ffmpeg.7z
+download 'https://evermeet.cx/ffmpeg/getrelease/ffmpeg/zip' darwin-x64.zip
 echo '  extracting'
-7zr e -y -bd -o../bin darwin-x64-ffmpeg.7z >/dev/null
+unzip -o -d ../bin -j darwin-x64.zip ffmpeg
 mv ../bin/ffmpeg ../bin/darwin-x64
-header=$(curl -s -X HEAD -I 'https://evermeet.cx/ffmpeg/getrelease' | grep -i '^location:')
-echo "Retrieved from https://evermeet.cx/ffmpeg${header:10}" > ../bin/darwin-x64.README
+curl -s -L 'https://evermeet.cx/ffmpeg/info/ffmpeg/release' | jq --tab '.' >../bin/darwin-x64.README
