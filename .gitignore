@@ -8,5 +8,7 @@ build/*
 
 bin/*
 
-**/ffmpeg
-**/ffmpeg.exe
+/ffmpeg
+/ffmpeg.exe
+/ffmpeg.README
+/ffmpeg.LICENSE
