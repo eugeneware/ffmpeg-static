@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-static",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
   "main": "index.js",
   "files": [
@@ -15,7 +15,7 @@
     "prepublishOnly": "npm run lint && npm test"
   },
   "ffmpeg-static": {
-    "binary_release": "b4.2.2"
+    "binary_release": "b4.2.3"
   },
   "repository": {
     "type": "git",
