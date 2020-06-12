@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "install": "node install.js",
-    "test": "node_modules/.bin/tape test/*.js",
+    "test": "node test.js",
     "lint": "eslint .",
     "prepublishOnly": "npm run lint && npm test"
   },
@@ -53,7 +53,6 @@
   },
   "devDependencies": {
     "any-shell-escape": "^0.1.1",
-    "eslint": "^6.8.0",
-    "tape": "^4.11.0"
+    "eslint": "^6.8.0"
   }
 }
