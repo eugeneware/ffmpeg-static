@@ -5,9 +5,9 @@ var os = require("os");
 const {encode: encodeQuery} = require('querystring')
 const {strictEqual} = require('assert')
 const envPaths = require('env-paths')
-const FileCache = require('@derhuerst/http-basic/lib/FileCache').default
+const FileCache = require('http-basic/lib/FileCache').default
 var ProgressBar = require("progress");
-var request = require('@derhuerst/http-basic')
+var request = require('http-basic')
 var ffmpegPath = require(".");
 var pkg = require("./package");
 
