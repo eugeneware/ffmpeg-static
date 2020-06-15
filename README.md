@@ -22,7 +22,7 @@ $ npm install ffmpeg-static
 
 ### Electron & other cross-platform packaging tools
 
-Because `ffmpeg-static` will download a binary specific to the OS/platform, you need to purge `node_modules` before (re-)packaging your app *for a different OS/platform* (read more in #35)(https://github.com/eugeneware/ffmpeg-static/issues/35#issuecomment-630225392).
+Because `ffmpeg-static` will download a binary specific to the OS/platform, you need to purge `node_modules` before (re-)packaging your app *for a different OS/platform* ([read more in #35](https://github.com/eugeneware/ffmpeg-static/issues/35#issuecomment-630225392)).
 
 ## Example Usage
 
@@ -59,4 +59,4 @@ This npm package includes statically linked binaries that are produced by the fo
 
 ## Building the project
 
-The `unzip`, `tar` and `7zr` CLI executables need to be installed. On macOS, use `brew install p7zip gnu-tar xz`.
+The `unzip`, `tar` CLI executables need to be installed. On macOS, use `brew install gnu-tar xz`.

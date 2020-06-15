@@ -7,7 +7,6 @@ addons:
   apt:
     packages:
       - unzip
-      - p7zip
       - tar
 script:
   - npm test
