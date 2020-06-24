@@ -16,7 +16,7 @@ download () {
 
 echo 'windows x64'
 echo '  downloading from ffmpeg.zeranoe.com'
-download 'https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-latest-win64-static.zip' win32-x64.zip
+download 'https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-4.3-win64-static.zip' win32-x64.zip
 echo '  extracting'
 unzip -o -d ../bin -j win32-x64.zip '**/ffmpeg.exe'
 mv ../bin/ffmpeg.exe ../bin/win32-x64
@@ -25,7 +25,7 @@ unzip -p win32-x64.zip '**/README.txt' > ../bin/win32-x64.README
 
 echo 'windows ia32'
 echo '  downloading from ffmpeg.zeranoe.com'
-download 'https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-latest-win32-static.zip' win32-ia32.zip
+download 'https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-4.3-win32-static.zip' win32-ia32.zip
 echo '  extracting'
 unzip -o -d ../bin -j win32-ia32.zip '**/ffmpeg.exe'
 mv ../bin/ffmpeg.exe ../bin/win32-ia32
