@@ -121,7 +121,7 @@ let progressBar = null;
 function onProgress(deltaBytes, totalBytes) {
   if (totalBytes === null) return;
   if (!progressBar) {
-    progressBar = new ProgressBar(`Downloading ffmpeg [:bar] :percent :etas `, {
+    progressBar = new ProgressBar(`Downloading ffmpeg ${releaseName} [:bar] :percent :etas `, {
       complete: "|",
       incomplete: " ",
       width: 20,
@@ -134,7 +134,11 @@ function onProgress(deltaBytes, totalBytes) {
 
 const release = (
   process.env.FFMPEG_BINARY_RELEASE ||
-  pkg['ffmpeg-static'].binary_release
+  pkg['ffmpeg-static']['binary-release-tag']
+)
+const releaseName = (
+  pkg['ffmpeg-static']['binary-release-name'] ||
+  release
 )
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()

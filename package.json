@@ -15,7 +15,8 @@
     "prepublishOnly": "npm run lint && npm test"
   },
   "ffmpeg-static": {
-    "binary_release": "b4.3"
+    "binary-release-tag": "b4.3",
+    "binary-release-name": "4.3"
   },
   "repository": {
     "type": "git",
