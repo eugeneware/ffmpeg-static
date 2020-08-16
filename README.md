@@ -2,7 +2,7 @@
 
 **[ffmpeg](https://ffmpeg.org) static binaries for Mac OSX and Linux and Windows.**
 
-Supports macOS (64-bit), Linux (32 and 64-bit, armhf, arm64) and Windows (32 and 64-bit). [The ffmpeg version currently used is `4.3`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.3)
+Supports macOS (64-bit), Linux (32 and 64-bit, armhf, arm64) and Windows (32 and 64-bit). [The ffmpeg version currently used is `4.3.1`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.3.1)
 
 *Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, **we do *not* consider breaking changes in `ffmpeg` itself**, but only the JS interface (see below). To stop `ffmpeg-static` from breaking your code by getting updated, [lock the version down](https://docs.npmjs.com/files/package.json#dependencies) or use a [lockfile](https://docs.npmjs.com/files/package-lock.json).
 
@@ -18,7 +18,7 @@ This module is installed via npm:
 $ npm install ffmpeg-static
 ```
 
-*Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b4.3` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.3). Use and distribution of the binary releases of FFmpeg are covered by their respective license.
+*Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b4.3.1` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.3.1). Use and distribution of the binary releases of FFmpeg are covered by their respective license.
 
 ### Electron & other cross-platform packaging tools
 
