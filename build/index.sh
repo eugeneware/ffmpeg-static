@@ -6,7 +6,7 @@ if [ $? -ne 0 ]; then
 fi
 
 tar_options="--wildcards --ignore-case"
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [ "$(uname)" == "Darwin" ]; then
   tar_options=""
 fi
 
