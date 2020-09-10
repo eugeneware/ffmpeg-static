@@ -1,17 +1,17 @@
 #!/bin/bash
-set +e
+set -x
 tar_exec=$(command -v gtar)
 if [ $? -ne 0 ]; then
 	tar_exec=$(command -v tar)
 fi
 
-set -e
-echo using tar executable at $tar_exec
-
 tar_options="--wildcards --ignore-case"
 if [[ "$OSTYPE" == "darwin"* ]]; then
   tar_options=""
 fi
+
+set -e
+echo using tar executable: $tar_exec $tar_options
 
 cd $(dirname $0)
 
