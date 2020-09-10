@@ -1,24 +1,27 @@
 #!/bin/bash
-set -e
-cd $(dirname $0)
-
 set +e
-tar_exec=$(command -v gtar) --wildcards --ignore-case
+tar_exec=$(command -v gtar)
 if [ $? -ne 0 ]; then
 	tar_exec=$(command -v tar)
 fi
+
 set -e
 echo using tar executable at $tar_exec
 
+tar_options="--wildcards --ignore-case"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  tar_options=""
+fi
+
+cd $(dirname $0)
+
 download () {
   if [ -e $2 ]; then
-    echo "  already downloaded: $1"
+    echo "  already downloaded: $2"
   else
-    echo "  downloading $2"
-    curl --connect-timeout 30 \
-      --retry 5 \
-      --retry-max-time 60 \
-      -L -# --compressed -A 'https://github.com/descriptinc/ffmpeg-ffprobe-static' -o $2 $1
+    echo "  downloading $1"
+    curl --connect-timeout 30 --retry 5 --retry-max-time 60 \
+       --silent -L -# --compressed -A 'https://github.com/descriptinc/ffmpeg-ffprobe-static' -o $2 $1
   fi
 }
 
@@ -43,7 +46,7 @@ unzip -p win32-ia32.zip '**/README.txt' > ../bin/win32-ia32.README
 echo 'linux x64'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz' linux-x64.tar.xz
 echo '  extracting'
-$tar_exec -x -C ../bin --strip-components 1 -f linux-x64.tar.xz '*/ffmpeg' '*/ffprobe'
+$tar_exec -x -C ../bin --strip-components 1 -f linux-x64.tar.xz $tar_options '*/ffmpeg' '*/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-x64
 mv ../bin/ffprobe ../bin/ffprobe-linux-x64
 $tar_exec -x -f linux-x64.tar.xz -O '**/GPLv3.txt' > ../bin/linux-x64.LICENSE
@@ -52,7 +55,7 @@ $tar_exec -x -f linux-x64.tar.xz -O '**/readme.txt' > ../bin/linux-x64.README
 echo 'linux ia32'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz' linux-ia32.tar.xz
 echo '  extracting'
-$tar_exec -x -C ../bin --strip-components 1 -f linux-ia32.tar.xz '*/ffmpeg' '*/ffprobe'
+$tar_exec -x -C ../bin --strip-components 1 -f linux-ia32.tar.xz $tar_options '*/ffmpeg' '*/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-ia32
 mv ../bin/ffprobe ../bin/ffprobe-linux-ia32
 $tar_exec -x -f linux-ia32.tar.xz -O '**/GPLv3.txt' > ../bin/linux-ia32.LICENSE
@@ -61,7 +64,7 @@ $tar_exec -x -f linux-ia32.tar.xz -O '**/readme.txt' > ../bin/linux-ia32.README
 echo 'linux arm'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-static.tar.xz' linux-arm.tar.xz
 echo '  extracting'
-$tar_exec -x -C ../bin --strip-components 1 -f linux-arm.tar.xz '*/ffmpeg' '*/ffprobe'
+$tar_exec -x -C ../bin --strip-components 1 -f linux-arm.tar.xz $tar_options '*/ffmpeg' '*/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-arm
 mv ../bin/ffprobe ../bin/ffprobe-linux-arm
 $tar_exec -x -f linux-arm.tar.xz -O '**/GPLv3.txt' > ../bin/linux-arm.LICENSE
@@ -70,7 +73,7 @@ $tar_exec -x -f linux-arm.tar.xz -O '**/readme.txt' > ../bin/linux-arm.README
 echo 'linux arm64'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-static.tar.xz' linux-arm64.tar.xz
 echo '  extracting'
-$tar_exec -x -C ../bin --strip-components 1 -f linux-arm64.tar.xz '*/ffmpeg' '*/ffprobe'
+$tar_exec -x -C ../bin --strip-components 1 -f linux-arm64.tar.xz $tar_options '*/ffmpeg' '*/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-arm64
 mv ../bin/ffprobe ../bin/ffprobe-linux-arm64
 $tar_exec -x -f linux-arm64.tar.xz -O '**/GPLv3.txt' > ../bin/linux-arm64.LICENSE
