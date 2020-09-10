@@ -15,7 +15,10 @@ download () {
     echo "  already downloaded: $1"
   else
     echo "  downloading $2"
-    curl -L -# --compressed -A 'https://github.com/descriptinc/ffmpeg-ffprobe-static' -o $2 $1
+    curl --connect-timeout 30 \
+      --retry 5 \
+      --retry-max-time 60 \
+      -L -# --compressed -A 'https://github.com/descriptinc/ffmpeg-ffprobe-static' -o $2 $1
   fi
 }
 
