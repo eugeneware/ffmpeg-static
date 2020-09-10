@@ -1,8 +1,9 @@
 {
-  "name": "ffmpeg-static",
+  "name": "ffmpeg-ffprobe-static",
   "version": "4.2.7",
   "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
   "main": "index.js",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "install.js",
@@ -20,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eugeneware/ffmpeg-static"
+    "url": "https://github.com/descriptinc/ffmpeg-ffprobe-static"
   },
   "keywords": [
     "ffmpeg",
@@ -41,7 +42,7 @@
   ],
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/eugeneware/ffmpeg-static/issues"
+    "url": "https://github.com/descriptinc/ffmpeg-ffprobe-static/issues"
   },
   "engines": {
     "node": ">=10"

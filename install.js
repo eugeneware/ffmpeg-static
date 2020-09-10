@@ -8,7 +8,7 @@ const envPaths = require('env-paths')
 const FileCache = require('@derhuerst/http-basic/lib/FileCache').default
 var ProgressBar = require("progress");
 var request = require('@derhuerst/http-basic')
-var ffmpegPath = require(".");
+var {ffmpegPath, ffprobePath} = require(".");
 var pkg = require("./package");
 
 const exitOnError = (err) => {
@@ -20,13 +20,13 @@ const exitOnErrorOrWarnWith = (msg) => (err) => {
   else exitOnError(err)
 }
 
-if (!ffmpegPath) {
-  exitOnError('ffmpeg-static install failed: No binary found for architecture')
+if (!ffmpegPath || !ffprobePath) {
+  exitOnError('ffmpeg-ffprobe-static install failed: No binary found for architecture')
 }
 
 try {
-  if (fs.statSync(ffmpegPath).isFile()) {
-    console.info('ffmpeg is installed already.')
+  if (fs.statSync(ffmpegPath).isFile() && fs.statSync(ffprobePath).isFile()) {
+    console.info('ffmpeg/ffprobe is installed already.')
     process.exit(0)
   }
 } catch (err) {
@@ -142,13 +142,20 @@ const releaseName = (
 )
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()
-const downloadUrl = `https://github.com/eugeneware/ffmpeg-static/releases/download/${release}/${platform}-${arch}`
-const readmeUrl = `${downloadUrl}.README`
-const licenseUrl = `${downloadUrl}.LICENSE`
+let baseUrl = `https://github.com/descriptinc/ffmpeg-ffprobe-static/releases/download/${release}`;
+const ffmpegUrl = `${baseUrl}/ffmpeg-${platform}-${arch}`
+const ffprobeUrl = `${baseUrl}/ffprobe-${platform}-${arch}`
+const readmeUrl = `${baseUrl}/${platform}-${arch}.README`
+const licenseUrl = `${baseUrl}/${platform}-${arch}.LICENSE`
 
-downloadFile(downloadUrl, ffmpegPath, onProgress)
+downloadFile(ffmpegUrl, ffmpegPath, onProgress)
 .then(() => {
   fs.chmodSync(ffmpegPath, 0o755) // make executable
+})
+.catch(exitOnError)
+downloadFile(ffprobeUrl, ffprobePath, onProgress)
+.then(() => {
+  fs.chmodSync(ffprobePath, 0o755) // make executable
 })
 .catch(exitOnError)
 

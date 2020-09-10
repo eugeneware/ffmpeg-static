@@ -12,3 +12,7 @@ bin/*
 /ffmpeg.exe
 /ffmpeg.README
 /ffmpeg.LICENSE
+/ffprobe
+/ffprobe.exe
+/ffprobe.README
+/ffprobe.LICENSE
