@@ -43,7 +43,7 @@ Check the [example script](example.js) for a more thorough example.
 
 [The build script](build/index.sh) downloads binaries from these locations:
 
-- [Windows builds](https://ffmpeg.zeranoe.com/builds/win64/static/)
+- [Windows builds](https://github.com/ShareX/FFmpeg/)
 - [Linux builds](https://johnvansickle.com/ffmpeg/)
 - [macOS builds](https://evermeet.cx/pub/ffmpeg/)
 
@@ -53,7 +53,7 @@ The build script extracts build information and (when possible) the license file
 
 This npm package includes statically linked binaries that are produced by the following individuals. Please consider supporting and donating to them who have been providing quality binary builds for many years:
 
-- **Windows builds**: [Kyle Schwarz](https://ffmpeg.zeranoe.com/builds/)
+- **Windows builds**: [Jaex](https://getsharex.com/donate/)
 - **Linux builds**: [John Van Sickle](https://www.johnvansickle.com/ffmpeg/)
 - **macOS builds**: [Helmut K. C. Tessarek](https://evermeet.cx/ffmpeg/#donations)
 
