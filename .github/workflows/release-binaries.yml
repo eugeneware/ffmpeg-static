@@ -14,6 +14,20 @@ jobs:
       - name: Download Binaries
         run: sh ./build/index.sh
 
+      - name: Compress Binaries
+        run: |
+          set -e
+          set -o pipefail
+          cat bin/darwin-x64 | gzip --best >bin/darwin-x64.gz
+          cat bin/linux-arm | gzip --best >bin/linux-arm.gz
+          cat bin/linux-arm64 | gzip --best >bin/linux-arm64.gz
+          cat bin/linux-ia32 | gzip --best >bin/linux-ia32.gz
+          cat bin/linux-x64 | gzip --best >bin/linux-x64.gz
+          cat bin/win32-ia32 | gzip --best >bin/win32-ia32.gz
+          cat bin/win32-x64 | gzip --best >bin/win32-x64.gz
+          ls -l bin
+        shell: bash
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -30,6 +44,14 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: bin/darwin-x64
           asset_name: darwin-x64
+          asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/darwin-x64.gz
+          asset_name: darwin-x64.gz
           asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
@@ -48,6 +70,14 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: bin/linux-arm
           asset_name: linux-arm
+          asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-arm.gz
+          asset_name: linux-arm.gz
           asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
@@ -76,6 +106,14 @@ jobs:
           asset_path: bin/linux-arm64
           asset_name: linux-arm64
           asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-arm64.gz
+          asset_name: linux-arm64.gz
+          asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
         env:
@@ -102,6 +140,14 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: bin/linux-ia32
           asset_name: linux-ia32
+          asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-ia32.gz
+          asset_name: linux-ia32.gz
           asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
@@ -130,6 +176,14 @@ jobs:
           asset_path: bin/linux-x64
           asset_name: linux-x64
           asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-x64.gz
+          asset_name: linux-x64.gz
+          asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
         env:
@@ -157,6 +211,14 @@ jobs:
           asset_path: bin/win32-ia32
           asset_name: win32-ia32
           asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/win32-ia32.gz
+          asset_name: win32-ia32.gz
+          asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
         env:
@@ -174,6 +236,14 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: bin/win32-x64
           asset_name: win32-x64
+          asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/win32-x64.gz
+          asset_name: win32-x64.gz
           asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
