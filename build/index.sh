@@ -11,7 +11,7 @@ set -e
 echo using tar executable at $tar_exec
 
 download () {
-	curl -L -# --compressed -A 'https://github.com/eugeneware/ffmpeg-static' -o $2 $1
+	curl -L -# --compressed -A 'https://github.com/eugeneware/ffmpeg-static build script' -o $2 $1
 }
 
 echo 'windows x64'
