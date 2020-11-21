@@ -9,6 +9,7 @@ addons:
       - unzip
       - tar
 script:
+  - npm run install
   - npm test
   - 'file=$(npm pack -s) && file=$(realpath $file)'
   - 'cd $(mktemp -d) && npm init -y'
