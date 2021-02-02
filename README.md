@@ -22,7 +22,10 @@ This module is installed via npm:
 $ npm install ffmpeg-ffprobe-static
 ```
 
-*Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b4.3.1` GitHub release](https://github.com/descriptinc/ffmpeg-ffprobe-static/releases/tag/b4.3.1). Use and distribution of the binary releases of FFmpeg are covered by their respective license.
+*Note:* During installation, it will download the appropriate `ffmpeg`/`ffprobe` binary from the [`b4.3.1` GitHub release](https://github.com/descriptinc/ffmpeg-ffprobe-static/releases/tag/b4.3.1). Use and distribution of the binary releases of FFmpeg are covered by their respective license.
+
+Alternatively, it will fetch binaries from `FFMPEG_FFPROBE_STATIC_BASE_URL` if set as an environment variable. The default base URL is https://github.com/descriptinc/ffmpeg-ffprobe-static/releases/download/. The install script will fetch binaries from `BASE_URL/binary-release-tag` (the `binary-release-tag` is set in package.json and can customized by setting `FFMPEG_BINARY_RELEASE`).
+
 
 ### Electron & other cross-platform packaging tools
 
