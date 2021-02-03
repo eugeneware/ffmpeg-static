@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-ffprobe-static",
-  "version": "4.3.1-rc.3",
+  "version": "4.3.1-rc.4",
   "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
   "main": "index.js",
   "types": "index.d.ts",
@@ -14,7 +14,8 @@
     "install": "node install.js",
     "test": "node test.js",
     "lint": "eslint .",
-    "prepublishOnly": "npm run lint && npm test"
+    "prepublishOnly": "npm run lint && npm test",
+    "postinstall": "patch-package"
   },
   "ffmpeg-static": {
     "binary-release-tag": "b4.3.1-rc.5",
@@ -56,6 +57,7 @@
   },
   "devDependencies": {
     "any-shell-escape": "^0.1.1",
-    "eslint": "^7.2.0"
+    "eslint": "^7.2.0",
+    "patch-package": "^6.2.2"
   }
 }

@@ -1,0 +1,13 @@
+diff --git a/node_modules/@derhuerst/http-basic/lib/FileCache.js b/node_modules/@derhuerst/http-basic/lib/FileCache.js
+index b12e41a..a30aeb1 100644
+--- a/node_modules/@derhuerst/http-basic/lib/FileCache.js
++++ b/node_modules/@derhuerst/http-basic/lib/FileCache.js
+@@ -37,7 +37,7 @@ var FileCache = /** @class */ (function () {
+     FileCache.prototype.setResponse = function (url, response) {
+         var key = path_1.resolve(this._location, this.getCacheKey(url));
+         var errored = false;
+-        fs.mkdir(this._location, function (err) {
++        fs.mkdir(this._location, { recursive: true }, function (err) {
+             if (err && err.code !== 'EEXIST') {
+                 console.warn('Error creating cache: ' + err.message);
+                 return;
