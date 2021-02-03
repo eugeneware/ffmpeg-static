@@ -15,9 +15,8 @@ const exitOnError = (err) => {
   console.error(err)
   process.exit(1)
 }
-const exitOnErrorOrWarnWith = (msg) => (err) => {
-  if (err.statusCode === 404) console.warn(msg)
-  else exitOnError(err)
+const warnWith = (msg) => (err) => {
+  console.warn(msg)
 }
 
 if (!ffmpegPath || !ffprobePath) {
@@ -163,7 +162,7 @@ downloadFile(ffmpegUrl, ffmpegPath, onProgress)
   .catch(exitOnError)
 
   .then(() => downloadFile(readmeUrl, `${ffmpegPath}.README`))
-  .catch(exitOnErrorOrWarnWith('Failed to download the ffmpeg README.'))
+  .catch(warnWith('Failed to download the ffmpeg README.'))
 
   .then(() => downloadFile(licenseUrl, `${ffmpegPath}.LICENSE`))
-  .catch(exitOnErrorOrWarnWith('Failed to download the ffmpeg LICENSE.'))
+  .catch(warnWith('Failed to download the ffmpeg LICENSE.'))
