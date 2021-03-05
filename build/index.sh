@@ -10,17 +10,22 @@ fi
 set -e
 echo using tar executable at $tar_exec
 
+mkdir -p ../bin
+
 download () {
 	curl -L -# --compressed -A 'https://github.com/eugeneware/ffmpeg-static' -o $2 $1
 }
 
 echo 'windows x64'
 echo '  downloading from github.com'
-download 'https://github.com/ShareX/FFmpeg/releases/download/v4.3.1/ffmpeg-4.3.1-win64.zip' win32-x64.zip
+download 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.7z' win32-x64.7z
 echo '  extracting'
-unzip -o -d ../bin -j win32-x64.zip 'ffmpeg.exe'
-mv ../bin/ffmpeg.exe ../bin/win32-x64
-curl -s -L 'https://github.com/ShareX/FFmpeg/raw/master/LICENSE.txt' -o ../bin/win32-x64.LICENSE
+tmpdir=$(mktemp -d)
+7zr e -y -bd -o"$tmpdir" win32-x64.7z >/dev/null
+tree "$tmpdir"
+mv "$tmpdir/ffmpeg.exe" ../bin/win32-x64
+mv "$tmpdir/LICENSE" ../bin/win32-x64.LICENSE
+mv "$tmpdir/README.txt" ../bin/win32-x64.README
 
 echo 'windows ia32'
 echo '  downloading from github.com'
