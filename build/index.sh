@@ -78,3 +78,8 @@ echo '  extracting'
 unzip -o -d ../bin -j darwin-x64.zip ffmpeg
 mv ../bin/ffmpeg ../bin/darwin-x64
 curl -s -L 'https://evermeet.cx/ffmpeg/info/ffmpeg/release' | jq --tab '.' >../bin/darwin-x64.README
+
+echo 'freebsd x64'
+echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
+download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v4.3.2/ffmpeg' ../bin/freebsd
+chmod +x ../bin/freebsd

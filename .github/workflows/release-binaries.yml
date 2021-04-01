@@ -19,6 +19,7 @@ jobs:
           set -e
           set -o pipefail
           cat bin/darwin-x64 | gzip --best >bin/darwin-x64.gz
+          cat bin/freebsd-x64 | gzip --best >bin/freebsd-x64.gz
           cat bin/linux-arm | gzip --best >bin/linux-arm.gz
           cat bin/linux-arm64 | gzip --best >bin/linux-arm64.gz
           cat bin/linux-ia32 | gzip --best >bin/linux-ia32.gz
@@ -62,6 +63,23 @@ jobs:
           asset_path: bin/darwin-x64.README
           asset_name: darwin-x64.README
           asset_content_type: text/plain
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/freebsd-x64
+          asset_name: freebsd-x64
+          asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/freebsd-x64.gz
+          asset_name: freebsd-x64.gz
+          asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
         env:

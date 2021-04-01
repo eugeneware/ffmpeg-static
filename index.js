@@ -8,6 +8,7 @@ if (process.env.FFMPEG_BIN) {
 
   var binaries = Object.assign(Object.create(null), {
     darwin: ['x64'],
+    freebsd: ['x64'],
     linux: ['x64', 'ia32', 'arm64', 'arm'],
     win32: ['x64', 'ia32']
   })
