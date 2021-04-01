@@ -22,7 +22,6 @@ download 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.7z' win32
 echo '  extracting'
 tmpdir=$(mktemp -d)
 7zr e -y -bd -o"$tmpdir" win32-x64.7z >/dev/null
-tree "$tmpdir"
 mv "$tmpdir/ffmpeg.exe" ../bin/win32-x64
 mv "$tmpdir/LICENSE" ../bin/win32-x64.LICENSE
 mv "$tmpdir/README.txt" ../bin/win32-x64.README
