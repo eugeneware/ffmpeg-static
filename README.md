@@ -2,7 +2,7 @@
 
 **[ffmpeg](https://ffmpeg.org) static binaries for Mac OSX, Linux, Windows and FreeBSD.**
 
-Supports macOS (64-bit), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit) and FreeBSD (64-bit). [The ffmpeg version currently used is `4.3.2`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.3.2)
+Supports macOS (64-bit, arm64), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit) and FreeBSD (64-bit). [The ffmpeg version currently used is `4.3.2`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.3.2)
 
 *Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, **we do *not* consider breaking changes in `ffmpeg` itself**, but only the JS interface (see below). To stop `ffmpeg-static` from breaking your code by getting updated, [lock the version down](https://docs.npmjs.com/files/package.json#dependencies) or use a [lockfile](https://docs.npmjs.com/files/package-lock.json).
 
@@ -45,7 +45,7 @@ Check the [example script](example.js) for a more thorough example.
 
 - [Windows builds](https://github.com/ShareX/FFmpeg/)
 - [Linux builds](https://johnvansickle.com/ffmpeg/)
-- [macOS builds](https://evermeet.cx/pub/ffmpeg/)
+- macOS builds [for Intel](https://evermeet.cx/pub/ffmpeg/) / [for ARM (Apple Silicon)](http://osxexperts.net/)
 - [FreeBSD builds](https://github.com/Thefrank/ffmpeg-static-freebsd/releases)
 
 The build script extracts build information and (when possible) the license file from the downloaded package or the distribution server. Please consult the individual build's project site for exact source versions, which you can locate based on the version information included in the README file.

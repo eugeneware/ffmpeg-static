@@ -7,7 +7,7 @@ if (process.env.FFMPEG_BIN) {
   var path = require('path')
 
   var binaries = Object.assign(Object.create(null), {
-    darwin: ['x64'],
+    darwin: ['x64', 'arm64'],
     freebsd: ['x64'],
     linux: ['x64', 'ia32', 'arm64', 'arm'],
     win32: ['x64', 'ia32']
