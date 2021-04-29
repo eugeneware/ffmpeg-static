@@ -45,7 +45,7 @@ Check the [example script](example.js) for a more thorough example.
 
 - [Windows builds](https://github.com/ShareX/FFmpeg/)
 - [Linux builds](https://johnvansickle.com/ffmpeg/)
-- macOS builds [for Intel](https://evermeet.cx/pub/ffmpeg/) / [for ARM (Apple Silicon)](http://osxexperts.net/)
+- macOS builds [for Intel](https://evermeet.cx/pub/ffmpeg/) / [for ARM (Apple Silicon)](https://osxexperts.net/)
 - [FreeBSD builds](https://github.com/Thefrank/ffmpeg-static-freebsd/releases)
 
 The build script extracts build information and (when possible) the license file from the downloaded package or the distribution server. Please consult the individual build's project site for exact source versions, which you can locate based on the version information included in the README file.
