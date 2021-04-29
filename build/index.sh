@@ -76,7 +76,17 @@ download 'https://evermeet.cx/ffmpeg/getrelease/ffmpeg/zip' darwin-x64.zip
 echo '  extracting'
 unzip -o -d ../bin -j darwin-x64.zip ffmpeg
 mv ../bin/ffmpeg ../bin/darwin-x64
+curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/LICENSE.md'  -o ../bin/darwin-x64.LICENSE
 curl -s -L 'https://evermeet.cx/ffmpeg/info/ffmpeg/release' | jq --tab '.' >../bin/darwin-x64.README
+
+echo 'darwin arm64'
+echo '  downloading from osxexperts.net'
+download 'https://www.osxexperts.net/ffmpeg44arm.zip' darwin-arm64.zip
+echo '  extracting'
+unzip -o -d ../bin -j darwin-arm64.zip ffmpeg
+mv ../bin/ffmpeg ../bin/darwin-arm64
+curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
+curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/README.md'  -o ../bin/darwin-arm64.README
 
 echo 'freebsd x64'
 echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
