@@ -28,7 +28,7 @@ mv "$tmpdir/README.txt" ../bin/win32-x64.README
 
 echo 'windows ia32'
 echo '  downloading from github.com'
-download 'https://github.com/ShareX/FFmpeg/releases/download/v4.3.1/ffmpeg-4.3.1-win32.zip' win32-ia32.zip
+download 'https://github.com/ShareX/FFmpeg/releases/download/v4.4/ffmpeg-4.4-win32.zip' win32-ia32.zip
 echo '  extracting'
 unzip -o -d ../bin -j win32-ia32.zip 'ffmpeg.exe'
 mv ../bin/ffmpeg.exe ../bin/win32-ia32
@@ -90,5 +90,5 @@ curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/README.md'
 
 echo 'freebsd x64'
 echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
-download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v4.3.2/ffmpeg' ../bin/freebsd
+download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v4.4/ffmpeg' ../bin/freebsd
 chmod +x ../bin/freebsd
