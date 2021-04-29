@@ -2,7 +2,7 @@
 
 **[ffmpeg](https://ffmpeg.org) static binaries for Mac OSX, Linux, Windows and FreeBSD.**
 
-Supports macOS (64-bit, arm64), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit) and FreeBSD (64-bit). [The ffmpeg version currently used is `4.3.2`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.3.2)
+Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit) and FreeBSD (64-bit). [The ffmpeg version currently used is `4.3.2`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.3.2)
 
 *Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, **we do *not* consider breaking changes in `ffmpeg` itself**, but only the JS interface (see below). To stop `ffmpeg-static` from breaking your code by getting updated, [lock the version down](https://docs.npmjs.com/files/package.json#dependencies) or use a [lockfile](https://docs.npmjs.com/files/package-lock.json).
 
