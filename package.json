@@ -55,5 +55,6 @@
   "devDependencies": {
     "any-shell-escape": "^0.1.1",
     "eslint": "^7.2.0"
-  }
+  },
+  "types": "types/index.d.ts"
 }
