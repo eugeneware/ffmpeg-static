@@ -28,11 +28,11 @@ mv "$tmpdir/README.txt" ../bin/win32-x64.README
 
 echo 'windows ia32'
 echo '  downloading from github.com'
-download 'https://github.com/ShareX/FFmpeg/releases/download/v4.4/ffmpeg-4.4-win32.zip' win32-ia32.zip
+download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/autobuild-2021-06-17-12-48/ffmpeg-n4.4-19-g8d172d9409-win32-gpl-4.4.zip' win32-ia32.zip
 echo '  extracting'
-unzip -o -d ../bin -j win32-ia32.zip 'ffmpeg.exe'
+unzip -o -d ../bin -j win32-ia32.zip '*/bin/ffmpeg.exe'
 mv ../bin/ffmpeg.exe ../bin/win32-ia32
-curl -s -L 'https://github.com/ShareX/FFmpeg/raw/master/LICENSE.txt' -o ../bin/win32-ia32.LICENSE
+curl -s -L 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/master/LICENSE' -o ../bin/win32-ia32.LICENSE
 
 echo 'linux x64'
 echo '  downloading from johnvansickle.com'
