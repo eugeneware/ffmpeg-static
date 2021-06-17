@@ -43,7 +43,8 @@ Check the [example script](example.js) for a more thorough example.
 
 [The build script](build/index.sh) downloads binaries from these locations:
 
-- [Windows builds](https://github.com/ShareX/FFmpeg/)
+- [Windows x64 builds](https://github.com/ShareX/FFmpeg/)
+- [Windows x86 builds](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/)
 - [Linux builds](https://johnvansickle.com/ffmpeg/)
 - macOS builds [for Intel](https://evermeet.cx/pub/ffmpeg/) / [for ARM (Apple Silicon)](https://osxexperts.net/)
 - [FreeBSD builds](https://github.com/Thefrank/ffmpeg-static-freebsd/releases)
