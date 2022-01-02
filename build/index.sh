@@ -23,12 +23,13 @@ echo '  extracting'
 tmpdir=$(mktemp -d)
 7zr e -y -bd -o"$tmpdir" win32-x64.7z >/dev/null
 mv "$tmpdir/ffmpeg.exe" ../bin/win32-x64
+chmod +x ../bin/win32-x64
 mv "$tmpdir/LICENSE" ../bin/win32-x64.LICENSE
 mv "$tmpdir/README.txt" ../bin/win32-x64.README
 
 echo 'windows ia32'
 echo '  downloading from github.com'
-download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/autobuild-2021-06-17-12-48/ffmpeg-n4.4-19-g8d172d9409-win32-gpl-4.4.zip' win32-ia32.zip
+download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/autobuild-2021-12-28-12-53/ffmpeg-n4.4.1-2-gcc33e73618-win32-gpl-4.4.zip' win32-ia32.zip
 echo '  extracting'
 unzip -o -d ../bin -j win32-ia32.zip '*/bin/ffmpeg.exe'
 mv ../bin/ffmpeg.exe ../bin/win32-ia32
@@ -81,7 +82,7 @@ curl -s -L 'https://evermeet.cx/ffmpeg/info/ffmpeg/release' | jq --tab '.' >../b
 
 echo 'darwin arm64'
 echo '  downloading from osxexperts.net'
-download 'https://www.osxexperts.net/ffmpeg44arm.zip' darwin-arm64.zip
+download 'https://www.osxexperts.net/FFmpeg441ARM.zip' darwin-arm64.zip
 echo '  extracting'
 unzip -o -d ../bin -j darwin-arm64.zip ffmpeg
 mv ../bin/ffmpeg ../bin/darwin-arm64
@@ -90,5 +91,5 @@ curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/README.md'
 
 echo 'freebsd x64'
 echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
-download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v4.4/ffmpeg' ../bin/freebsd-x64
+download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v4.4.1/ffmpeg' ../bin/freebsd-x64
 chmod +x ../bin/freebsd-x64
