@@ -1,0 +1,35 @@
+name: test
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['10', '12', '14', '16']
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: setup Node v${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+
+    - run: npm run lint
+    - run: npm test
+    - name: test-install ffmpeg-static as dependency
+      run: |
+        file=$(npm pack -s) && file=$(realpath $file)
+        cd $(mktemp -d) && npm init -y
+        npm i "$file"
+        file $(node -p 'require("ffmpeg-static")')
+        $(node -p 'require("ffmpeg-static")') --help

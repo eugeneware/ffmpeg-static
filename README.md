@@ -7,7 +7,6 @@ Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows 
 *Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, **we do *not* consider breaking changes in `ffmpeg` itself**, but only the JS interface (see below). To stop `ffmpeg-static` from breaking your code by getting updated, [lock the version down](https://docs.npmjs.com/files/package.json#dependencies) or use a [lockfile](https://docs.npmjs.com/files/package-lock.json).
 
 [![npm version](https://img.shields.io/npm/v/ffmpeg-static.svg)](https://www.npmjs.com/package/ffmpeg-static)
-[![build status](https://travis-ci.org/eugeneware/ffmpeg-static.svg?branch=master)](http://travis-ci.org/eugeneware/ffmpeg-static)
 ![minimum Node.js version](https://img.shields.io/node/v/ffmpeg-static.svg)
 
 ## Installation
