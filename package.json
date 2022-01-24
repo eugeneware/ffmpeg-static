@@ -2,6 +2,7 @@
   "name": "ffmpeg-static",
   "version": "4.4.1",
   "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
+  "type": "module",
   "main": "index.js",
   "files": [
     "index.js",
@@ -47,7 +48,7 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@derhuerst/http-basic": "^8.2.0",
+    "@derhuerst/http-basic": "^8.2.2",
     "env-paths": "^3.0.0",
     "https-proxy-agent": "^5.0.0",
     "progress": "^2.0.3"

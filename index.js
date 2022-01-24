@@ -1,29 +1,31 @@
 'use strict'
 
-if (process.env.FFMPEG_BIN) {
-  module.exports = process.env.FFMPEG_BIN
-} else {
-  var os = require('os')
-  var path = require('path')
+import {arch as osArch, platform as osPlatform} from 'node:os'
+import {fileURLToPath} from 'url'
+import {join as pathJoin, dirname} from 'node:path'
 
-  var binaries = Object.assign(Object.create(null), {
+let ffmpegPath = null
+
+if (process.env.FFMPEG_BIN) {
+  ffmpegPath = process.env.FFMPEG_BIN
+} else {
+  const binaries = Object.assign(Object.create(null), {
     darwin: ['x64', 'arm64'],
     freebsd: ['x64'],
     linux: ['x64', 'ia32', 'arm64', 'arm'],
     win32: ['x64', 'ia32']
   })
 
-  var platform = process.env.npm_config_platform || os.platform()
-  var arch = process.env.npm_config_arch || os.arch()
+  const platform = process.env.npm_config_platform || osPlatform()
+  const arch = process.env.npm_config_arch || osArch()
 
-  var ffmpegPath = path.join(
-    __dirname,
-    platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
-  )
-
-  if (!binaries[platform] || binaries[platform].indexOf(arch) === -1) {
-    ffmpegPath = null
+  if (binaries[platform] && binaries[platform].includes(arch)) {
+    const __dirname = dirname(fileURLToPath(import.meta.url))
+    ffmpegPath = pathJoin(
+      __dirname,
+      platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
+    )
   }
-
-  module.exports = ffmpegPath
 }
+
+export default ffmpegPath

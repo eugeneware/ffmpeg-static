@@ -1,18 +1,23 @@
 'use strict'
 
-var fs = require("fs");
-var os = require("os");
-const {encode: encodeQuery} = require('querystring')
-const {strictEqual} = require('assert')
-const envPaths = require('env-paths')
-const FileCache = require('@derhuerst/http-basic/lib/FileCache').default
-const {extname} = require('path')
-var ProgressBar = require("progress");
-var request = require('@derhuerst/http-basic')
-const {createGunzip} = require('zlib')
-const {pipeline} = require('stream')
-var ffmpegPath = require(".");
-var pkg = require("./package");
+import {statSync, createWriteStream, chmodSync} from 'node:fs'
+import {arch as osArch, platform as osPlatform} from 'node:os'
+import HttpsProxyAgent from 'https-proxy-agent'
+import {encode as encodeQuery} from 'node:querystring'
+import {strictEqual} from 'node:assert'
+import envPaths from 'env-paths'
+import httpBasic from '@derhuerst/http-basic'
+const {FileCache} = httpBasic
+import {extname} from 'node:path'
+import ProgressBar from 'progress'
+import request from '@derhuerst/http-basic'
+import {createGunzip} from 'node:zlib'
+import {pipeline} from 'node:stream'
+import ffmpegPath from './index.js'
+
+import { createRequire } from 'node:module'
+const require = createRequire(import.meta.url)
+const pkg = require('./package.json')
 
 const exitOnError = (err) => {
   console.error(err)
@@ -28,7 +33,7 @@ if (!ffmpegPath) {
 }
 
 try {
-  if (fs.statSync(ffmpegPath).isFile()) {
+  if (statSync(ffmpegPath).isFile()) {
     console.info('ffmpeg is installed already.')
     process.exit(0)
   }
@@ -45,7 +50,6 @@ const proxyUrl = (
   process.env.http_proxy
 )
 if (proxyUrl) {
-  const HttpsProxyAgent = require('https-proxy-agent')
   const {hostname, port, protocol} = new URL(proxyUrl)
   agent = new HttpsProxyAgent({hostname, port, protocol})
 }
@@ -109,7 +113,7 @@ function downloadFile(url, destinationPath, progressCallback = noop) {
       return;
     }
 
-    const file = fs.createWriteStream(destinationPath);
+    const file = createWriteStream(destinationPath);
     const streams = isGzUrl(url)
       ? [response.body, createGunzip(), file]
       : [response.body, file]
@@ -159,8 +163,8 @@ const releaseName = (
   pkg['ffmpeg-static']['binary-release-name'] ||
   release
 )
-const arch = process.env.npm_config_arch || os.arch()
-const platform = process.env.npm_config_platform || os.platform()
+const arch = process.env.npm_config_arch || osArch()
+const platform = process.env.npm_config_platform || osPlatform()
 
 const baseUrl = `https://github.com/eugeneware/ffmpeg-static/releases/download/${release}`
 const downloadUrl = `${baseUrl}/${platform}-${arch}.gz`
@@ -169,7 +173,7 @@ const licenseUrl = `${baseUrl}/${platform}-${arch}.LICENSE`
 
 downloadFile(downloadUrl, ffmpegPath, onProgress)
 .then(() => {
-  fs.chmodSync(ffmpegPath, 0o755) // make executable
+  chmodSync(ffmpegPath, 0o755) // make executable
 })
 .catch(exitOnError)
 

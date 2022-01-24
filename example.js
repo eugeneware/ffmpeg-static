@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 'use strict'
 
-const {resolve} = require('path')
-const shell = require('any-shell-escape')
-const {exec} = require('child_process')
-const pathToFfmpeg = require('.')
+import {resolve} from 'node:path'
+import shell from 'any-shell-escape'
+import {exec} from 'node:child_process'
+import pathToFfmpeg from './index.js';
 
 const argv = process.argv.slice(2)
 if (argv.includes('-h') || argv.includes('--help')) {
