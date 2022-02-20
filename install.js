@@ -161,7 +161,7 @@ const releaseName = (
 )
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()
-const cdnUrl = process.env.npm_config_ffmpegstatic_cdnurl || process.env.FFMPEGSTATIC_CDNURL || 'https://github.com/eugeneware/ffmpeg-static/releases/download'
+const cdnUrl = process.env.npm_config_ffmpeg_binaries_url || process.env.FFMPEG_BINARIES_URL || 'https://github.com/eugeneware/ffmpeg-static/releases/download'
 const baseUrl = `${cdnUrl}/${release}`
 const downloadUrl = `${baseUrl}/${platform}-${arch}.gz`
 const readmeUrl = `${baseUrl}/${platform}-${arch}.README`

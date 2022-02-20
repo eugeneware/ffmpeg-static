@@ -21,23 +21,23 @@ $ npm install ffmpeg-static
 
 ### Custom binaries url
 
-To use a mirror of the ffmpeg-static binaries use npm config property `ffmpegstatic_cdnurl`.
+To use a mirror of the ffmpeg-static binaries use npm config property `ffmpeg_binaries_url`.
 Default is `https://github.com/eugeneware/ffmpeg-static/releases/download`.
 
 ```shell
-npm install ffmpeg-static --ffmpegstatic_cdnurl=https://cdn.npmmirror.com/binaries/ffmpeg-static
+npm install ffmpeg-static --ffmpeg_binaries_url=https://cdn.npmmirror.com/binaries/ffmpeg-static
 ```
 
 Or add property into your [`.npmrc`](https://docs.npmjs.com/files/npmrc) file.
 
 ```
-ffmpegstatic_cdnurl=https://cdn.npmmirror.com/binaries/ffmpeg-static
+ffmpeg_binaries_url=https://cdn.npmmirror.com/binaries/ffmpeg-static
 ```
 
-Another option is to use PATH variable `FFMPEGSTATIC_CDNURL`.
+Another option is to use PATH variable `FFMPEG_BINARIES_URL`.
 
 ```shell
-FFMPEGSTATIC_CDNURL=https://cdn.npmmirror.com/binaries/ffmpeg-static npm install ffmpeg-static
+FFMPEG_BINARIES_URL=https://cdn.npmmirror.com/binaries/ffmpeg-static npm install ffmpeg-static
 ```
 
 ### Electron & other cross-platform packaging tools
