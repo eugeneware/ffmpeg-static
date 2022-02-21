@@ -34,10 +34,10 @@ Or add property into your [`.npmrc`](https://docs.npmjs.com/files/npmrc) file.
 ffmpeg_binaries_url=https://cdn.npmmirror.com/binaries/ffmpeg-static
 ```
 
-Another option is to use PATH variable `FFMPEG_BINARIES_URL`.
+Another option is to use the `FFMPEG_BINARIES_URL` environment variable.
 
 ```shell
-FFMPEG_BINARIES_URL=https://cdn.npmmirror.com/binaries/ffmpeg-static npm install ffmpeg-static
+env export FFMPEG_BINARIES_URL=https://cdn.npmmirror.com/binaries/ffmpeg-static npm install ffmpeg-static
 ```
 
 ### Electron & other cross-platform packaging tools
