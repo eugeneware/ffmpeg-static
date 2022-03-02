@@ -2,12 +2,12 @@
 
 **[ffmpeg](https://ffmpeg.org) static binaries for Mac OSX, Linux, Windows.**
 
-Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit). [The ffmpeg version currently used is `4.4.1`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.4.1)
+Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit). [The ffmpeg version currently used is `5.0`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b5.0)
 
 [![npm version](https://img.shields.io/npm/v/ffmpeg-static.svg)](https://www.npmjs.com/package/ffmpeg-static)
 ![minimum Node.js version](https://img.shields.io/node/v/ffmpeg-static.svg)
 
-*Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, **we do *not* consider breaking changes in `ffmpeg` itself**, but only the JS interface (see below). For example, `ffmpeg-static@4.4.1` downloads ffmpeg `4.4.1`. To prevent an `ffmpeg-static` upgrade downloading backwards-incompatible ffmpeg versions, [use a strict version range](https://docs.npmjs.com/files/package.json#dependencies) for it or use a [lockfile](https://docs.npmjs.com/files/package-lock.json).
+*Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, **we do *not* consider breaking changes in `ffmpeg` itself**, but only the JS interface (see below). For example, `ffmpeg-static@4.5.0` downloads ffmpeg `5.0`. To prevent an `ffmpeg-static` upgrade downloading backwards-incompatible ffmpeg versions, [use a strict version range](https://docs.npmjs.com/files/package.json#dependencies) for it or use a [lockfile](https://docs.npmjs.com/files/package-lock.json).
 
 Also check out [`node-ffmpeg-installer`](https://github.com/kribblo/node-ffmpeg-installer)!
 
@@ -19,7 +19,7 @@ This module is installed via npm:
 $ npm install ffmpeg-static
 ```
 
-*Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b4.4.1` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b4.4.1). Use and distribution of the binary releases of FFmpeg are covered by their respective license.
+*Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b5.0` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b5.0). Use and distribution of the binary releases of FFmpeg are covered by their respective license.
 
 ### Electron & other cross-platform packaging tools
 
