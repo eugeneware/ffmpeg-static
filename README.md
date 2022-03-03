@@ -30,7 +30,7 @@ Because `ffmpeg-static` will download a binary specific to the OS/platform, you 
 Returns the path of a statically linked ffmpeg binary on the local filesystem.
 
 ``` js
-var pathToFfmpeg = require('ffmpeg-static');
+import pathToFfmpeg from 'ffmpeg-static';
 console.log(pathToFfmpeg);
 ```
 

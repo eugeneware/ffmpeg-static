@@ -29,7 +29,8 @@ jobs:
     - name: test-install ffmpeg-static as dependency
       run: |
         file=$(npm pack -s) && file=$(realpath $file)
-        cd $(mktemp -d) && npm init -y
+        cd $(mktemp -d)
+        echo '{"name": "tmp", "version": "1.0.0", "private": true, "type": "module", "main": "index.js"}' >package.json
         npm i "$file"
-        file $(node -p 'require("ffmpeg-static")')
-        $(node -p 'require("ffmpeg-static")') --help
+        file $(node -e 'import("ffmpeg-static").then(m => console.log(m.default))')
+        $(node -e 'import("ffmpeg-static").then(m => console.log(m.default))') --help
