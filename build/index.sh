@@ -7,13 +7,22 @@ tar_exec=$(command -v gtar)
 if [ $? -ne 0 ]; then
 	tar_exec=$(command -v tar)
 fi
+https://rtfmp.wordpress.com/2017/03/31/difference-7z-7za-and-7zr/
+p7zip_exec=$(command -v 7zr)
+if [ $? -ne 0 ]; then
+	p7zip_exec=$(command -v 7zz)
+fi
+if [ $? -ne 0 ]; then
+	p7zip_exec=$(command -v 7z)
+fi
 set -e
 echo using tar executable at $tar_exec
+echo using 7z executable at $p7zip_exec
 
 mkdir -p ../bin
 
 download () {
-	curl -L -# --compressed -A 'https://github.com/eugeneware/ffmpeg-static build script' -o $2 $1
+	curl -f -L -# --compressed -A 'https://github.com/eugeneware/ffmpeg-static build script' -o $2 $1
 }
 
 echo 'windows x64'
@@ -21,7 +30,7 @@ echo '  downloading from gyan.dev'
 download 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.7z' win32-x64.7z
 echo '  extracting'
 tmpdir=$(mktemp -d)
-7zr e -y -bd -o"$tmpdir" win32-x64.7z >/dev/null
+$p7zip_exec e -y -bd -o"$tmpdir" win32-x64.7z >/dev/null
 mv "$tmpdir/ffmpeg.exe" ../bin/win32-x64
 chmod +x ../bin/win32-x64
 mv "$tmpdir/LICENSE" ../bin/win32-x64.LICENSE
@@ -29,7 +38,7 @@ mv "$tmpdir/README.txt" ../bin/win32-x64.README
 
 echo 'windows ia32'
 echo '  downloading from github.com'
-download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/latest/ffmpeg-n5.0-latest-win32-gpl-5.0.zip' win32-ia32.zip
+download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/autobuild-2022-04-30-14-19/ffmpeg-n5.0.1-4-ga5ebb3d25e-win32-gpl-5.0.zip' win32-ia32.zip
 echo '  extracting'
 unzip -o -d ../bin -j win32-ia32.zip '*/bin/ffmpeg.exe'
 mv ../bin/ffmpeg.exe ../bin/win32-ia32
@@ -82,7 +91,7 @@ curl -s -L 'https://evermeet.cx/ffmpeg/info/ffmpeg/release' | jq --tab '.' >../b
 
 echo 'darwin arm64'
 echo '  downloading from osxexperts.net'
-download 'https://www.osxexperts.net/FFmpegARM.zip' darwin-arm64.zip
+download 'https://www.osxexperts.net/FFmpeg501ARM.zip' darwin-arm64.zip
 echo '  extracting'
 unzip -o -d ../bin -j darwin-arm64.zip ffmpeg
 mv ../bin/ffmpeg ../bin/darwin-arm64

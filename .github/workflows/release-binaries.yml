@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: sudo apt install -y p7zip
 
       - name: Download Binaries
         run: sh ./build/index.sh
