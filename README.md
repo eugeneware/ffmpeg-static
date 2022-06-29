@@ -7,7 +7,7 @@ Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows 
 [![npm version](https://img.shields.io/npm/v/ffmpeg-static.svg)](https://www.npmjs.com/package/ffmpeg-static)
 ![minimum Node.js version](https://img.shields.io/node/v/ffmpeg-static.svg)
 
-*Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, **we do *not* consider breaking changes in `ffmpeg` itself**, but only the JS interface (see below). For example, `ffmpeg-static@4.5.0` downloads ffmpeg `5.0`. To prevent an `ffmpeg-static` upgrade downloading backwards-incompatible ffmpeg versions, [use a strict version range](https://docs.npmjs.com/files/package.json#dependencies) for it or use a [lockfile](https://docs.npmjs.com/files/package-lock.json).
+*Note:* The version of `ffmpeg-static` follows [SemVer](http://semver.org). When releasing new versions, **we do *not* consider breaking changes in `ffmpeg` itself**, but only the JS interface (see below). For example, `ffmpeg-static@4.5.0` might download ffmpeg `5.0`. To prevent an `ffmpeg-static` upgrade downloading backwards-incompatible ffmpeg versions, [use a strict version range](https://docs.npmjs.com/files/package.json#dependencies) for it or use a [lockfile](https://docs.npmjs.com/files/package-lock.json).
 
 Also check out [`node-ffmpeg-installer`](https://github.com/kribblo/node-ffmpeg-installer)!
 
