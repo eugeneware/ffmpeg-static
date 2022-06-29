@@ -138,6 +138,7 @@ function downloadFile(url, destinationPath, progressCallback = noop) {
 
 let progressBar = null;
 function onProgress(deltaBytes, totalBytes) {
+  if (process.env.CI) return;
   if (totalBytes === null) return;
   if (!progressBar) {
     progressBar = new ProgressBar(`Downloading ffmpeg ${releaseName} [:bar] :percent :etas `, {
