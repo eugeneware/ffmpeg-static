@@ -6,8 +6,10 @@
   "files": [
     "index.js",
     "install.js",
-    "example.js"
+    "example.js",
+    "types"
   ],
+  "types": "types/index.d.ts",
   "scripts": {
     "install": "node install.js",
     "test": "node test.js",
