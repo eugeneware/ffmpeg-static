@@ -11,9 +11,10 @@ var ProgressBar = require("progress");
 var request = require('@derhuerst/http-basic')
 const {createGunzip} = require('zlib')
 const {pipeline} = require('stream')
-var ffmpegPath = require(".");
+const binaryPath = require('.')
 var pkg = require("./package");
 const {
+  'executable-base-name': executableBaseName,
   'binary-release-tag-env-var': RELEASE_ENV_VAR,
   'binaries-url-env-var': BINARIES_URL_ENV_VAR,
 } = pkg[pkg.name]
@@ -27,13 +28,13 @@ const exitOnErrorOrWarnWith = (msg) => (err) => {
   else exitOnError(err)
 }
 
-if (!ffmpegPath) {
-  exitOnError('ffmpeg-static install failed: No binary found for architecture')
+if (!binaryPath) {
+  exitOnError(`${pkg.name} install failed: No binary found for architecture`)
 }
 
 try {
-  if (fs.statSync(ffmpegPath).isFile()) {
-    console.info('ffmpeg is installed already.')
+  if (fs.statSync(binaryPath).isFile()) {
+    console.info(`${executableBaseName} is installed already.`)
     process.exit(0)
   }
 } catch (err) {
@@ -59,8 +60,8 @@ const normalizeS3Url = (url) => {
   url = new URL(url)
   if (url.hostname.slice(-17) !== '.s3.amazonaws.com') return url.href
   const query = Array.from(url.searchParams.entries())
-  .filter(([key]) => key.slice(0, 6).toLowerCase() !== 'x-amz-')
-  .reduce((query, [key, val]) => ({...query, [key]: val}), {})
+    .filter(([key]) => key.slice(0, 6).toLowerCase() !== 'x-amz-')
+    .reduce((query, [key, val]) => ({...query, [key]: val}), {})
   url.search = encodeQuery(query)
   return url.href
 }
@@ -145,7 +146,7 @@ function onProgress(deltaBytes, totalBytes) {
   if (process.env.CI) return;
   if (totalBytes === null) return;
   if (!progressBar) {
-    progressBar = new ProgressBar(`Downloading ffmpeg ${release} [:bar] :percent :etas `, {
+    progressBar = new ProgressBar(`Downloading ${executableBaseName} ${release} [:bar] :percent :etas `, {
       complete: "|",
       incomplete: " ",
       width: 20,
@@ -158,27 +159,27 @@ function onProgress(deltaBytes, totalBytes) {
 
 const release = (
   process.env[RELEASE_ENV_VAR] ||
-  pkg['ffmpeg-static']['binary-release-tag']
+  pkg[pkg.name]['binary-release-tag']
 )
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()
 const downloadsUrl = (
-	process.env[BINARIES_URL_ENV_VAR] ||
-	'https://github.com/eugeneware/ffmpeg-static/releases/download'
+  process.env[BINARIES_URL_ENV_VAR] ||
+  'https://github.com/eugeneware/ffmpeg-static/releases/download'
 )
 const baseUrl = `${downloadsUrl}/${release}`
 const downloadUrl = `${baseUrl}/${platform}-${arch}.gz`
 const readmeUrl = `${baseUrl}/${platform}-${arch}.README`
 const licenseUrl = `${baseUrl}/${platform}-${arch}.LICENSE`
 
-downloadFile(downloadUrl, ffmpegPath, onProgress)
+downloadFile(downloadUrl, binaryPath, onProgress)
 .then(() => {
-  fs.chmodSync(ffmpegPath, 0o755) // make executable
+  fs.chmodSync(binaryPath, 0o755) // make executable
 })
 .catch(exitOnError)
 
-.then(() => downloadFile(readmeUrl, `${ffmpegPath}.README`))
-.catch(exitOnErrorOrWarnWith('Failed to download the ffmpeg README.'))
+.then(() => downloadFile(readmeUrl, `${binaryPath}.README`))
+.catch(exitOnErrorOrWarnWith(`Failed to download the ${executableBaseName} README.`))
 
-.then(() => downloadFile(licenseUrl, `${ffmpegPath}.LICENSE`))
-.catch(exitOnErrorOrWarnWith('Failed to download the ffmpeg LICENSE.'))
+.then(() => downloadFile(licenseUrl, `${binaryPath}.LICENSE`))
+.catch(exitOnErrorOrWarnWith(`Failed to download the ${executableBaseName} LICENSE.`))
