@@ -2,16 +2,16 @@
 
 var fs = require("fs");
 var os = require("os");
-const {encode: encodeQuery} = require('querystring')
-const {strictEqual} = require('assert')
+const { encode: encodeQuery } = require('querystring')
+const { strictEqual } = require('assert')
 const envPaths = require('env-paths')
 const FileCache = require('@derhuerst/http-basic/lib/FileCache').default
-const {extname} = require('path')
+const { extname } = require('path')
 var ProgressBar = require("progress");
 var request = require('@derhuerst/http-basic')
-const {createGunzip} = require('zlib')
-const {pipeline} = require('stream')
-var ffmpegPath = require(".");
+const { createGunzip } = require('zlib')
+const { pipeline } = require('stream')
+var binaryPath = require(".");
 var pkg = require("./package");
 
 const exitOnError = (err) => {
@@ -23,13 +23,13 @@ const exitOnErrorOrWarnWith = (msg) => (err) => {
   else exitOnError(err)
 }
 
-if (!ffmpegPath) {
-  exitOnError('ffmpeg-static install failed: No binary found for architecture')
+if (!binaryPath) {
+  exitOnError(`${pkg.name} install failed: No binary found for architecture`)
 }
 
 try {
-  if (fs.statSync(ffmpegPath).isFile()) {
-    console.info('ffmpeg is installed already.')
+  if (fs.statSync(binaryPath).isFile()) {
+    console.info(`${pkg.binary} is installed already.`)
     process.exit(0)
   }
 } catch (err) {
@@ -46,8 +46,8 @@ const proxyUrl = (
 )
 if (proxyUrl) {
   const HttpsProxyAgent = require('https-proxy-agent')
-  const {hostname, port, protocol} = new URL(proxyUrl)
-  agent = new HttpsProxyAgent({hostname, port, protocol})
+  const { hostname, port, protocol } = new URL(proxyUrl)
+  agent = new HttpsProxyAgent({ hostname, port, protocol })
 }
 
 // https://advancedweb.hu/how-s3-signed-urls-work/
@@ -55,8 +55,8 @@ const normalizeS3Url = (url) => {
   url = new URL(url)
   if (url.hostname.slice(-17) !== '.s3.amazonaws.com') return url.href
   const query = Array.from(url.searchParams.entries())
-  .filter(([key]) => key.slice(0, 6).toLowerCase() !== 'x-amz-')
-  .reduce((query, [key, val]) => ({...query, [key]: val}), {})
+    .filter(([key]) => key.slice(0, 6).toLowerCase() !== 'x-amz-')
+    .reduce((query, [key, val]) => ({ ...query, [key]: val }), {})
   url.search = encodeQuery(query)
   return url.href
 }
@@ -80,7 +80,7 @@ const isGzUrl = (url) => {
   return filename && extname(filename) === '.gz'
 }
 
-const noop = () => {}
+const noop = () => { }
 function downloadFile(url, destinationPath, progressCallback = noop) {
   let fulfill, reject;
   let totalBytes = 0;
@@ -141,7 +141,7 @@ function onProgress(deltaBytes, totalBytes) {
   if (process.env.CI) return;
   if (totalBytes === null) return;
   if (!progressBar) {
-    progressBar = new ProgressBar(`Downloading ffmpeg ${releaseName} [:bar] :percent :etas `, {
+    progressBar = new ProgressBar(`Downloading ${pkg.binary} ${releaseName} [:bar] :percent :etas `, {
       complete: "|",
       incomplete: " ",
       width: 20,
@@ -153,32 +153,32 @@ function onProgress(deltaBytes, totalBytes) {
 }
 
 const release = (
-  process.env.FFMPEG_BINARY_RELEASE ||
-  pkg['ffmpeg-static']['binary-release-tag']
+  process.env.BINARY_RELEASE ||
+  pkg[pkg.name]['binary-release-tag']
 )
 const releaseName = (
-  pkg['ffmpeg-static']['binary-release-name'] ||
+  pkg[pkg.name]['binary-release-name'] ||
   release
 )
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()
 const downloadsUrl = (
-	process.env.FFMPEG_BINARIES_URL ||
-	'https://github.com/eugeneware/ffmpeg-static/releases/download'
+  process.env.BINARIES_URL ||
+  `https://github.com/eugeneware/${pkg.name}/releases/download`
 )
 const baseUrl = `${downloadsUrl}/${release}`
 const downloadUrl = `${baseUrl}/${platform}-${arch}.gz`
 const readmeUrl = `${baseUrl}/${platform}-${arch}.README`
 const licenseUrl = `${baseUrl}/${platform}-${arch}.LICENSE`
 
-downloadFile(downloadUrl, ffmpegPath, onProgress)
-.then(() => {
-  fs.chmodSync(ffmpegPath, 0o755) // make executable
-})
-.catch(exitOnError)
+downloadFile(downloadUrl, binaryPath, onProgress)
+  .then(() => {
+    fs.chmodSync(binaryPath, 0o755) // make executable
+  })
+  .catch(exitOnError)
 
-.then(() => downloadFile(readmeUrl, `${ffmpegPath}.README`))
-.catch(exitOnErrorOrWarnWith('Failed to download the ffmpeg README.'))
+  .then(() => downloadFile(readmeUrl, `${binaryPath}.README`))
+  .catch(exitOnErrorOrWarnWith(`Failed to download the ${pkg.binary} README.`))
 
-.then(() => downloadFile(licenseUrl, `${ffmpegPath}.LICENSE`))
-.catch(exitOnErrorOrWarnWith('Failed to download the ffmpeg LICENSE.'))
+  .then(() => downloadFile(licenseUrl, `${binaryPath}.LICENSE`))
+  .catch(exitOnErrorOrWarnWith(`Failed to download the ${pkg.binary} LICENSE.`))

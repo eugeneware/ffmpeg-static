@@ -20,6 +20,7 @@
     "binary-release-tag": "b5.0.1",
     "binary-release-name": "5.0.1"
   },
+  "binary": "ffmpeg",
   "repository": {
     "type": "git",
     "url": "https://github.com/eugeneware/ffmpeg-static"
