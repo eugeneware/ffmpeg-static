@@ -1,7 +1,9 @@
 'use strict'
 
-if (process.env.FFMPEG_BIN) {
-  module.exports = process.env.FFMPEG_BIN
+var pkg = require("./package");
+
+if (process.env.BIN) {
+  module.exports = process.env.BIN
 } else {
   var os = require('os')
   var path = require('path')
@@ -16,14 +18,14 @@ if (process.env.FFMPEG_BIN) {
   var platform = process.env.npm_config_platform || os.platform()
   var arch = process.env.npm_config_arch || os.arch()
 
-  var ffmpegPath = path.join(
+  var binaryPath = path.join(
     __dirname,
-    platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
+    platform === 'win32' ? `${pkg.binary}.exe` : pkg.binary
   )
 
   if (!binaries[platform] || binaries[platform].indexOf(arch) === -1) {
-    ffmpegPath = null
+    binaryPath = null
   }
 
-  module.exports = ffmpegPath
+  module.exports = binaryPath
 }
