@@ -18,6 +18,9 @@ const {
   'binary-release-tag-env-var': RELEASE_ENV_VAR,
   'binaries-url-env-var': BINARIES_URL_ENV_VAR,
 } = pkg[pkg.name]
+if ('string' !== typeof executableBaseName) {
+  throw new Error(`package.json: invalid/missing ${pkg.name}.executable-base-name entry`)
+}
 
 const exitOnError = (err) => {
   console.error(err)
@@ -105,7 +108,7 @@ function downloadFile(url, destinationPath, progressCallback = noop) {
     retry: true,
   }, (err, response) => {
     if (err || response.statusCode !== 200) {
-      err = err || new Error('Download failed.')
+      err = err || new Error(`Failed to download ${executableBaseName} ${release}.`)
       if (response) {
         err.url = response.url
         err.statusCode = response.statusCode
@@ -168,7 +171,7 @@ const downloadsUrl = (
   'https://github.com/eugeneware/ffmpeg-static/releases/download'
 )
 const baseUrl = `${downloadsUrl}/${release}`
-const downloadUrl = `${baseUrl}/${platform}-${arch}.gz`
+const downloadUrl = `${baseUrl}/${executableBaseName}-${platform}-${arch}.gz`
 const readmeUrl = `${baseUrl}/${platform}-${arch}.README`
 const licenseUrl = `${baseUrl}/${platform}-${arch}.LICENSE`
 
