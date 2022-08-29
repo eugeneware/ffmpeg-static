@@ -167,7 +167,7 @@ const downloadsUrl = (
   `https://github.com/eugeneware/${pkg.name}/releases/download`
 )
 const baseUrl = `${downloadsUrl}/${release}`
-const downloadUrl = `${baseUrl}/${platform}-${arch}.gz`
+const downloadUrl = `${baseUrl}/${pkg.binary}-${platform}-${arch}.gz`
 const readmeUrl = `${baseUrl}/${platform}-${arch}.README`
 const licenseUrl = `${baseUrl}/${platform}-${arch}.LICENSE`
 
