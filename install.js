@@ -2,15 +2,15 @@
 
 var fs = require("fs");
 var os = require("os");
-const { encode: encodeQuery } = require('querystring')
-const { strictEqual } = require('assert')
+const {encode: encodeQuery} = require('querystring')
+const {strictEqual} = require('assert')
 const envPaths = require('env-paths')
 const FileCache = require('@derhuerst/http-basic/lib/FileCache').default
-const { extname } = require('path')
+const {extname} = require('path')
 var ProgressBar = require("progress");
 var request = require('@derhuerst/http-basic')
-const { createGunzip } = require('zlib')
-const { pipeline } = require('stream')
+const {createGunzip} = require('zlib')
+const {pipeline} = require('stream')
 var binaryPath = require(".");
 var pkg = require("./package");
 
@@ -46,8 +46,8 @@ const proxyUrl = (
 )
 if (proxyUrl) {
   const HttpsProxyAgent = require('https-proxy-agent')
-  const { hostname, port, protocol } = new URL(proxyUrl)
-  agent = new HttpsProxyAgent({ hostname, port, protocol })
+  const {hostname, port, protocol} = new URL(proxyUrl)
+  agent = new HttpsProxyAgent({hostname, port, protocol})
 }
 
 // https://advancedweb.hu/how-s3-signed-urls-work/
@@ -55,8 +55,8 @@ const normalizeS3Url = (url) => {
   url = new URL(url)
   if (url.hostname.slice(-17) !== '.s3.amazonaws.com') return url.href
   const query = Array.from(url.searchParams.entries())
-    .filter(([key]) => key.slice(0, 6).toLowerCase() !== 'x-amz-')
-    .reduce((query, [key, val]) => ({ ...query, [key]: val }), {})
+  .filter(([key]) => key.slice(0, 6).toLowerCase() !== 'x-amz-')
+  .reduce((query, [key, val]) => ({...query, [key]: val}), {})
   url.search = encodeQuery(query)
   return url.href
 }
@@ -80,7 +80,7 @@ const isGzUrl = (url) => {
   return filename && extname(filename) === '.gz'
 }
 
-const noop = () => { }
+const noop = () => {}
 function downloadFile(url, destinationPath, progressCallback = noop) {
   let fulfill, reject;
   let totalBytes = 0;
@@ -163,22 +163,23 @@ const releaseName = (
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()
 const downloadsUrl = (
-  process.env.BINARIES_URL ||
-  `https://github.com/eugeneware/${pkg.name}/releases/download`
+process.env.BINARIES_URL ||
+`https://github.com/eugeneware/${pkg.name}/releases/download`
 )
 const baseUrl = `${downloadsUrl}/${release}`
-const downloadUrl = `${baseUrl}/${pkg.binary}-${platform}-${arch}.gz`
+const downloadUrl = `${baseUrl}/${pkg.binary
+}-${platform}-${arch}.gz`
 const readmeUrl = `${baseUrl}/${platform}-${arch}.README`
 const licenseUrl = `${baseUrl}/${platform}-${arch}.LICENSE`
 
 downloadFile(downloadUrl, binaryPath, onProgress)
-  .then(() => {
-    fs.chmodSync(binaryPath, 0o755) // make executable
-  })
-  .catch(exitOnError)
+.then(() => {
+  fs.chmodSync(binaryPath, 0o755) // make executable
+})
+.catch(exitOnError)
 
-  .then(() => downloadFile(readmeUrl, `${binaryPath}.README`))
-  .catch(exitOnErrorOrWarnWith(`Failed to download the ${pkg.binary} README.`))
+.then(() => downloadFile(readmeUrl, `${binaryPath}.README`))
+.catch(exitOnErrorOrWarnWith(`Failed to download the ${pkg.binary} README.`))
 
-  .then(() => downloadFile(licenseUrl, `${binaryPath}.LICENSE`))
-  .catch(exitOnErrorOrWarnWith(`Failed to download the ${pkg.binary} LICENSE.`))
+.then(() => downloadFile(licenseUrl, `${binaryPath}.LICENSE`))
+.catch(exitOnErrorOrWarnWith(`Failed to download the ${pkg.binary} LICENSE.`))
