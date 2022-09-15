@@ -2,8 +2,8 @@
 
 var pkg = require("./package");
 
-if (process.env.BIN) {
-  module.exports = process.env.BIN
+if (process.env.FFMPEG_BIN || process.env.FFPROBE_BIN) {
+  module.exports = process.env.FFMPEG_BIN || process.env.FFPROBE_BIN
 } else {
   var os = require('os')
   var path = require('path')
