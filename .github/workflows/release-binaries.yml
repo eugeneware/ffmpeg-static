@@ -18,27 +18,7 @@ jobs:
       - name: Compress Binaries
         run: |
           set -e
-          set -o pipefail
-          # ffmpeg
-          cat bin/ffmpeg-darwin-x64 | gzip --best >bin/ffmpeg-darwin-x64.gz
-          cat bin/ffmpeg-darwin-arm64 | gzip --best >bin/ffmpeg-darwin-arm64.gz
-          # cat bin/ffmpeg-freebsd-x64 | gzip --best >bin/ffmpeg-freebsd-x64.gz
-          cat bin/ffmpeg-linux-arm | gzip --best >bin/ffmpeg-linux-arm.gz
-          cat bin/ffmpeg-linux-arm64 | gzip --best >bin/ffmpeg-linux-arm64.gz
-          cat bin/ffmpeg-linux-ia32 | gzip --best >bin/ffmpeg-linux-ia32.gz
-          cat bin/ffmpeg-linux-x64 | gzip --best >bin/ffmpeg-linux-x64.gz
-          cat bin/ffmpeg-win32-ia32 | gzip --best >bin/ffmpeg-win32-ia32.gz
-          cat bin/ffmpeg-win32-x64 | gzip --best >bin/ffmpeg-win32-x64.gz
-          # ffprobe
-          cat bin/ffprobe-darwin-x64 | gzip --best >bin/ffprobe-darwin-x64.gz
-          #cat bin/ffprobe-darwin-arm64 | gzip --best >bin/ffprobe-darwin-arm64.gz
-          # cat bin/ffprobe-freebsd-x64 | gzip --best >bin/ffprobe-freebsd-x64.gz
-          cat bin/ffprobe-linux-arm | gzip --best >bin/ffprobe-linux-arm.gz
-          cat bin/ffprobe-linux-arm64 | gzip --best >bin/ffprobe-linux-arm64.gz
-          cat bin/ffprobe-linux-ia32 | gzip --best >bin/ffprobe-linux-ia32.gz
-          cat bin/ffprobe-linux-x64 | gzip --best >bin/ffprobe-linux-x64.gz
-          cat bin/ffprobe-win32-ia32 | gzip --best >bin/ffprobe-win32-ia32.gz
-          cat bin/ffprobe-win32-x64 | gzip --best >bin/ffprobe-win32-x64.gz
+          for file in bin/{ffmpeg,ffprobe}-{darwin,linux,win32,freebsd}-{arm64,arm,x64,ia32}; do test -f $file && gzip -k --best "$file"; done
           ls -l bin
         shell: bash
 
