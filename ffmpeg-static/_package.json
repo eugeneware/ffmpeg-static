@@ -1,0 +1,5 @@
+{
+  "name": "ffmpeg-static",
+  "description": "ffmpeg static binaries for Mac OSX, Linux and Windows",
+  "binary": "ffmpeg"
+}

@@ -1,7 +1,7 @@
 {
   "name": "ffmpeg-static",
-  "version": "5.1.0",
-  "description": "ffmpeg static binaries for Mac OSX, Linux and Windows",
+  "version": "5.0.2",
+  "description": "ffmpeg & ffprobe static binaries for Mac OSX, Linux and Windows",
   "main": "index.js",
   "files": [
     "index.js",
@@ -17,10 +17,10 @@
     "prepublishOnly": "(cd .. && node copy.js ffmpeg-static) && npm run lint && npm run install && npm test"
   },
   "binary-release": {
-    "tag": "b5.0.1",
-    "name": "5.0.1"
+    "tag": "<overriden-by-packages>",
+    "name": "<overriden-by-packages>"
   },
-  "binary": "ffmpeg",
+  "binary": "<overriden-by-packages>",
   "repository": {
     "type": "git",
     "url": "https://github.com/eugeneware/ffmpeg-static"
