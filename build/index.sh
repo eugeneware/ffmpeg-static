@@ -100,8 +100,9 @@ mv ../bin/ffmpeg ../bin/darwin-arm64
 curl -sf -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n5.0.1:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
 curl -sf -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n5.0.1:/README.md'  -o ../bin/darwin-arm64.README
 
-# todo: add FreeBSD again
-# echo 'freebsd x64'
-# echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
-# download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v5.0.0/ffmpeg' ../bin/freebsd-x64
-# chmod +x ../bin/freebsd-x64
+echo 'freebsd x64'
+echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
+download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v5.0.1/ffmpeg' ../bin/freebsd-x64
+chmod +x ../bin/freebsd-x64
+curl -sf -L 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v5.0.1/GPLv3.LICENSE' -o ../bin/freebsd-x64.LICENSE
+curl -sf -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n5.0.1:/README.md' -o ../bin/freebsd-x64.README
