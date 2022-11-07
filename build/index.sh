@@ -44,7 +44,7 @@ download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download
 echo '  extracting'
 unzip -o -d ../bin -j win32-ia32.zip '*/bin/ffmpeg.exe'
 mv ../bin/ffmpeg.exe ../bin/win32-ia32
-curl -s -L 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/autobuild-2022-04-30-14-19/LICENSE' -o ../bin/win32-ia32.LICENSE
+curl -sf -L 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/autobuild-2022-04-30-14-19/LICENSE' -o ../bin/win32-ia32.LICENSE
 
 echo 'linux x64'
 echo '  downloading from johnvansickle.com'
@@ -88,8 +88,8 @@ download $(curl 'https://evermeet.cx/ffmpeg/info/ffmpeg/5.0.1' -sfL | jq -rc '.d
 echo '  extracting'
 unzip -o -d ../bin -j darwin-x64.zip ffmpeg
 mv ../bin/ffmpeg ../bin/darwin-x64
-curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n5.0.1:/LICENSE.md'  -o ../bin/darwin-x64.LICENSE
-curl -s -L 'https://evermeet.cx/ffmpeg/info/ffmpeg/5.0.1' | jq --tab '.' >../bin/darwin-x64.README
+curl -sf -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n5.0.1:/LICENSE.md'  -o ../bin/darwin-x64.LICENSE
+curl -sf -L 'https://evermeet.cx/ffmpeg/info/ffmpeg/5.0.1' | jq --tab '.' >../bin/darwin-x64.README
 
 echo 'darwin arm64'
 echo '  downloading from osxexperts.net'
@@ -97,8 +97,8 @@ download 'https://www.osxexperts.net/FFmpeg501ARM.zip' darwin-arm64.zip
 echo '  extracting'
 unzip -o -d ../bin -j darwin-arm64.zip ffmpeg
 mv ../bin/ffmpeg ../bin/darwin-arm64
-curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n5.0.1:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
-curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n5.0.1:/README.md'  -o ../bin/darwin-arm64.README
+curl -sf -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n5.0.1:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
+curl -sf -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n5.0.1:/README.md'  -o ../bin/darwin-arm64.README
 
 # todo: add FreeBSD again
 # echo 'freebsd x64'
