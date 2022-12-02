@@ -2,25 +2,34 @@
 
 const {ok, strictEqual} = require('assert')
 const {isAbsolute} = require('path')
-const fs = require('fs')
+const {statSync, accessSync, constants} = require('fs')
 const {spawnSync} = require('child_process')
 const shell = require('any-shell-escape')
-const ffmpegPath = require('.')
 
-console.info('TAP version 12')
-console.info('1..4')
+{
+	const ffmpegPath = require('./packages/ffmpeg-static')
 
-ok(isAbsolute(ffmpegPath))
-console.info('ok 1 - ffmpeg path is absolute')
+	ok(isAbsolute(ffmpegPath), 'ffmpeg path must be absolute')
+	ok(statSync(ffmpegPath).isFile(ffmpegPath), `${ffmpegPath} must be a file`)
+	accessSync(ffmpegPath, constants.X_OK, `${ffmpegPath} must be executable`)
 
-ok(fs.statSync(ffmpegPath).isFile(ffmpegPath))
-console.info(`ok 2 - ${ffmpegPath} is a file`)
+	const {status} = spawnSync(ffmpegPath, ['--help'], {
+		stdio: ['ignore', 'ignore', 'pipe'], // stdin, stdout, stderr
+	})
+	strictEqual(status, 0, `\`${ffmpegPath} --help\` exits with 0`)
+}
 
-fs.accessSync(ffmpegPath, fs.constants.X_OK)
-console.info(`ok 3 - ${ffmpegPath} is executable`)
+{
+	const ffprobePath = require('./packages/ffprobe-static')
 
-const {status} = spawnSync(ffmpegPath, ['--help'], {
-	stdio: ['ignore', 'ignore', 'pipe'], // stdin, stdout, stderr
-})
-strictEqual(status, 0)
-console.info(`ok 4 - \`${ffmpegPath} --help\` works`)
+	ok(isAbsolute(ffprobePath), 'ffprobe path must be absolute')
+	ok(statSync(ffprobePath).isFile(ffprobePath), `${ffprobePath} must be a file`)
+	accessSync(ffprobePath, constants.X_OK, `${ffprobePath} must be executable`)
+
+	const {status} = spawnSync(ffprobePath, ['--help'], {
+		stdio: ['ignore', 'ignore', 'pipe'], // stdin, stdout, stderr
+	})
+	strictEqual(status, 0, `\`${ffprobePath} --help\` exits with 0`)
+}
+
+console.info('seems to work ✔︎')
