@@ -17,8 +17,10 @@
     "prepublishOnly": "npm run lint && npm run install && npm test"
   },
   "ffmpeg-static": {
+    "binary-release-tag-env-var": "FFMPEG_BINARY_RELEASE",
     "binary-release-tag": "b5.0.1",
-    "binary-release-name": "5.0.1"
+    "binary-release-name": "5.0.1",
+    "binaries-url-env-var": "FFMPEG_BINARIES_URL"
   },
   "repository": {
     "type": "git",

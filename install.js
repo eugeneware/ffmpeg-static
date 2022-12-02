@@ -13,6 +13,10 @@ const {createGunzip} = require('zlib')
 const {pipeline} = require('stream')
 var ffmpegPath = require(".");
 var pkg = require("./package");
+const {
+  'binary-release-tag-env-var': RELEASE_ENV_VAR,
+  'binaries-url-env-var': BINARIES_URL_ENV_VAR,
+} = pkg[pkg.name]
 
 const exitOnError = (err) => {
   console.error(err)
@@ -153,7 +157,7 @@ function onProgress(deltaBytes, totalBytes) {
 }
 
 const release = (
-  process.env.FFMPEG_BINARY_RELEASE ||
+  process.env[RELEASE_ENV_VAR] ||
   pkg['ffmpeg-static']['binary-release-tag']
 )
 const releaseName = (
@@ -163,7 +167,7 @@ const releaseName = (
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()
 const downloadsUrl = (
-	process.env.FFMPEG_BINARIES_URL ||
+	process.env[BINARIES_URL_ENV_VAR] ||
 	'https://github.com/eugeneware/ffmpeg-static/releases/download'
 )
 const baseUrl = `${downloadsUrl}/${release}`
