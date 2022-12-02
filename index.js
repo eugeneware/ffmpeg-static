@@ -5,6 +5,13 @@ if (process.env.FFMPEG_BIN) {
 } else {
   var os = require('os')
   var path = require('path')
+  const pkg = require('./package.json')
+  const {
+    'executable-base-name': executableBaseName,
+  } = pkg[pkg.name]
+  if ('string' !== typeof executableBaseName) {
+    throw new Error(`package.json: invalid/missing ${pkg.name}.executable-base-name entry`)
+  }
 
   var binaries = Object.assign(Object.create(null), {
     darwin: ['x64', 'arm64'],
@@ -18,7 +25,7 @@ if (process.env.FFMPEG_BIN) {
 
   var ffmpegPath = path.join(
     __dirname,
-    platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
+    executableBaseName + (platform === 'win32' ? '.exe' : ''),
   )
 
   if (!binaries[platform] || binaries[platform].indexOf(arch) === -1) {
