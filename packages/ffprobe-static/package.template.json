@@ -1,0 +1,13 @@
+{
+	"name": "ffprobe-static",
+  "description": "ffprobe binaries for macOS, Linux and Windows",
+  "keywords": [
+    "ffprobe",
+    "static",
+    "binary",
+    "binaries",
+    "mac",
+    "linux",
+    "windows"
+  ]
+}

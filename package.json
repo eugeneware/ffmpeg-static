@@ -1,20 +1,16 @@
 {
+	"private": true,
   "name": "ffmpeg-static",
   "version": "5.1.0",
-  "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
-  "main": "index.js",
-  "files": [
-    "index.js",
-    "install.js",
-    "example.js",
-    "types"
+  "description": "ffmpeg & ffprobe binaries for macOS, Linux and Windows",
+  "workspaces": [
+  	"packages/ffmpeg-static",
+  	"packages/ffprobe-static"
   ],
-  "types": "types/index.d.ts",
   "scripts": {
-    "install": "node install.js",
     "test": "node test.js",
     "lint": "eslint .",
-    "prepublishOnly": "npm run lint && npm run install && npm test"
+    "prepublishOnly": "npm run lint && npm install --workspaces && npm test"
   },
   "ffmpeg-static": {
     "binary-path-env-var": "FFMPEG_BIN",
@@ -23,12 +19,20 @@
     "binaries-url-env-var": "FFMPEG_BINARIES_URL",
     "executable-base-name": "ffmpeg"
   },
+  "ffprobe-static": {
+    "binary-path-env-var": "FFPROBE_BIN",
+    "binary-release-tag-env-var": "FFPROBE_BINARY_RELEASE",
+    "binary-release-tag": "b5.0.1",
+    "binaries-url-env-var": "FFPROBE_BINARIES_URL",
+    "executable-base-name": "ffprobe"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/eugeneware/ffmpeg-static"
   },
   "keywords": [
     "ffmpeg",
+    "ffprobe",
     "static",
     "library",
     "binary",
@@ -42,7 +46,8 @@
     "Jannis R <mail@jannisr.de>"
   ],
   "contributors": [
-    "Thefrank (https://github.com/Thefrank)"
+    "Thefrank (https://github.com/Thefrank)",
+    "Emil Sivervik <emil@sivervik.com>"
   ],
   "license": "GPL-3.0-or-later",
   "bugs": {
