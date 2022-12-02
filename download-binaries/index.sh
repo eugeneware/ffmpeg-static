@@ -23,7 +23,7 @@ mkdir -p ../bin
 
 download () {
 	# todo: use https://gist.github.com/derhuerst/745cf09fe5f3ea2569948dd215bbfe1a ?
-	curl -f -L -# --compressed -A 'https://github.com/eugeneware/ffmpeg-static build script' -o $2 $1
+	curl -f -L -# --compressed -A 'https://github.com/eugeneware/ffmpeg-static binaries download script' -o $2 $1
 }
 
 set -x # todo: remove

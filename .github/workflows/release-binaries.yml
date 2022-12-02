@@ -13,7 +13,7 @@ jobs:
       - run: sudo apt install -y p7zip
 
       - name: Download Binaries
-        run: sh ./build/index.sh
+        run: sh ./download-binaries/index.sh
 
       - name: Compress Binaries
         run: |

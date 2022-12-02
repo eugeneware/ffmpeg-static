@@ -51,14 +51,14 @@ Check the [example script](example.js) for a more thorough example.
 
 ## Sources of the binaries
 
-[The build script](build/index.sh) downloads binaries from these locations:
+[The binaries download script](download-binaries/index.sh) downloads binaries from these locations:
 
 - [Windows x64 builds](https://www.gyan.dev/ffmpeg/builds/)
 - [Windows x86 builds](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/)
 - [Linux x64/x86/ARM/ARM64 builds](https://johnvansickle.com/ffmpeg/)
 - macOS [x64 (Intel)](https://evermeet.cx/pub/ffmpeg/) & [ARM64 (Apple Silicon)](https://osxexperts.net/) builds
 
-The build script extracts build information and (when possible) the license file from the downloaded package or the distribution server. Please consult the individual build's project site for exact source versions, which you can locate based on the version information included in the README file.
+The script extracts build information and (when possible) the license file from the downloaded package or the distribution server. Please consult the individual build's project site for exact source versions, which you can locate based on the version information included in the README file.
 
 ## Show your support
 
