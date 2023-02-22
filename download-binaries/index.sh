@@ -1,11 +1,15 @@
 #!/bin/bash
-set -e
+set -e -u -o pipefail
 cd $(dirname $0)
 
 set +e
 tar_exec=$(command -v gtar)
 if [ $? -ne 0 ]; then
 	tar_exec=$(command -v tar)
+fi
+if [ -z "$tar_exec" ]; then
+	1>&2 echo "no tar executable found"
+	exit 1
 fi
 # https://rtfmp.wordpress.com/2017/03/31/difference-7z-7za-and-7zr/
 p7zip_exec=$(command -v 7zr)
@@ -14,6 +18,10 @@ if [ $? -ne 0 ]; then
 fi
 if [ $? -ne 0 ]; then
 	p7zip_exec=$(command -v 7z)
+fi
+if [ -z "$p7zip_exec" ]; then
+	1>&2 echo "no p7zip executable found"
+	exit 1
 fi
 set -e
 echo using tar executable at $tar_exec
