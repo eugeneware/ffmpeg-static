@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: ffmpeg questions on SuperUser
+    url: https://superuser.com/questions/tagged/ffmpeg
+    about: Please ask questions (or look for existing answers) about ffmpeg itself here.
+  - name: ffmpeg contact channels
+    url: https://ffmpeg.org/contact.html
+    about: Please propose enhancements to ffmpeg itself here.

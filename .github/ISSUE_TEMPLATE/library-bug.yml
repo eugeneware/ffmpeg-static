@@ -1,0 +1,45 @@
+name: bug in ffmpeg-static
+description: Report that ffmpeg-static (not the downloaded ffmpeg binary!) does not work.
+title: "bug: "
+labels: ["triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! In order to help you, we need detailed information about your setup.
+        *Note:* Do not use this form if you're having trouble *using* the ffmpeg binary provided by ffmpeg-static! This form is about issues with ffmpeg-static *itself*, e.g. the automatic ffmpeg download.
+  - type: input
+    id: ffmpeg-static-version
+    attributes:
+      label: ffmpeg-static version
+      description: Please tell us the exact version of ffmpeg-static you're using, e.g. via `npm ls ffmpeg-static`.
+      placeholder: ex. ffmpeg-static@5.1.0
+    validations:
+      required: true
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js version
+      description: Please tell us the exact version of Node.js you're using, e.g. via `node --version`.
+      placeholder: ex. v16.17.1
+    validations:
+      required: true
+  - type: textarea
+    id: os
+    attributes:
+      label: operating system and/or environment
+      description: Please specify the operating system you're using (e.g. via `sw_vers` on macOS, or via `lsb_release -a` on Linux). If you're using `ffmpeg-static` in a container environment (e.g. Docker), then provide the exact image URL (including a permanent tag or digest), if possible.
+      value: |
+        ex.
+        - using operating system Foo Bar v1.2.3
+        - using Docker Desktop v2.3.4
+        - using the Docker image `alpine:3.17.3`
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Also tell us, what you would expect to happen.
+    validations:
+      required: true
