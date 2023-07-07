@@ -56,8 +56,8 @@ echo '  extracting'
 unzip -o -d ../bin -j win32-ia32.zip '*/bin/ffmpeg.exe' '*/bin/ffprobe.exe'
 mv ../bin/ffmpeg.exe ../bin/ffmpeg-win32-ia32
 mv ../bin/ffprobe.exe ../bin/ffprobe-win32-ia32
-# curl -sf -L 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/autobuild-2022-04-30-14-19/README' -o ../bin/win32-ia32.README
-# curl -sf -L 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/autobuild-2022-04-30-14-19/LICENSE' -o ../bin/win32-ia32.LICENSE
+# curl -fsSL 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/autobuild-2022-04-30-14-19/README' -o ../bin/win32-ia32.README
+# curl -fsSL 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/autobuild-2022-04-30-14-19/LICENSE' -o ../bin/win32-ia32.LICENSE
 
 echo 'linux x64'
 echo '  downloading from johnvansickle.com'
@@ -101,15 +101,15 @@ xzcat linux-arm64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.
 
 echo 'darwin x64'
 echo '  downloading from evermeet.cx'
-download $(curl 'https://evermeet.cx/ffmpeg/info/ffmpeg/6.0' -sfL | jq -rc '.download.zip.url') ffmpeg-darwin-x64.zip
-download $(curl 'https://evermeet.cx/ffmpeg/info/ffprobe/6.0' -sfL | jq -rc '.download.zip.url') ffprobe-darwin-x64.zip
+download $(curl 'https://evermeet.cx/ffmpeg/info/ffmpeg/6.0' -fsS| jq -rc '.download.zip.url') ffmpeg-darwin-x64.zip
+download $(curl 'https://evermeet.cx/ffmpeg/info/ffprobe/6.0' -fsS| jq -rc '.download.zip.url') ffprobe-darwin-x64.zip
 echo '  extracting'
 unzip -o -d ../bin -j ffmpeg-darwin-x64.zip ffmpeg
 unzip -o -d ../bin -j ffprobe-darwin-x64.zip ffprobe
 mv ../bin/ffmpeg ../bin/ffmpeg-darwin-x64
 mv ../bin/ffprobe ../bin/ffprobe-darwin-x64
-curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/LICENSE.md'  -o ../bin/darwin-x64.LICENSE
-curl -s -L 'https://evermeet.cx/ffmpeg/info/ffmpeg/release' | jq --tab '.' >../bin/darwin-x64.README
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/LICENSE.md'  -o ../bin/darwin-x64.LICENSE
+curl -fsSL 'https://evermeet.cx/ffmpeg/info/ffmpeg/release' | jq --tab '.' >../bin/darwin-x64.README
 # todo: pull ffprobe README?
 
 echo 'darwin arm64'
@@ -121,8 +121,8 @@ unzip -o -d ../bin -j ffmpeg-darwin-arm64.zip ffmpeg
 unzip -o -d ../bin -j ffprobe-darwin-arm64.zip ffprobe
 mv ../bin/ffmpeg ../bin/ffmpeg-darwin-arm64
 mv ../bin/ffprobe ../bin/ffprobe-darwin-arm64
-curl -sf -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.0:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
-curl -sf -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.0:/README.md'  -o ../bin/darwin-arm64.README
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.0:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.0:/README.md'  -o ../bin/darwin-arm64.README
 
 echo 'freebsd x64'
 echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
@@ -130,5 +130,5 @@ download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v6
 download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v6.0.0/ffprobe' ../bin/ffprobe-freebsd-x64
 chmod +x ../bin/ffmpeg-freebsd-x64
 chmod +x ../bin/ffprobe-freebsd-x64
-curl -sf -L 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v6.0.0/GPLv3.LICENSE' -o ../bin/freebsd-x64.LICENSE
-curl -sf -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.0:/README.md' -o ../bin/freebsd-x64.README
+curl -fsSL 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v6.0.0/GPLv3.LICENSE' -o ../bin/freebsd-x64.LICENSE
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.0:/README.md' -o ../bin/freebsd-x64.README
