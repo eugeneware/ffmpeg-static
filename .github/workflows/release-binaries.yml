@@ -13,7 +13,7 @@ jobs:
       - run: sudo apt install -y p7zip
 
       - name: Download Binaries
-        run: sh ./download-binaries/index.sh
+        run: ./download-binaries/index.sh
 
       - name: Compress Binaries
         run: |
@@ -32,6 +32,24 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
 
+      # ffmpeg binaries
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/ffmpeg-darwin-arm64
+          asset_name: ffmpeg-darwin-arm64
+          asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/ffmpeg-darwin-arm64.gz
+          asset_name: ffmpeg-darwin-arm64.gz
+          asset_content_type: application/octet-stream
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,51 +72,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/darwin-x64.README
-          asset_name: darwin-x64.README
-          asset_content_type: text/plain
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/ffmpeg-darwin-arm64
-          asset_name: ffmpeg-darwin-arm64
+          asset_path: bin/ffmpeg-freebsd-x64
+          asset_name: ffmpeg-freebsd-x64
           asset_content_type: application/octet-stream
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/ffmpeg-darwin-arm64.gz
-          asset_name: ffmpeg-darwin-arm64.gz
-          asset_content_type: application/octet-stream
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/darwin-arm64.README
-          asset_name: darwin-arm64.README
-          asset_content_type: text/plain
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/freebsd-x64
-          asset_name: freebsd-x64
-          asset_content_type: application/octet-stream
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/freebsd-x64.gz
-          asset_name: freebsd-x64.gz
+          asset_path: bin/ffmpeg-freebsd-x64.gz
+          asset_name: ffmpeg-freebsd-x64.gz
           asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
@@ -117,25 +100,6 @@ jobs:
           asset_path: bin/ffmpeg-linux-arm.gz
           asset_name: ffmpeg-linux-arm.gz
           asset_content_type: application/octet-stream
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux-arm.README
-          asset_name: linux-arm.README
-          asset_content_type: text/plain
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux-arm.LICENSE
-          asset_name: linux-arm.LICENSE
-          asset_content_type: text/plain
-
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -152,25 +116,6 @@ jobs:
           asset_path: bin/ffmpeg-linux-arm64.gz
           asset_name: ffmpeg-linux-arm64.gz
           asset_content_type: application/octet-stream
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux-arm64.README
-          asset_name: linux-arm64.README
-          asset_content_type: text/plain
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux-arm64.LICENSE
-          asset_name: linux-arm64.LICENSE
-          asset_content_type: text/plain
-
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -187,25 +132,6 @@ jobs:
           asset_path: bin/ffmpeg-linux-ia32.gz
           asset_name: ffmpeg-linux-ia32.gz
           asset_content_type: application/octet-stream
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux-ia32.README
-          asset_name: linux-ia32.README
-          asset_content_type: text/plain
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux-ia32.LICENSE
-          asset_name: linux-ia32.LICENSE
-          asset_content_type: text/plain
-
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -228,24 +154,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/linux-x64.README
-          asset_name: linux-x64.README
-          asset_content_type: text/plain
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/ffmpeg-linux-x64.LICENSE
-          asset_name: ffmpeg-linux-x64.LICENSE
-          asset_content_type: text/plain
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: bin/ffmpeg-win32-ia32
           asset_name: ffmpeg-win32-ia32
           asset_content_type: application/octet-stream
@@ -257,16 +165,6 @@ jobs:
           asset_path: bin/ffmpeg-win32-ia32.gz
           asset_name: ffmpeg-win32-ia32.gz
           asset_content_type: application/octet-stream
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/win32-ia32.LICENSE
-          asset_name: win32-ia32.LICENSE
-          asset_content_type: text/plain
-
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -284,16 +182,24 @@ jobs:
           asset_name: ffmpeg-win32-x64.gz
           asset_content_type: application/octet-stream
 
+      # ffprobe binaries
+
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/win32-x64.LICENSE
-          asset_name: win32-x64.LICENSE
-          asset_content_type: text/plain
-
-      #ffprobe releases
+          asset_path: bin/ffprobe-darwin-arm64
+          asset_name: ffprobe-darwin-arm64
+          asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/ffprobe-darwin-arm64.gz
+          asset_name: ffprobe-darwin-arm64.gz
+          asset_content_type: application/octet-stream
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -312,21 +218,21 @@ jobs:
           asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
-       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       with:
-         upload_url: ${{ steps.create_release.outputs.upload_url }}
-         asset_path: bin/ffprobe-darwin-arm64
-         asset_name: ffprobe-darwin-arm64
-         asset_content_type: application/octet-stream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/ffprobe-freebsd-x64
+          asset_name: ffprobe-freebsd-x64
+          asset_content_type: application/octet-stream
       - uses: actions/upload-release-asset@v1.0.1
-       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       with:
-         upload_url: ${{ steps.create_release.outputs.upload_url }}
-         asset_path: bin/ffprobe-darwin-arm64.gz
-         asset_name: ffprobe-darwin-arm64.gz
-         asset_content_type: application/octet-stream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/ffprobe-freebsd-x64.gz
+          asset_name: ffprobe-freebsd-x64.gz
+          asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
         env:
@@ -344,7 +250,6 @@ jobs:
           asset_path: bin/ffprobe-linux-arm.gz
           asset_name: ffprobe-linux-arm.gz
           asset_content_type: application/octet-stream
-
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -361,7 +266,6 @@ jobs:
           asset_path: bin/ffprobe-linux-arm64.gz
           asset_name: ffprobe-linux-arm64.gz
           asset_content_type: application/octet-stream
-
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -378,7 +282,6 @@ jobs:
           asset_path: bin/ffprobe-linux-ia32.gz
           asset_name: ffprobe-linux-ia32.gz
           asset_content_type: application/octet-stream
-
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -412,7 +315,6 @@ jobs:
           asset_path: bin/ffprobe-win32-ia32.gz
           asset_name: ffprobe-win32-ia32.gz
           asset_content_type: application/octet-stream
-
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -429,3 +331,159 @@ jobs:
           asset_path: bin/ffprobe-win32-x64.gz
           asset_name: ffprobe-win32-x64.gz
           asset_content_type: application/octet-stream
+
+      # readmes
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/darwin-arm64.README
+          asset_name: darwin-arm64.README
+          asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/darwin-x64.README
+          asset_name: darwin-x64.README
+          asset_content_type: text/plain
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/freebsd-x64.README
+          asset_name: freebsd-x64.README
+          asset_content_type: text/plain
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-arm.README
+          asset_name: linux-arm.README
+          asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-arm64.README
+          asset_name: linux-arm64.README
+          asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-ia32.README
+          asset_name: linux-ia32.README
+          asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-x64.README
+          asset_name: linux-x64.README
+          asset_content_type: text/plain
+
+      # - uses: actions/upload-release-asset@v1.0.1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: bin/win32-ia32.README
+      #     asset_name: win32-ia32.README
+      #     asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/win32-x64.README
+          asset_name: win32-x64.README
+          asset_content_type: text/plain
+
+      # licenses
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/darwin-arm64.LICENSE
+          asset_name: darwin-arm64.LICENSE
+          asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/darwin-x64.LICENSE
+          asset_name: darwin-x64.LICENSE
+          asset_content_type: text/plain
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/freebsd-x64.LICENSE
+          asset_name: freebsd-x64.LICENSE
+          asset_content_type: text/plain
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-arm.LICENSE
+          asset_name: linux-arm.LICENSE
+          asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-arm64.LICENSE
+          asset_name: linux-arm64.LICENSE
+          asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-ia32.LICENSE
+          asset_name: linux-ia32.LICENSE
+          asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/linux-x64.LICENSE
+          asset_name: linux-x64.LICENSE
+          asset_content_type: text/plain
+
+      # - uses: actions/upload-release-asset@v1.0.1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: bin/win32-ia32.LICENSE
+      #     asset_name: win32-ia32.LICENSE
+      #     asset_content_type: text/plain
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/win32-x64.LICENSE
+          asset_name: win32-x64.LICENSE
+          asset_content_type: text/plain
