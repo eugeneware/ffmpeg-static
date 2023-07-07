@@ -1,7 +1,7 @@
 {
 	"private": true,
   "name": "ffmpeg-static",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "ffmpeg & ffprobe binaries for macOS, Linux and Windows",
   "workspaces": [
   	"packages/ffmpeg-static",
@@ -16,14 +16,14 @@
   "ffmpeg-static": {
     "binary-path-env-var": "FFMPEG_BIN",
     "binary-release-tag-env-var": "FFMPEG_BINARY_RELEASE",
-    "binary-release-tag": "b5.0.1",
+    "binary-release-tag": "b6.0",
     "binaries-url-env-var": "FFMPEG_BINARIES_URL",
     "executable-base-name": "ffmpeg"
   },
   "ffprobe-static": {
     "binary-path-env-var": "FFPROBE_BIN",
     "binary-release-tag-env-var": "FFPROBE_BINARY_RELEASE",
-    "binary-release-tag": "b5.0.1",
+    "binary-release-tag": "b6.0",
     "binaries-url-env-var": "FFPROBE_BINARIES_URL",
     "executable-base-name": "ffprobe"
   },
