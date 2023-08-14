@@ -167,6 +167,7 @@ const release = (
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()
 const downloadsUrl = (
+  process.env.npm_config_ffmpeg_binaries_url ||
   process.env[BINARIES_URL_ENV_VAR] ||
   'https://github.com/eugeneware/ffmpeg-static/releases/download'
 )
