@@ -92,6 +92,7 @@ download 'https://evermeet.cx/ffmpeg/getrelease/ffprobe/zip' ffprobe-darwin-x64.
 echo '  extracting'
 unzip -o -d ../bin -j ffprobe-darwin-x64.zip ffprobe
 mv ../bin/ffprobe ../bin/ffprobe-darwin-x64
+curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/README.md'  -o ../bin/darwin-x64.README
 curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/LICENSE.md'  -o ../bin/darwin-x64.LICENSE
 
 echo 'darwin arm64'
