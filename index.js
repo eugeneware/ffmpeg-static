@@ -4,8 +4,8 @@ function getPath(name) {
   const os = require('os')
   const path = require('path')
 
-  const binaries = Object.assign(Object.create(null), {
-    darwin: ['x64'],
+  var binaries = Object.assign(Object.create(null), {
+    darwin: ['x64', 'arm64'],
     linux: ['x64', 'ia32', 'arm64', 'arm'],
     win32: ['x64', 'ia32']
   })

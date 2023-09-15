@@ -1,7 +1,7 @@
 {
   "name": "ffmpeg-ffprobe-static",
-  "version": "4.3.1-rc.6",
-  "description": "ffmpeg static binaries for Mac OSX and Linux and Windows",
+  "version": "6.0.0",
+  "description": "ffmpeg and ffprobe static binaries for Mac OSX, Linux, and Windows",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -18,8 +18,8 @@
     "postinstall": "patch-package"
   },
   "ffmpeg-static": {
-    "binary-release-tag": "b4.3.1-rc.5",
-    "binary-release-name": "4.3.1"
+    "binary-release-tag": "b6.0",
+    "binary-release-name": "6.0"
   },
   "repository": {
     "type": "git",
@@ -37,10 +37,10 @@
   ],
   "authors": [
     "Eugene Ware <eugene@noblesamurai.com>",
-    "contributors"
+    "Jannis R <mail@jannisr.de>"
   ],
   "contributors": [
-    "Jannis R <mail@jannisr.de>"
+    "Thefrank (https://github.com/Thefrank)"
   ],
   "license": "GPL-3.0-or-later",
   "bugs": {
@@ -58,6 +58,6 @@
   },
   "devDependencies": {
     "any-shell-escape": "^0.1.1",
-    "eslint": "^7.2.0"
+    "eslint": "^7.30.0"
   }
 }

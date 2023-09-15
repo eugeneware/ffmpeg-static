@@ -64,6 +64,33 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/ffmpeg-darwin-arm
+          asset_name: ffmpeg-darwin-arm
+          asset_content_type: application/octet-stream
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/ffprobe-darwin-arm
+          asset_name: ffprobe-darwin-arm
+          asset_content_type: application/octet-stream
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: bin/darwin-arm64.README
+          asset_name: darwin-arm64.README
+          asset_content_type: text/plain
+
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: bin/ffprobe-linux-arm
           asset_name: ffprobe-linux-arm
           asset_content_type: application/octet-stream
@@ -217,15 +244,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/win32-ia32.README
-          asset_name: win32-ia32.README
-          asset_content_type: text/plain
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: bin/win32-ia32.LICENSE
           asset_name: win32-ia32.LICENSE
           asset_content_type: text/plain
@@ -247,15 +265,6 @@ jobs:
           asset_path: bin/ffprobe-win32-x64
           asset_name: ffprobe-win32-x64
           asset_content_type: application/octet-stream
-
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/win32-x64.README
-          asset_name: win32-x64.README
-          asset_content_type: text/plain
 
       - uses: actions/upload-release-asset@v1.0.1
         env:

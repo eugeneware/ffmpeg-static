@@ -6,8 +6,11 @@ const {encode: encodeQuery} = require('querystring')
 const {strictEqual} = require('assert')
 const envPaths = require('env-paths')
 const FileCache = require('@derhuerst/http-basic/lib/FileCache').default
+const {extname} = require('path')
 var ProgressBar = require("progress");
 var request = require('@derhuerst/http-basic')
+const {createGunzip} = require('zlib')
+const {pipeline} = require('stream')
 var {ffmpegPath, ffprobePath} = require(".");
 var pkg = require("./package");
 
@@ -70,6 +73,12 @@ cache.getCacheKey = (url) => {
   return FileCache.prototype.getCacheKey(normalizeS3Url(url))
 }
 
+const isGzUrl = (url) => {
+  const path = new URL(url).pathname.split('/')
+  const filename = path[path.length - 1]
+  return filename && extname(filename) === '.gz'
+}
+
 const noop = () => {}
 function downloadFile(url, destinationPath, progressCallback = noop) {
   let fulfill, reject;
@@ -100,9 +109,19 @@ function downloadFile(url, destinationPath, progressCallback = noop) {
     }
 
     const file = fs.createWriteStream(destinationPath);
-    file.on("finish", () => fulfill());
-    file.on("error", error => reject(error));
-    response.body.pipe(file)
+    const streams = isGzUrl(url)
+      ? [response.body, createGunzip(), file]
+      : [response.body, file]
+    pipeline(
+      ...streams,
+      (err) => {
+        if (err) {
+          err.url = response.url
+          err.statusCode = response.statusCode
+          reject(err)
+        } else fulfill()
+      }
+    )
 
     if (!response.fromCache && progressCallback) {
       const cLength = response.headers["content-length"]
@@ -141,6 +160,7 @@ const releaseName = (
 )
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()
+
 const base = process.env.FFMPEG_FFPROBE_STATIC_BASE_URL || 'https://github.com/descriptinc/ffmpeg-ffprobe-static/releases/download/';
 console.log(`[ffmpeg-ffprobe-static] Using base url: ${base}`);
 const baseUrl = new URL(release, base).href;
