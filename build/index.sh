@@ -96,12 +96,16 @@ curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/LICENSE.md
 
 echo 'darwin arm64'
 echo '  downloading from osxexperts.net'
-download 'https://www.osxexperts.net/ffmpeg44arm.zip' darwin-arm64.zip
+download 'https://www.osxexperts.net/ffmpeg6arm.zip' ffmpeg-darwin-arm64.zip
+download 'https://www.osxexperts.net/ffprobe6arm.zip' ffprobe-darwin-arm64.zip
 echo '  extracting'
-unzip -o -d ../bin -j darwin-arm64.zip ffmpeg
-mv ../bin/ffmpeg ../bin/darwin-arm64
-curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
-curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/README.md'  -o ../bin/darwin-arm64.README
+unzip -o -d ../bin -j ffmpeg-darwin-arm64.zip ffmpeg
+unzip -o -d ../bin -j ffprobe-darwin-arm64.zip ffprobe
+mv ../bin/ffmpeg ../bin/ffmpeg-darwin-arm64
+mv ../bin/ffprobe ../bin/ffprobe-darwin-arm64
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.0:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.0:/README.md'  -o ../bin/darwin-arm64.README
+
 
 echo 'freebsd x64'
 echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
