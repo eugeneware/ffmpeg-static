@@ -40,12 +40,11 @@ mv "$tmpdir/README.txt" ../bin/win32-x64.README
 
 echo 'windows ia32'
 echo '  downloading from github.com'
-download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/autobuild-2021-06-17-12-48/ffmpeg-n4.4-19-g8d172d9409-win32-gpl-4.4.zip' win32-ia32.zip
+download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/latest/ffmpeg-n6.0-latest-win32-gpl-6.0.zip' win32-ia32.zip
 echo '  extracting'
 unzip -o -d ../bin -j win32-ia32.zip '*/bin/ffmpeg.exe' '*/bin/ffprobe.exe'
-mv ../bin/ffmpeg.exe ../bin/win32-ia32
-mv ../bin/ffprobe.exe ../bin/win32-ia32
-curl -s -L 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/master/LICENSE' -o ../bin/win32-ia32.LICENSE
+mv ../bin/ffmpeg.exe ../bin/ffmpeg-win32-ia32
+mv ../bin/ffprobe.exe ../bin/ffprobe-win32-ia32
 
 echo 'linux x64'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz' linux-x64.tar.xz
