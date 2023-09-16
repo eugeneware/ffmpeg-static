@@ -73,8 +73,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/ffprobe-darwin-arm
-          asset_name: ffprobe-darwin-arm
+          asset_path: bin/ffprobe-darwin-arm64
+          asset_name: ffprobe-darwin-arm64
           asset_content_type: application/octet-stream
 
       - uses: actions/upload-release-asset@v1.0.1
