@@ -18,8 +18,8 @@
     "postinstall": "patch-package"
   },
   "ffmpeg-static": {
-    "binary-release-tag": "b6.0",
-    "binary-release-name": "6.0"
+    "binary-release-tag": "b6.0.0-rc.14",
+    "binary-release-name": "6.0.0"
   },
   "repository": {
     "type": "git",
