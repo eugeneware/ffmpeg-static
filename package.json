@@ -8,6 +8,7 @@
   	"packages/ffprobe-static"
   ],
   "scripts": {
+    "pretest": "npm run build && npm install",
     "test": "node test.js",
     "lint": "eslint .",
     "build": "./build-packages.js",
