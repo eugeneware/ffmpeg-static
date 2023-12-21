@@ -28,11 +28,25 @@ jobs:
     - run: npm install --workspaces
 
     - run: npm run lint
+    - run: npm run build
     - run: npm test
-    - name: test-install ffmpeg-static as dependency
+
+    - name: test-install each package in the workspace as dependency
       run: |
-        file=$(npm pack -s) && file=$(realpath $file)
-        cd $(mktemp -d) && npm init -y
-        npm i "$file"
-        file $(node -p 'require("ffmpeg-static")')
-        $(node -p 'require("ffmpeg-static")') --help
+        set -u
+        set -o pipefail
+        set -x
+
+        ls -al packages
+        for path in packages/*; do
+          pkg="$(basename "$path")"
+          tgz="$(realpath $(npm pack -s --workspace "$pkg" | xargs))"
+
+          pushd .
+          cd "$(mktemp -d)"
+          npm init -y
+          npm i "$tgz"
+          file "$(node -p "require('$pkg')")"
+          "$(node -p "require('$pkg')")" -L
+          popd
+        done
