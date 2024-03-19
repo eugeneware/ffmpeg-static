@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-ffprobe-static",
-  "version": "6.1.1",
+  "version": "6.1.1.rc2",
   "description": "ffmpeg and ffprobe static binaries for Mac OSX, Linux, and Windows",
   "main": "index.js",
   "types": "index.d.ts",
@@ -19,7 +19,7 @@
   },
   "ffmpeg-static": {
     "binary-release-tag": "b6.1.1-rc.1",
-    "binary-release-name": "6.1.1"
+    "binary-release-name": "6.1.1.rc.1"
   },
   "repository": {
     "type": "git",
