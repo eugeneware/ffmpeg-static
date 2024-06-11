@@ -161,7 +161,7 @@ const releaseName = (
 const arch = process.env.npm_config_arch || os.arch()
 const platform = process.env.npm_config_platform || os.platform()
 
-const base = process.env.FFMPEG_FFPROBE_STATIC_BASE_URL || 'https://github.com/srikanth-descript/ffmpeg-ffprobe-static/releases/download/';
+const base = process.env.FFMPEG_FFPROBE_STATIC_BASE_URL || 'https://github.com/descriptinc/ffmpeg-ffprobe-static/releases/download/';
 console.log(`[ffmpeg-ffprobe-static] Using base url: ${base}`);
 const baseUrl = new URL(release, base).href;
 const ffmpegUrl = `${baseUrl}/ffmpeg-${platform}-${arch}`
