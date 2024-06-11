@@ -5,6 +5,9 @@ on:
 
 name: Release Binaries
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
