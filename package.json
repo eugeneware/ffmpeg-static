@@ -18,7 +18,7 @@
     "postinstall": "patch-package"
   },
   "ffmpeg-static": {
-    "binary-release-tag": "b6.1.1-rc.r2",
+    "binary-release-tag": "b6.1.1-rc.2",
     "binary-release-name": "6.1.1.rc.2"
   },
   "repository": {
