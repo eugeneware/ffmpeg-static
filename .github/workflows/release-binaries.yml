@@ -5,8 +5,7 @@ on:
 
 name: Release Binaries
 
-permissions:
-  contents: write
+permissions: write-all
 
 jobs:
   release:
