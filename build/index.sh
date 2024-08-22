@@ -27,9 +27,10 @@ download () {
   fi
 }
 
+##Special case download from archive.org for one-time download
 echo 'windows x64'
 echo '  downloading from gyan.dev'
-download 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.7z' win32-x64.7z
+download 'https://web.archive.org/web/20230629190651/https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-5.1.2-essentials_build.7z' win32-x64.7z
 echo '  extracting'
 tmpdir=$(mktemp -d)
 7zr e -y -bd -o"$tmpdir" win32-x64.7z >/dev/null
@@ -40,14 +41,14 @@ mv "$tmpdir/README.txt" ../bin/win32-x64.README
 
 echo 'windows ia32'
 echo '  downloading from github.com'
-download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/latest/ffmpeg-n6.0-latest-win32-gpl-6.0.zip' win32-ia32.zip
+download 'https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/autobuild-2022-09-30-12-48/ffmpeg-n5.1.2-1-g05d6157aab-win32-gpl-5.1.zip' win32-ia32.zip
 echo '  extracting'
 unzip -o -d ../bin -j win32-ia32.zip '*/bin/ffmpeg.exe' '*/bin/ffprobe.exe'
 mv ../bin/ffmpeg.exe ../bin/ffmpeg-win32-ia32
 mv ../bin/ffprobe.exe ../bin/ffprobe-win32-ia32
 
 echo 'linux x64'
-download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz' linux-x64.tar.xz
+download 'https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-5.1.1-amd64-static.tar.xz' linux-x64.tar.xz
 echo '  extracting'
 xzcat linux-x64.tar.xz | $tar_exec -x -C ../bin --strip-components 1 --wildcards '*/ffmpeg' '*/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-x64
@@ -56,7 +57,7 @@ xzcat linux-x64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/GPLv3.txt
 xzcat linux-x64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.txt' >../bin/linux-x64.README
 
 echo 'linux ia32'
-download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz' linux-ia32.tar.xz
+download 'https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-5.1.1-i686-static.tar.xz' linux-ia32.tar.xz
 echo '  extracting'
 xzcat linux-ia32.tar.xz | $tar_exec -x -C ../bin --strip-components 1 --wildcards '*/ffmpeg' '*/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-ia32
@@ -65,7 +66,7 @@ xzcat linux-ia32.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/GPLv3.tx
 xzcat linux-ia32.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.txt' >../bin/linux-ia32.README
 
 echo 'linux arm'
-download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-static.tar.xz' linux-arm.tar.xz
+download 'https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-5.1.1-armhf-static.tar.xz' linux-arm.tar.xz
 echo '  extracting'
 xzcat linux-arm.tar.xz | $tar_exec -x -C ../bin --strip-components 1 --wildcards '*/ffmpeg' '*/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-arm
@@ -74,7 +75,7 @@ xzcat linux-arm.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/GPLv3.txt
 xzcat linux-arm.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.txt' >../bin/linux-arm.README
 
 echo 'linux arm64'
-download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-static.tar.xz' linux-arm64.tar.xz
+download 'https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-5.1.1-arm64-static.tar.xz' linux-arm64.tar.xz
 echo '  extracting'
 xzcat linux-arm64.tar.xz | $tar_exec -x -C ../bin --strip-components 1 --wildcards '*/ffmpeg' '*/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-arm64
@@ -83,12 +84,12 @@ xzcat linux-arm64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/GPLv3.t
 xzcat linux-arm64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.txt' >../bin/linux-arm64.README
 
 echo 'darwin x64'
-download 'https://www.osxexperts.net/ffmpeg61intel.zip' ffmpeg-darwin-x64.zip
+download 'https://www.osxexperts.net/ffmpeg511intel.zip' ffmpeg-darwin-x64.zip
 echo '  extracting'
 unzip -o -d ../bin -j ffmpeg-darwin-x64.zip ffmpeg
 mv ../bin/ffmpeg ../bin/ffmpeg-darwin-x64
 
-download 'https://www.osxexperts.net/ffprobe61intel.zip' ffprobe-darwin-x64.zip
+download 'https://www.osxexperts.net/ffprobe511intel.zip' ffprobe-darwin-x64.zip
 echo '  extracting'
 unzip -o -d ../bin -j ffprobe-darwin-x64.zip ffprobe
 mv ../bin/ffprobe ../bin/ffprobe-darwin-x64
@@ -97,8 +98,8 @@ curl -s -L 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/LICENSE.md
 
 echo 'darwin arm64'
 echo '  downloading from osxexperts.net'
-download 'https://www.osxexperts.net/ffmpeg611arm.zip' ffmpeg-darwin-arm64.zip
-download 'https://www.osxexperts.net/ffprobe611arm.zip' ffprobe-darwin-arm64.zip
+download 'https://www.osxexperts.net/ffmpeg511arm.zip' ffmpeg-darwin-arm64.zip
+download 'https://www.osxexperts.net/ffprobe511arm.zip' ffprobe-darwin-arm64.zip
 echo '  extracting'
 unzip -o -d ../bin -j ffmpeg-darwin-arm64.zip ffmpeg
 unzip -o -d ../bin -j ffprobe-darwin-arm64.zip ffprobe
@@ -110,5 +111,5 @@ curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.1:/README.md'
 
 echo 'freebsd x64'
 echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
-download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v6.1.0/ffmpeg' ../bin/freebsd-x64
+download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v5.1.1/ffmpeg' ../bin/freebsd-x64
 chmod +x ../bin/freebsd-x64
