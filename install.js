@@ -164,8 +164,8 @@ const release = (
   process.env[RELEASE_ENV_VAR] ||
   pkg[pkg.name]['binary-release-tag']
 )
-const arch = process.env.npm_config_arch || os.arch()
-const platform = process.env.npm_config_platform || os.platform()
+const arch = process.env.npm_config_cpu || process.env.npm_config_arch || os.arch()
+const platform = process.env.npm_config_os || process.env.npm_config_platform || os.platform()
 const downloadsUrl = (
   process.env[BINARIES_URL_ENV_VAR] ||
   'https://github.com/eugeneware/ffmpeg-static/releases/download'
