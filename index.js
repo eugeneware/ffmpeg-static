@@ -26,8 +26,8 @@ if (process.env[BINARY_PATH_ENV_VAR]) {
     win32: ['x64', 'ia32']
   })
 
-  var platform = process.env.npm_config_platform || os.platform()
-  var arch = process.env.npm_config_arch || os.arch()
+  var platform = process.env.npm_config_os || process.env.npm_config_platform || os.platform()
+  var arch = process.env.npm_config_cpu || process.env.npm_config_arch || os.arch()
 
   let binaryPath = path.join(
     __dirname,
