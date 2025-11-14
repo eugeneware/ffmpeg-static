@@ -27,7 +27,7 @@ The npm packages include statically linked binaries that are produced by the fol
 
 ## Developing
 
-Because this project uses [npm workspaces](https://docs.npmjs.com/cli/v10/using-npm/workspaces), and because it generates the `ffmpeg-static`/`ffprobe-static` workspaces (a.k.a. sub-packages) *dynamically*, the prodecure to get it running are a bit unusual:
+Because this project uses [npm workspaces](https://docs.npmjs.com/cli/v10/using-npm/workspaces), and because it generates the `ffmpeg-static`/`ffprobe-static` workspaces (a.k.a. sub-packages) *dynamically* in the `build` script, the prodecure to get them running are a bit unusual:
 
 ```shell
 npm install # install dependencies
@@ -37,4 +37,6 @@ npm install --workspaces # install workspaces' dependencies & run scripts
 
 ### Downloading and re-publishing the binaries
 
-The `unzip`, `tar` CLI executables need to be installed. On macOS, use `brew install gnu-tar xz`.
+You need [`curl`](https://curl.se) to download the ffmpeg binaries.
+
+You need `unzip`, `tar` & [`7z`/`7zr`/`7zz`](https://rtfmp.wordpress.com/2017/03/31/difference-7z-7za-and-7zr/) to extract them. On macOS, run `brew install gnu-tar xz p7zip` to install them.
