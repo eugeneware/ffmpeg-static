@@ -2,7 +2,7 @@
 
 Static **[ffmpeg](https://ffmpeg.org) binaries for macOS, Linux, Windows.**
 
-Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit). [The ffmpeg version currently used is `6.0`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b6.0)
+Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit). [The ffmpeg version currently used is `6.1.1`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b6.1.1)
 
 [![npm version](https://img.shields.io/npm/v/ffmpeg-static.svg)](https://www.npmjs.com/package/ffmpeg-static)
 ![minimum Node.js version](https://img.shields.io/node/v/ffmpeg-static.svg)
@@ -17,7 +17,7 @@ Also check out [`node-ffmpeg-installer`](https://github.com/kribblo/node-ffmpeg-
 $ npm install ffmpeg-static
 ```
 
-*Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b6.0` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b6.0). Use and distribution of the binary releases of `ffmpeg` are covered by their respective license.
+*Note:* During installation, it will download the appropriate `ffmpeg` binary from the [`b6.1.1` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b6.1.1). Use and distribution of the binary releases of `ffmpeg` are covered by their respective license.
 
 ### Custom binaries url
 
