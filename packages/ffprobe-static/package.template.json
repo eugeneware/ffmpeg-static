@@ -1,5 +1,5 @@
 {
-	"name": "ffprobe-static",
+	"name": "@derhuerst/ffprobe-static",
   "description": "ffprobe binaries for macOS, Linux and Windows",
   "keywords": [
     "ffprobe",

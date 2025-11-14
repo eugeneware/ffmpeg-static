@@ -12,7 +12,7 @@ Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows 
 ## Installation
 
 ``` bash
-$ npm install ffprobe-static
+$ npm install @derhuerst/ffprobe-static
 ```
 
 *Note:* During installation, it will download the appropriate `ffprobe` binary from the [`b6.1.1` GitHub release](https://github.com/eugeneware/ffprobe-static/releases/tag/b6.1.1). Use and distribution of the binary releases of `ffprobe` are covered by their respective license.
@@ -23,7 +23,7 @@ By default, the `ffprobe` binary will get downloaded from `https://github.com/eu
 
 ```shell
 export FFPROBE_BINARIES_URL=https://cdn.npmmirror.com/binaries/ffprobe-static
-npm install ffprobe-static
+npm install @derhuerst/ffprobe-static
 ```
 
 ### Electron & other cross-platform packaging tools

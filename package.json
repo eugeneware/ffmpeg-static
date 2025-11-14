@@ -21,7 +21,7 @@
     "binaries-url-env-var": "FFMPEG_BINARIES_URL",
     "executable-base-name": "ffmpeg"
   },
-  "ffprobe-static": {
+  "@derhuerst/ffprobe-static": {
     "binary-path-env-var": "FFPROBE_BIN",
     "binary-release-tag-env-var": "FFPROBE_BINARY_RELEASE",
     "binary-release-tag": "b6.1.1",
