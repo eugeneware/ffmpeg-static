@@ -38,8 +38,7 @@ set -x # todo: remove
 
 echo 'windows x64'
 echo '  downloading from github.com/GyanD/codexffmpeg'
-# todo: 404
-download 'https://github.com/GyanD/codexffmpeg/releases/download/6.1.1/ffmpeg-6.1.1-essentials_build.7z' win32-x64.7z
+download 'https://github.com/GyanD/codexffmpeg/releases/download/8.0.1/ffmpeg-8.0.1-essentials_build.7z' win32-x64.7z
 echo '  extracting'
 tmpdir=$(mktemp -d)
 $p7zip_exec e -y -bd -o"$tmpdir" win32-x64.7z >/dev/null
@@ -60,17 +59,17 @@ mv "$tmpdir/README.txt" ../bin/win32-x64.README
 # # curl -fsSL 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/autobuild-2022-04-30-14-19/LICENSE' -o ../bin/win32-ia32.LICENSE
 
 echo 'linux x64'
-echo '  downloading from johnvansickle.com'
-download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz' linux-x64.tar.xz
+echo '  downloading from github.com/BtbN/FFmpeg-Builds'
+download 'https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n8.0-latest-linux64-gpl-8.0.tar.xz' linux-x64.tar.xz
 echo '  extracting'
-xzcat linux-x64.tar.xz | $tar_exec -x -C ../bin --strip-components 1 --wildcards '*/ffmpeg' '*/ffprobe'
+xzcat linux-x64.tar.xz | $tar_exec -x -C ../bin --strip-components 2 --wildcards '*/bin/ffmpeg' '*/bin/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-x64
 mv ../bin/ffprobe ../bin/ffprobe-linux-x64
-xzcat linux-x64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/GPLv3.txt' >../bin/linux-x64.LICENSE
-xzcat linux-x64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.txt' >../bin/linux-x64.README
+xzcat linux-x64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/LICENSE.txt' >../bin/linux-x64.LICENSE
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n8.0.1:/README.md' -o ../bin/linux-x64.README
 
 echo 'linux ia32'
-echo '  downloading from johnvansickle.com'
+echo '  downloading from johnvansickle.com (BtbN does not support ia32)'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz' linux-ia32.tar.xz
 echo '  extracting'
 xzcat linux-ia32.tar.xz | $tar_exec -x -C ../bin --strip-components 1 --wildcards '*/ffmpeg' '*/ffprobe'
@@ -80,7 +79,7 @@ xzcat linux-ia32.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/GPLv3.tx
 xzcat linux-ia32.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.txt' >../bin/linux-ia32.README
 
 echo 'linux arm'
-echo '  downloading from johnvansickle.com'
+echo '  downloading from johnvansickle.com (BtbN does not support armhf)'
 download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-static.tar.xz' linux-arm.tar.xz
 echo '  extracting'
 xzcat linux-arm.tar.xz | $tar_exec -x -C ../bin --strip-components 1 --wildcards '*/ffmpeg' '*/ffprobe'
@@ -90,45 +89,44 @@ xzcat linux-arm.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/GPLv3.txt
 xzcat linux-arm.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.txt' >../bin/linux-arm.README
 
 echo 'linux arm64'
-echo '  downloading from johnvansickle.com'
-download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-static.tar.xz' linux-arm64.tar.xz
+echo '  downloading from github.com/BtbN/FFmpeg-Builds'
+download 'https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n8.0-latest-linuxarm64-gpl-8.0.tar.xz' linux-arm64.tar.xz
 echo '  extracting'
-xzcat linux-arm64.tar.xz | $tar_exec -x -C ../bin --strip-components 1 --wildcards '*/ffmpeg' '*/ffprobe'
+xzcat linux-arm64.tar.xz | $tar_exec -x -C ../bin --strip-components 2 --wildcards '*/bin/ffmpeg' '*/bin/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-arm64
 mv ../bin/ffprobe ../bin/ffprobe-linux-arm64
-xzcat linux-arm64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/GPLv3.txt' >../bin/linux-arm64.LICENSE
-xzcat linux-arm64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.txt' >../bin/linux-arm64.README
+xzcat linux-arm64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/LICENSE.txt' >../bin/linux-arm64.LICENSE
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n8.0.1:/README.md' -o ../bin/linux-arm64.README
 
 echo 'darwin x64'
 echo '  downloading from evermeet.cx'
-download $(curl 'https://evermeet.cx/ffmpeg/info/ffmpeg/6.1.1' -fsS| jq -rc '.download.zip.url') ffmpeg-darwin-x64.zip
-download $(curl 'https://evermeet.cx/ffmpeg/info/ffprobe/6.1.1' -fsS| jq -rc '.download.zip.url') ffprobe-darwin-x64.zip
+download $(curl 'https://evermeet.cx/ffmpeg/info/ffmpeg/8.0.1' -fsS| jq -rc '.download.zip.url') ffmpeg-darwin-x64.zip
+download $(curl 'https://evermeet.cx/ffmpeg/info/ffprobe/8.0.1' -fsS| jq -rc '.download.zip.url') ffprobe-darwin-x64.zip
 echo '  extracting'
 unzip -o -d ../bin -j ffmpeg-darwin-x64.zip ffmpeg
 unzip -o -d ../bin -j ffprobe-darwin-x64.zip ffprobe
 mv ../bin/ffmpeg ../bin/ffmpeg-darwin-x64
 mv ../bin/ffprobe ../bin/ffprobe-darwin-x64
-curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/HEAD:/LICENSE.md'  -o ../bin/darwin-x64.LICENSE
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n8.0.1:/LICENSE.md'  -o ../bin/darwin-x64.LICENSE
 curl -fsSL 'https://evermeet.cx/ffmpeg/info/ffmpeg/release' | jq --tab '.' >../bin/darwin-x64.README
-# todo: pull ffprobe README?
 
 echo 'darwin arm64'
 echo '  downloading from osxexperts.net'
-download 'https://www.osxexperts.net/ffmpeg6arm.zip' ffmpeg-darwin-arm64.zip
-download 'https://www.osxexperts.net/ffprobe6arm.zip' ffprobe-darwin-arm64.zip
+download 'https://www.osxexperts.net/ffmpeg80arm.zip' ffmpeg-darwin-arm64.zip
+download 'https://www.osxexperts.net/ffprobe80arm.zip' ffprobe-darwin-arm64.zip
 echo '  extracting'
 unzip -o -d ../bin -j ffmpeg-darwin-arm64.zip ffmpeg
 unzip -o -d ../bin -j ffprobe-darwin-arm64.zip ffprobe
 mv ../bin/ffmpeg ../bin/ffmpeg-darwin-arm64
 mv ../bin/ffprobe ../bin/ffprobe-darwin-arm64
-curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.1.1:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
-curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.1.1:/README.md'  -o ../bin/darwin-arm64.README
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n8.0.1:/LICENSE.md'  -o ../bin/darwin-arm64.LICENSE
+curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n8.0.1:/README.md'  -o ../bin/darwin-arm64.README
 
 # echo 'freebsd x64'
 # echo '  downloading from github.com/Thefrank/ffmpeg-static-freebsd'
-# download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v6.1.1/ffmpeg' ../bin/ffmpeg-freebsd-x64
-# download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v6.1.1/ffprobe' ../bin/ffprobe-freebsd-x64
+# download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v8.0.1/ffmpeg' ../bin/ffmpeg-freebsd-x64
+# download 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v8.0.1/ffprobe' ../bin/ffprobe-freebsd-x64
 # chmod +x ../bin/ffmpeg-freebsd-x64
 # chmod +x ../bin/ffprobe-freebsd-x64
-# curl -fsSL 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v6.1.1/GPLv3.LICENSE' -o ../bin/freebsd-x64.LICENSE
-# curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n6.1.1:/README.md' -o ../bin/freebsd-x64.README
+# curl -fsSL 'https://github.com/Thefrank/ffmpeg-static-freebsd/releases/download/v8.0.1/GPLv3.LICENSE' -o ../bin/freebsd-x64.LICENSE
+# curl -fsSL 'https://git.ffmpeg.org/gitweb/ffmpeg.git/blob_plain/n8.0.1:/README.md' -o ../bin/freebsd-x64.README

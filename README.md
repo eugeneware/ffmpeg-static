@@ -2,7 +2,7 @@
 
 Static **[ffmpeg](https://ffmpeg.org)/ffprobe binaries for macOS, Linux, Windows.**
 
-Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit). [The ffmpeg version currently used is `6.1.1`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b6.1.1)
+Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows (64-bit). [The ffmpeg version currently used is `8.0.1`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b8.0.1)
 
 [![npm version](https://img.shields.io/npm/v/ffmpeg-static.svg)](https://www.npmjs.com/package/ffmpeg-static)
 ![minimum Node.js version](https://img.shields.io/node/v/ffmpeg-static.svg)
@@ -12,8 +12,7 @@ Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows 
 [The binaries download script](download-binaries/index.sh) downloads binaries from these locations:
 
 - [Windows x64 builds](https://www.gyan.dev/ffmpeg/builds/)
-- [Windows x86 builds](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/)
-- [Linux x64/x86/ARM/ARM64 builds](https://johnvansickle.com/ffmpeg/)
+- [Linux x64/ARM64 builds](https://github.com/BtbN/FFmpeg-Builds) & [x86/ARM builds](https://johnvansickle.com/ffmpeg/)
 - macOS [x64 (Intel)](https://evermeet.cx/pub/ffmpeg/) & [ARM64 (Apple Silicon)](https://osxexperts.net/) builds
 
 The script extracts build information and (when possible) the license file from the downloaded package or the distribution server. Please consult the individual build's project site for exact source versions, which you can locate based on the version information included in the README file.

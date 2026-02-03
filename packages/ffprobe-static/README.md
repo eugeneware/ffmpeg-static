@@ -2,7 +2,7 @@
 
 Static **ffprobe (from the [ffmpeg](https://ffmpeg.org) project) binaries for macOS, Linux, Windows.**
 
-Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows (32 and 64-bit). [The ffmpeg version currently used is `6.1.1`.](https://github.com/eugeneware/ffprobe-static/releases/tag/b6.1.1)
+Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows (64-bit). [The ffmpeg version currently used is `8.0.1`.](https://github.com/eugeneware/ffmpeg-static/releases/tag/b8.0.1)
 
 [![npm version](https://img.shields.io/npm/v/ffprobe-static.svg)](https://www.npmjs.com/package/ffprobe-static)
 ![minimum Node.js version](https://img.shields.io/node/v/ffprobe-static.svg)
@@ -15,7 +15,7 @@ Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows 
 $ npm install @derhuerst/ffprobe-static
 ```
 
-*Note:* During installation, it will download the appropriate `ffprobe` binary from the [`b6.1.1` GitHub release](https://github.com/eugeneware/ffprobe-static/releases/tag/b6.1.1). Use and distribution of the binary releases of `ffprobe` are covered by their respective license.
+*Note:* During installation, it will download the appropriate `ffprobe` binary from the [`b8.0.1` GitHub release](https://github.com/eugeneware/ffmpeg-static/releases/tag/b8.0.1). Use and distribution of the binary releases of `ffprobe` are covered by their respective license.
 
 ### Custom binaries url
 
@@ -47,8 +47,7 @@ Check the [example script](example.js) for a more thorough example.
 The binaries downloaded by `ffprobe-static` are from these locations:
 
 - [Windows x64 builds](https://www.gyan.dev/ffmpeg/builds/)
-- [Windows x86 builds](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/)
-- [Linux x64/x86/ARM/ARM64 builds](https://johnvansickle.com/ffmpeg/)
+- [Linux x64/ARM64 builds](https://github.com/BtbN/FFmpeg-Builds) & [x86/ARM builds](https://johnvansickle.com/ffmpeg/)
 - macOS [x64 (Intel)](https://evermeet.cx/pub/ffmpeg/) & [ARM64 (Apple Silicon)](https://osxexperts.net/) builds
 
 ## Show your support
