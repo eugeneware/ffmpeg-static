@@ -60,14 +60,15 @@ mv "$tmpdir/README.txt" ../bin/win32-x64.README
 # # curl -fsSL 'https://raw.githubusercontent.com/sudo-nautilus/FFmpeg-Builds-Win32/autobuild-2022-04-30-14-19/LICENSE' -o ../bin/win32-ia32.LICENSE
 
 echo 'linux x64'
-echo '  downloading from johnvansickle.com'
-download 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz' linux-x64.tar.xz
+echo '  downloading from github.com/BtbN/FFmpeg-Builds'
+# FFmpeg >=6 requires libharfbuzz (in addition to libfreetype) for drawtext.
+download 'https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-2025-02-28-13-02/ffmpeg-n6.1.2-25-g39cac587c4-linux64-gpl-6.1.tar.xz' linux-x64.tar.xz
 echo '  extracting'
-xzcat linux-x64.tar.xz | $tar_exec -x -C ../bin --strip-components 1 --wildcards '*/ffmpeg' '*/ffprobe'
+xzcat linux-x64.tar.xz | $tar_exec -x -C ../bin --strip-components 2 --wildcards '*/bin/ffmpeg' '*/bin/ffprobe'
 mv ../bin/ffmpeg ../bin/ffmpeg-linux-x64
 mv ../bin/ffprobe ../bin/ffprobe-linux-x64
-xzcat linux-x64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/GPLv3.txt' >../bin/linux-x64.LICENSE
-xzcat linux-x64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/readme.txt' >../bin/linux-x64.README
+xzcat linux-x64.tar.xz | $tar_exec -x --ignore-case --wildcards -O '**/license.txt' >../bin/linux-x64.LICENSE
+../bin/ffmpeg-linux-x64 -version >../bin/linux-x64.README
 
 echo 'linux ia32'
 echo '  downloading from johnvansickle.com'

@@ -13,7 +13,8 @@ Supports macOS (64-bit and arm64), Linux (32 and 64-bit, armhf, arm64), Windows 
 
 - [Windows x64 builds](https://www.gyan.dev/ffmpeg/builds/)
 - [Windows x86 builds](https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/)
-- [Linux x64/x86/ARM/ARM64 builds](https://johnvansickle.com/ffmpeg/)
+- [Linux x64 builds](https://github.com/BtbN/FFmpeg-Builds)
+- [Linux x86/ARM/ARM64 builds](https://johnvansickle.com/ffmpeg/)
 - macOS [x64 (Intel)](https://evermeet.cx/pub/ffmpeg/) & [ARM64 (Apple Silicon)](https://osxexperts.net/) builds
 
 The script extracts build information and (when possible) the license file from the downloaded package or the distribution server. Please consult the individual build's project site for exact source versions, which you can locate based on the version information included in the README file.
@@ -22,12 +23,13 @@ The script extracts build information and (when possible) the license file from 
 
 The npm packages include statically linked binaries that are produced by the following individuals, who have been doing this for many years. Please consider supporting and donating to them:
 
-- **Linux builds**: [John Van Sickle](https://www.johnvansickle.com/ffmpeg/)
+- **Linux x86/ARM/ARM64 builds**: [John Van Sickle](https://www.johnvansickle.com/ffmpeg/)
+- **Linux x64 builds**: [BtbN](https://github.com/BtbN/FFmpeg-Builds)
 - **macOS builds**: [Helmut K. C. Tessarek](https://evermeet.cx/ffmpeg/#donations)
 
 ## Developing
 
-Because this project uses [npm workspaces](https://docs.npmjs.com/cli/v10/using-npm/workspaces), and because it generates the `ffmpeg-static`/`ffprobe-static` workspaces (a.k.a. sub-packages) *dynamically* in the `build` script, the prodecure to get them running are a bit unusual:
+Because this project uses [npm workspaces](https://docs.npmjs.com/cli/v10/using-npm/workspaces), and because it generates the `ffmpeg-static`/`ffprobe-static` workspaces (a.k.a. sub-packages) _dynamically_ in the `build` script, the prodecure to get them running are a bit unusual:
 
 ```shell
 npm install # install dependencies
