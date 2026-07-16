@@ -1,11 +1,11 @@
 {
-	"private": true,
+  "private": true,
   "name": "ffmpeg-static",
-  "version": "5.3.0",
+  "version": "6.0.0",
   "description": "ffmpeg & ffprobe binaries for macOS, Linux and Windows",
   "workspaces": [
-  	"packages/ffmpeg-static",
-  	"packages/ffprobe-static"
+    "packages/ffmpeg-static",
+    "packages/ffprobe-static"
   ],
   "scripts": {
     "pretest": "npm run build && npm run install --workspaces",
@@ -56,16 +56,20 @@
     "url": "https://github.com/eugeneware/ffmpeg-static/issues"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=24"
   },
   "dependencies": {
     "@derhuerst/http-basic": "^8.2.0",
-    "env-paths": "^2.2.0",
+    "env-paths": "^4.0.0",
     "https-proxy-agent": "^5.0.0",
     "progress": "^2.0.3"
   },
   "devDependencies": {
     "any-shell-escape": "^0.1.1",
     "eslint": "^8.6.0"
+  },
+  "allowScripts": {
+    "ffmpeg-static@6.0.0": true,
+    "@derhuerst/ffprobe-static@6.0.0": true
   }
 }

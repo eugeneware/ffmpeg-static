@@ -16,3 +16,5 @@ bin/*
 /packages/*/package.json
 # not relevant
 /packages/*/package-lock.json
+
+*.code-workspace
